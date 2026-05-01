@@ -1,0 +1,175 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Carousify Docs",
+  "colors": {
+    "primary": "#2663eb",
+    "light": "#3b82f6",
+    "dark": "#171b6a"
+  },
+  "favicon": {
+    "light": "/favicons/favicon-32x32.png",
+    "dark": "/favicons/favicon-32x32.png"
+  },
+  "errors": {
+    "404": {
+      "redirect": false,
+      "title": "Page not found",
+      "description": "We couldn't find the page you were looking for. Maybe one of the suggestions below will help.\n\n<a href=\"/\" className=\"not-prose inline-flex items-center gap-2 px-5 py-2.5 mt-2 bg-primary text-white rounded-lg font-medium no-underline hover:opacity-90 transition-opacity\">← Back to home</a>"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": [
+              "index",
+              "quickstart",
+              "getting-started/connect-linkedin"
+            ]
+          },
+          {
+            "group": "Carousel Maker",
+            "pages": [
+              "carousel-maker/overview",
+              "carousel-maker/create",
+              "carousel-maker/templates",
+              "carousel-maker/brand-kit",
+              "carousel-maker/export"
+            ]
+          },
+          {
+            "group": "Post Generator",
+            "pages": [
+              "post-generator/overview",
+              "post-generator/write-post",
+              "post-generator/from-content",
+              "post-generator/ai-assistant",
+              "post-generator/formatting"
+            ]
+          },
+          {
+            "group": "Scheduling & publishing",
+            "pages": [
+              "scheduling/schedule-post",
+              "scheduling/auto-plug"
+            ]
+          },
+          {
+            "group": "Workspaces & teams",
+            "pages": [
+              "workspaces/overview",
+              "workspaces/invite-team",
+              "workspaces/roles",
+              "workspaces/clients",
+              "workspaces/approval"
+            ]
+          },
+          {
+            "group": "Analytics",
+            "pages": [
+              "analytics/dashboard",
+              "analytics/link-tracking"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/slack",
+              "integrations/zapier",
+              "integrations/notion",
+              "integrations/extension"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "webhooks/overview"
+            ]
+          },
+          {
+            "group": "MCP for AI agents",
+            "pages": [
+              "mcp/overview",
+              "mcp/claude",
+              "mcp/codex",
+              "mcp/cursor",
+              "mcp/windsurf"
+            ]
+          },
+          {
+            "group": "Whitelabel",
+            "pages": [
+              "whitelabel/overview",
+              "whitelabel/custom-domain",
+              "whitelabel/branding",
+              "whitelabel/smtp"
+            ]
+          },
+          {
+            "group": "Account & billing",
+            "pages": [
+              "billing/plans",
+              "billing/upgrade",
+              "billing/cancel"
+            ]
+          }
+        ]
+      }
+    ],
+    "global": {
+      "anchors": [
+        {
+          "anchor": "Pricing",
+          "href": "https://carousify.com/pricing/",
+          "icon": "tag"
+        },
+        {
+          "anchor": "Blog",
+          "href": "https://carousify.com/blog/",
+          "icon": "newspaper"
+        }
+      ]
+    }
+  },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "https://carousify.com/contact-us/"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Get Started",
+      "href": "https://carousify.com/"
+    }
+  },
+  "contextual": {
+    "options": [
+     "copy",
+     "view",
+     "chatgpt",
+     "claude",
+     "perplexity",
+     "mcp",
+     "cursor",
+     "vscode"
+   ]
+  },
+  "footer": {
+    "socials": {
+      "x": "https://x.com/carousify",
+      "github": "https://github.com/carousify/docs",
+      "linkedin": "https://linkedin.com/company/carousify"
+    }
+  }
+}

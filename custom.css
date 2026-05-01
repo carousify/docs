@@ -1,0 +1,22 @@
+#topbar-cta-button .bg-primary-dark,
+#topbar-cta-button .bg-primary,
+#topbar-cta-button .bg-primary-light {
+  background-color: #2663eb !important;
+}
+
+#topbar-cta-button a:hover .bg-primary-dark,
+#topbar-cta-button a:hover .bg-primary,
+#topbar-cta-button a:hover .bg-primary-light {
+  background-color: #1d4ed8 !important;
+}
+
+footer a[href*="mintlify.com"],
+footer [class*="powered"],
+footer [class*="Powered"],
+#footer a[href*="mintlify.com"],
+#powered-by-mintlify,
+[id*="powered-by"],
+[class*="powered-by"] {
+  display: none !important;
+}
+

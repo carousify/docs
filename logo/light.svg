@@ -1,0 +1,13 @@
+<svg width="205" height="40" viewBox="20 28 840 164" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <defs>
+    <style type="text/css"><![CDATA[
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+      .wm{font-family:'Inter','Inter Placeholder',system-ui,-apple-system,'Segoe UI',Helvetica,Arial,sans-serif;font-weight:600;font-size:112px;letter-spacing:-4px;fill:#1f1f1f}
+    ]]></style>
+  </defs>
+  <g transform="translate(8 14) scale(6)">
+    <rect x="4" y="4" width="18" height="18" rx="4" fill="#33b0ff" transform="rotate(-5 13 13)"/>
+    <rect x="10" y="10" width="18" height="18" rx="4" fill="#171b6a" transform="rotate(5 19 19)"/>
+  </g>
+  <text class="wm" x="220" y="142">Carousify.</text>
+</svg>
