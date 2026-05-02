@@ -2,6 +2,10 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
   "name": "Carousify Docs",
+  "appearance": {
+    "default": "light",
+    "strict": true
+  },
   "colors": {
     "primary": "#2663eb",
     "light": "#3b82f6",
