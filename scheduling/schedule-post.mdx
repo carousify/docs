@@ -1,6 +1,68 @@
 ---
 title: "Schedule a post"
-description: "Pick a date and time, queue posts, and publish at peak hours."
+sidebarTitle: "Schedule a post"
+description: "Queue a LinkedIn post to publish at a specific date and time."
 ---
 
-{/* TODO: Write this page. */}
+Carousify can publish your post immediately or queue it for a future date and time. Scheduling lives inside the same **Publish** flow you use for instant posts — no separate scheduler.
+
+## Write your post
+
+Open **Create New Post › Write New Post** (or go to **Post Generator**) and write your content in the editor. The right side shows a live LinkedIn preview as you type.
+
+<img
+  src="/images/scheduling/write-filled.png"
+  alt="Write Post page with a sample LinkedIn post about Local SEO in the editor"
+  className="rounded-xl border"
+/>
+
+Once you're happy with the copy, click **Publish** in the bottom-right.
+
+## Toggle Schedule on
+
+Clicking **Publish** opens the **Publish Post** dialog. Nothing publishes until you confirm — by default the dialog is set to publish immediately.
+
+<img
+  src="/images/scheduling/publish-modal.png"
+  alt="Publish Post dialog with Auto-plug and Schedule toggles, both off by default"
+  className="rounded-xl border"
+/>
+
+Flip the **Schedule post** toggle on. The dialog reveals a date and time picker.
+
+<img
+  src="/images/scheduling/schedule-toggle-on.png"
+  alt="Publish Post dialog with the Schedule post toggle on, showing date and time fields"
+  className="rounded-xl border"
+/>
+
+Set the date and time you want the post to go live — the **Publish Now** button changes to **Schedule**. Click it to queue the post.
+
+<img
+  src="/images/scheduling/scheduled-success.png"
+  alt="Post scheduled successfully toast with the scheduled time displayed in the editor"
+  className="rounded-xl border"
+/>
+
+The post now shows **Scheduled for [date, time]** along with a **Re-Schedule** button if you want to change it.
+
+<Tip>
+  Date and time use the timezone you set during onboarding (**Workspace › General**). If you schedule for 5:00 PM, that's 5:00 PM in your workspace timezone — not the viewer's.
+</Tip>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Reschedule a post" icon="rotate" href="/scheduling/reschedule">
+    Move a queued post to a different date or time without rewriting it.
+  </Card>
+  <Card title="Content Calendar" icon="calendar" href="/scheduling/calendar">
+    See every published and scheduled post in one weekly or monthly view.
+  </Card>
+  <Card title="Auto-plug a follow-up comment" icon="comment-dots" href="/scheduling/auto-plug">
+    Drop a comment on your own post automatically after a delay to lift reach.
+  </Card>
+  <Card title="Approval workflow" icon="circle-check" href="/workspaces/approval">
+    Require manager review before scheduled posts go live.
+  </Card>
+</Columns>

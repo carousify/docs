@@ -1,0 +1,66 @@
+---
+title: "AI Assistant & BYOK"
+sidebarTitle: "AI Assistant & BYOK"
+description: "Set the AI defaults that power Post Generator, AI carousels, and the Curated Posts feed in this workspace."
+---
+
+The **AI Assistant** section under **Manage Workspace › General** sets the writing defaults every AI generation in this workspace inherits — Post Generator, AI carousels, and the in-editor assistant.
+
+<img
+  src="/images/workspaces/ai-assistant.png"
+  alt="AI Assistant section in workspace settings"
+  className="rounded-xl border"
+/>
+
+## Writing defaults
+
+<Steps>
+  <Step title="Pick a Language">
+    English (US/UK) plus 90+ other languages.
+  </Step>
+  <Step title="Pick a Tone">
+    **Professional & Formal**, **Conversational & Friendly**, **Technical & Detailed**, or **Inspirational & Motivating**.
+  </Step>
+  <Step title="Save Changes">
+    Hit **Save Changes** at the bottom of the section.
+  </Step>
+</Steps>
+
+<Note>
+  A few **post templates** let you override language or tone for a single run. Everywhere else, these workspace defaults are what AI uses.
+</Note>
+
+The same panel also has an **AI Content Assistant** toggle that powers the **Curated Posts / Inspiration** feed in the sidebar — see [Curated Posts](/post-generator/curated-posts) for that flow.
+
+## Bring Your Own AI Key (BYOK)
+
+Below the AI Assistant section, **BYOK** lets you swap Carousify's default AI for your own [OpenRouter](https://openrouter.ai/) key — per workspace.
+
+<img
+  src="/images/workspaces/byok.png"
+  alt="Bring Your Own AI Key section showing the OpenRouter API key field"
+  className="rounded-xl border"
+/>
+
+<Steps>
+  <Step title="Get an OpenRouter key">
+    Sign up at [openrouter.ai](https://openrouter.ai/), top up your account, and create a key (`sk-or-v1-...`).
+  </Step>
+  <Step title="Paste it into the BYOK field and save">
+    Every AI request in this workspace now runs through your key — billed to your OpenRouter account, not Carousify's. Rotate by pasting a new key; clear the field to fall back to Carousify's default AI.
+  </Step>
+</Steps>
+
+### Why use BYOK
+
+- **No AI word limits** — usage is capped by your OpenRouter credit, not your Carousify plan
+- **Pick the model** — OpenRouter exposes Claude, GPT, Gemini, Llama, and dozens more
+- **Compliance / billing** — useful when a client wants AI requests routed through their own provider
+
+### Security
+
+Your API key is **encrypted at rest** and never shown back in the UI after saving. Editing the field always replaces the stored key — Carousify never decrypts it.
+
+<Tip>
+  BYOK is per workspace. Mix Carousify-billed AI in one workspace with your own key in another — handy if some clients pay for their own AI usage and others don't.
+</Tip>

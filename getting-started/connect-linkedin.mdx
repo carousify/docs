@@ -1,6 +1,144 @@
 ---
 title: "Connect your LinkedIn account"
+sidebarTitle: "Connect LinkedIn"
 description: "Authorize Carousify to publish on your behalf using LinkedIn's official API."
 ---
 
-{/* TODO: Write this page. */}
+Carousify uses LinkedIn's official OAuth flow — you log in on LinkedIn, approve the permissions, and get redirected back. **We never see or store your password.**
+
+You can connect your LinkedIn from two places:
+
+- During [onboarding](/quickstart#step-3-%E2%80%94-connect-your-linkedin-account), at step 3
+- Any time after, from **Workspace › Integrations**
+
+This page covers the post-onboarding flow.
+
+## Open the integrations page
+
+Go to **Workspace › Integrations** in the left sidebar. If no LinkedIn account is connected yet, you'll see this:
+
+<img
+  src="/images/connect-linkedin/integrations-empty.png"
+  alt="Workspace Integrations page with no LinkedIn account connected"
+  className="rounded-xl border"
+/>
+
+Click **Add New Account** (top right) — or **Connect Account** in the empty state.
+
+## Pick what to connect
+
+<img
+  src="/images/connect-linkedin/connect-modal.png"
+  alt="Connect your LinkedIn modal showing Personal Account, Business Page, and Collaboration Links"
+  className="rounded-xl border"
+/>
+
+You get three options:
+
+<Columns cols={2}>
+  <Card title="Personal Account" icon="user">
+    Your individual LinkedIn profile. Used to publish posts and carousels under your name.
+  </Card>
+  <Card title="Business Page" icon="building">
+    A LinkedIn company page you admin. Posts publish as the page, not as you.
+  </Card>
+</Columns>
+
+<Note>
+  Connecting **LinkedIn Pages** is a plan-specific feature. Personal accounts work on every paid plan; pages start on Startup and up. See [carousify.com/pricing](https://carousify.com/pricing/) for the breakdown.
+</Note>
+
+## Connect a personal account
+
+<Steps>
+  <Step title="Click Personal Account">
+    Carousify opens LinkedIn's official sign-in page in the same tab.
+  </Step>
+  <Step title="Sign in to LinkedIn">
+    <img
+      src="/images/connect-linkedin/linkedin-oauth.png"
+      alt="LinkedIn OAuth sign-in page"
+      className="rounded-xl border"
+    />
+
+    Enter your LinkedIn email and password. If you're already signed in, LinkedIn skips this and goes straight to the permissions screen.
+  </Step>
+  <Step title="Approve permissions">
+    LinkedIn shows the scopes Carousify is requesting (read profile, read connections size, post on your behalf, manage company pages you admin). Click **Allow**.
+  </Step>
+  <Step title="Land back in Carousify">
+    LinkedIn redirects you to Carousify. Your account now appears in **Workspace › Integrations** with your name, headline, and avatar.
+
+    <img
+      src="/images/connect-linkedin/integrations-connected.png"
+      alt="Workspace Integrations page showing a connected LinkedIn personal account"
+      className="rounded-xl border"
+    />
+  </Step>
+</Steps>
+
+That's it — you can now schedule, publish, and pull analytics for that profile.
+
+### Edit account info
+
+Click **Configure** on a connected account to set interests (used to tune AI-generated content) and tweak the description Carousify uses for context:
+
+<img
+  src="/images/connect-linkedin/configure-modal.png"
+  alt="Configure account modal — interests and description"
+  className="rounded-xl border"
+/>
+
+## Let clients connect *their* LinkedIn — without sharing logins
+
+This is the part that makes Carousify usable for agencies and ghostwriters.
+
+<Info>
+  **You never need your client's LinkedIn email or password.** Carousify generates a secure, one-time link your client opens themselves. They sign in on LinkedIn, approve the permissions, and the account lands in *your* workspace — fully managed by you, never touching your client's credentials.
+</Info>
+
+### Generate a Collaboration Link
+
+In the same **Connect your LinkedIn** modal, scroll to **Collaboration Links**:
+
+<Steps>
+  <Step title="Pick an expiry">
+    Choose **24 hours**, **7 days**, or **30 days**. The link stops working after that — even if no one used it.
+  </Step>
+  <Step title="Click Generate Secure Link">
+    Carousify creates a unique URL bound to your workspace.
+
+    <img
+      src="/images/connect-linkedin/secure-link-generated.png"
+      alt="Generated Carousify secure invitation link with Copy Link, Generate New, and Deactivate buttons"
+      className="rounded-xl border"
+    />
+  </Step>
+  <Step title="Send it to your client">
+    Copy the link and share it however you like — email, Slack, WhatsApp. They don't need a Carousify account.
+  </Step>
+  <Step title="Client connects from their side">
+    They open the link, click through LinkedIn's official OAuth, and approve permissions. Their account appears in *your* Integrations list as soon as they finish.
+  </Step>
+</Steps>
+
+If you ever need to revoke access early, click **Deactivate** on the link — anyone who hasn't used it yet is locked out instantly. Use **Generate New** to rotate to a fresh link without expiring the old one.
+
+<Tip>
+  Use shorter expiries (24h or 7d) for one-off onboarding. Use 30 days only when you know exactly when the client can sit down to do it.
+</Tip>
+
+## What Carousify can do once connected
+
+- **Publish and schedule** carousels, single-image posts, text posts, and videos
+- **Auto-plug** a follow-up comment on your own post after a delay
+- **Pull analytics** — impressions, engagement, clicks — into the [Analytics dashboard](/analytics/dashboard)
+- **Track outbound links** with shortened, attributable URLs (Business plan and up)
+
+## Disconnect or reconnect
+
+From **Workspace › Integrations**, click the menu on a connected account to disconnect it. LinkedIn permissions are revoked immediately. To reconnect later, just run the flow again.
+
+<Note>
+  If LinkedIn ever invalidates the connection (password change, revoked third-party app, etc.), Carousify shows a banner asking you to reconnect. Scheduled posts pause until you do.
+</Note>
