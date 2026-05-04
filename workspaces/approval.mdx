@@ -1,6 +1,72 @@
 ---
 title: "Approval workflow"
-description: "Require manager review before posts go live."
+sidebarTitle: "Approval workflow"
+description: "Route posts through a manager review before they publish."
 ---
 
-{/* TODO: Write this page. */}
+Approval routes posts through a review step before they publish. You decide which roles need it — turn **Requires Approval** on for a role and posts from anyone on that role land in **Pending Approval** for someone with the **Approve Posts** permission to sign off on. It works on any role, including Admin if the Owner wants final say.
+
+<Note>
+  Approval is available on **Business** and **Enterprise** plans. See [Plans and pricing](/billing/plans).
+</Note>
+
+## How it's wired
+
+There's no separate "approval" setting — it's a per-role toggle on **Manage Workspace › Roles**. Flip **Requires Approval** on for any role and every post someone on that role tries to schedule or publish gets routed to Pending Approval first.
+
+By default the toggle is **off** for every role. Turn it on for whichever roles you want gated — common setups are **Member** (writers ship to a queue, Admin signs off) or **Admin** when an Owner wants final say on everything that goes out. You can mix freely.
+
+See [Roles and permissions](/workspaces/roles#the-approval-gate) for the full toggle behavior.
+
+## What writers see
+
+When a member with Requires Approval clicks **Publish** or **Schedule**, the post doesn't go to LinkedIn — it goes to Pending Approval and shows up there waiting for sign-off. The post keeps its original scheduled time; if it's not approved by then it doesn't publish, and Carousify asks the writer to reschedule it.
+
+## Reviewing pending posts
+
+Open **Pending Approval** in the left sidebar. Every post awaiting review is listed with a LinkedIn-style preview — author, headline, body, and the time it's scheduled for.
+
+<img
+  src="/images/workspaces/pending-approval.png"
+  alt="Pending Approval page showing a queued LinkedIn post with an Approve button"
+  className="rounded-xl border"
+/>
+
+The number badge next to the **Pending Approval** sidebar item is the live count, so reviewers see at a glance how much is queued up.
+
+## Approve, edit, or decline
+
+Each pending post has three actions. The primary **Approve** button sits on the card; **Edit** and **Decline** are tucked under the kebab menu in the top-right corner of the card.
+
+<img
+  src="/images/workspaces/pending-approval-actions.png"
+  alt="Pending Approval card with the kebab menu open showing Edit and Decline options next to the Approve button"
+  className="rounded-xl border"
+/>
+
+| Action | What happens |
+| --- | --- |
+| **Approve** | Post is released. If it was scheduled, it publishes at its scheduled time. If the writer hit Publish (not Schedule), it goes live immediately. |
+| **Edit** | Opens the post in the editor. Make changes, save, and the post stays in Pending until you approve it. |
+| **Decline** | Sends the post back to the writer as a draft. Nothing publishes. |
+
+<Tip>
+  Use **Edit** for small copy fixes you'd otherwise nag the writer about — typos, hashtag swaps, link cleanups. Use **Decline** when the angle or content needs a real rewrite.
+</Tip>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Roles and permissions" icon="shield" href="/workspaces/roles">
+    Toggle Requires Approval on the roles you want gated, or build a custom approver tier.
+  </Card>
+  <Card title="Invite team members" icon="user-plus" href="/workspaces/invite-team">
+    Add writers under a role with Requires Approval on so their work routes through review.
+  </Card>
+  <Card title="Content Calendar" icon="calendar" href="/scheduling/calendar">
+    Spot-check the queue after approving.
+  </Card>
+  <Card title="Manage clients" icon="briefcase" href="/workspaces/clients">
+    Combine approval with client workspaces for ghostwriter / agency setups.
+  </Card>
+</Columns>

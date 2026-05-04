@@ -1,6 +1,108 @@
 ---
 title: "Roles and permissions"
-description: "Owner, admin, editor, and viewer permissions explained."
+sidebarTitle: "Roles"
+description: "Built-in roles, the approval gate, and how to build custom roles for your workspace."
 ---
 
-{/* TODO: Write this page. */}
+Every member of a workspace acts under a **role** — a named bundle of permissions. Carousify ships with four built-in roles and lets you create your own with granular permission toggles for teams that need something tighter or looser.
+
+Open **Manage Workspace › Roles** to see them.
+
+<img
+  src="/images/workspaces/roles-list.png"
+  alt="Roles & Permissions page listing Owner, Admin, Client, and Member with Requires Approval toggles"
+  className="rounded-xl border"
+/>
+
+## Built-in roles
+
+| Role | What they can do |
+| --- | --- |
+| **Owner** | Full system access. Manages team, roles, billing, and workspace settings. Created automatically with the workspace and can't be removed. |
+| **Admin** | Everything except ownership transfer — manages team, roles, integrations, brand kits, and content. |
+| **Member** | Creates and edits content, manages brand kits, views analytics. The default for writers, designers, and editors. |
+| **Client** | View-only — sees published content, brand kits, and basic analytics. Can't create or edit anything. The right role for the brand owner you're producing for. |
+
+## The approval gate
+
+Each role has a **Requires Approval** toggle on the roles table. Turn it on and any post a member of that role schedules or publishes lands in **Pending Approval** instead of going live — an Admin or Owner has to sign off first.
+
+This is how Carousify's [approval workflow](/workspaces/approval) is wired. Requires Approval is **off** for every role by default — turn it on for the roles you want to gate (typically **Member**, so writers ship to a queue an Admin signs off on). **Client** is view-only, so the toggle has no effect there.
+
+Toggle it from the roles table any time. The change applies to *future* posts — anything already scheduled keeps its existing approval state.
+
+## Create a custom role
+
+If the four built-ins don't fit, click **Create New Role** in the top right.
+
+<img
+  src="/images/workspaces/create-role-modal.png"
+  alt="Custom Roles dialog with Role Name, Role Icon picker, Description, and Basic Permissions"
+  className="rounded-xl border"
+/>
+
+<Steps>
+  <Step title="Name the role">
+    Pick a name your team will recognize — *Editor*, *Junior Writer*, *Approver*.
+  </Step>
+  <Step title="Pick an icon">
+    Choose from admin, editor, approver, viewer, analyst, manager, contributor, or guest. Purely cosmetic — shows up next to the role on the team list.
+  </Step>
+  <Step title="Add a description">
+    One-liner so future Admins know what the role is for.
+  </Step>
+  <Step title="Set permissions">
+    The dialog opens with a sensible default set. Click **Show advanced** to see every individual permission toggle.
+  </Step>
+</Steps>
+
+### The permission checklist
+
+**Show advanced** opens five permission groups:
+
+<img
+  src="/images/workspaces/create-role-permissions.png"
+  alt="Advanced permissions panel showing User Management, Content Management, Integrations, Templates, and Brand & Workspace permission groups"
+  className="rounded-xl border"
+/>
+
+| Group | Permissions |
+| --- | --- |
+| **User Management** | Add User, Remove User, Add Admin, Remove Admin |
+| **Content Management** | Schedule Post, Publish Post, View Scheduled Posts, View Published Posts, Approve Posts, Edit Drafts, Add Clients |
+| **Integrations** | Add LinkedIn, Remove LinkedIn |
+| **Templates** | Create Template, Edit Template, Delete Template |
+| **Brand & Workspace** | Modify Workspace, Delete Workspace, Add Brand Kit, Edit Brand Kit |
+
+Use the **Quick select** buttons at the bottom to **Select All**, **Select None**, or reset to **Default**.
+
+<Tip>
+  The fastest way to build a custom role: pick the closest built-in as a mental starting point, hit **Default** to load it, then tick or untick the few permissions that differ. Naming a role *Editor without delete* is faster than re-checking 20 boxes.
+</Tip>
+
+Click **Create Role** when you're done. The role appears in the table immediately and shows up in the **Select Role** dropdown when you [invite a new member](/workspaces/invite-team).
+
+## Edit or delete a role
+
+Each role row has an **Actions** menu. Built-in roles can have their **Requires Approval** toggle changed but their permission set is fixed. Custom roles can be edited, duplicated, or deleted from the same menu.
+
+<Warning>
+  Deleting a custom role doesn't remove the people on it — they fall back to **Member** until you re-assign them. Re-assign first if you don't want anyone temporarily losing access.
+</Warning>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Invite team members" icon="user-plus" href="/workspaces/invite-team">
+    Send invites and assign one of these roles.
+  </Card>
+  <Card title="Approval workflow" icon="circle-check" href="/workspaces/approval">
+    How Requires Approval routes posts through Pending Approval.
+  </Card>
+  <Card title="Manage clients" icon="briefcase" href="/workspaces/clients">
+    Run a workspace for a client without sharing logins.
+  </Card>
+  <Card title="Workspace overview" icon="layer-group" href="/workspaces/overview">
+    Where roles fit alongside brand kits, integrations, and members.
+  </Card>
+</Columns>

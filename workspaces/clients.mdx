@@ -1,6 +1,73 @@
 ---
 title: "Manage clients"
-description: "Run client accounts under a single Carousify login."
+sidebarTitle: "Manage clients"
+description: "Run multiple client brands under one Carousify login — without holding their LinkedIn credentials."
 ---
 
-{/* TODO: Write this page. */}
+If you're an agency, ghostwriter, or freelancer running LinkedIn for someone else, Carousify is built so you can do that **without ever asking your client for their LinkedIn password**. The setup is a five-minute, four-step flow — create a workspace for them, send a Collaboration Link so they connect their own LinkedIn, set up their brand kit, and (optionally) invite them with the read-only **Client** role so they can review what you've queued.
+
+## The full client setup
+
+<Steps>
+  <Step title="Create a workspace for the client">
+    From the sidebar workspace list, click **+ Add New Workspace**. Name it after the client, set their timezone, and upload their logo. Everything you build inside this workspace stays scoped to it — no leakage between clients. See [Workspaces overview](/workspaces/overview).
+  </Step>
+  <Step title="Send a Collaboration Link to connect their LinkedIn">
+    Inside the new workspace, go to **Manage Workspace › LinkedIn Integrations**, click **Add New Account**, scroll to **Collaboration Links**, pick an expiry (24 hours / 7 days / 30 days), and click **Generate Secure Link**. Send the URL to your client over email or Slack — they sign in to LinkedIn themselves, approve permissions, and the account drops into *your* Integrations list. Full walkthrough in [Connect your LinkedIn account](/getting-started/connect-linkedin#let-clients-connect-their-linkedin-without-sharing-logins).
+
+    <Info>
+      You never see, store, or need the client's LinkedIn email or password. The OAuth happens entirely on LinkedIn's side.
+    </Info>
+  </Step>
+  <Step title="Set up the Brand Kit">
+    Open **Manage Workspace › Brandkit** and load the client's colors, fonts, logo, author name, and handle. Every carousel you create for them will pull from this. See [Brand Kit](/carousel-maker/brand-kit).
+  </Step>
+  <Step title="Invite the client as a Client-role member">
+    From **Manage Workspace › Team Members**, click **Invite New Member**, enter their name and email, and pick **Client** as the role. They get a view-only seat — they can browse the calendar, see what's scheduled, and check analytics, but they can't edit, schedule, or publish anything. See [Invite team members](/workspaces/invite-team).
+  </Step>
+  <Step title="Optional — turn on approval">
+    If you want the client to sign off on every post before it goes live, enable [approval workflow](/workspaces/approval) and turn **Requires Approval** on for the role your writers are on. Posts queue up in **Pending Approval** until an Admin (or the client, if you bump them up) signs off.
+  </Step>
+</Steps>
+
+## Why this works for agencies
+
+- **No shared logins** — your client's LinkedIn credentials stay theirs. Revoking access is one click on either side.
+- **Scoped billing and AI** — each workspace can have its own [BYOK key](/workspaces/ai-assistant#bring-your-own-ai-key-byok), so client A's AI usage doesn't drain client B's allowance.
+- **Clean offboarding** — when an engagement ends, disconnect their LinkedIn from the workspace and remove the workspace. No credentials to rotate, no logins to revoke.
+
+<Tip>
+  Build one client workspace as a template — naming, brand kit slot layout, default tone — then duplicate the pattern. The first one takes 20 minutes; the next ones take 5.
+</Tip>
+
+## Switching between clients
+
+The **WORKSPACES** list in the sidebar shows every workspace you have access to. Click any name to switch — drafts, calendar, analytics, integrations, and team all reload against that workspace. There's no "all clients" mega-view; you work inside one client at a time, which is the same model an Account Manager uses with separate browser tabs but without the tab juggling.
+
+## Plan limits to know
+
+| Plan | Workspaces | LinkedIn accounts | Members per workspace |
+| --- | --- | --- | --- |
+| Hobby | 1 | 3 | 3 |
+| Startup | 3 | 10 | 5 |
+| Business | 10 | 25 | 10 |
+| Enterprise | Up to 500 | Custom | Up to 500 |
+
+If you're managing more than a handful of clients, **Business** is usually the floor — the Startup plan caps you at 3 workspaces. Live numbers: [carousify.com/pricing](https://carousify.com/pricing/).
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Connect a client's LinkedIn" icon="link" href="/getting-started/connect-linkedin">
+    Step-by-step Collaboration Link flow with screenshots.
+  </Card>
+  <Card title="Roles and permissions" icon="shield" href="/workspaces/roles">
+    Why Client is read-only and how to layer in custom roles.
+  </Card>
+  <Card title="Approval workflow" icon="circle-check" href="/workspaces/approval">
+    Have the client sign off before scheduled posts go live.
+  </Card>
+  <Card title="Whitelabel" icon="building" href="/whitelabel/overview">
+    Run Carousify under your own domain and brand for clients (Enterprise).
+  </Card>
+</Columns>
