@@ -205,6 +205,10 @@ Once the integration is live, here's the loop on every row:
 
 If anything goes wrong (LinkedIn auth expired, body empty, timezone confusion, missing **Username**), Carousify leaves the row at the trigger value and surfaces the error in the [Activity Feed](https://app.carousify.com/dashboard/) on your dashboard.
 
+<Tip>
+  Keep at least a **5-minute gap** between flipping the **Status** to your trigger value and the **Post Date**. Notion can take 2–3 minutes to fire its webhook to Carousify, and Carousify needs another minute or so to read the row and queue the post. If **Post Date** is too close to "now", the row may be picked up after its own scheduled time and silently miss the slot.
+</Tip>
+
 ## Disconnect or reconnect
 
 To disconnect Notion, go to **Manage Workspace › Integrations** and click the menu on the Notion card. Carousify revokes the Notion access token immediately and stops reading the database. The Notion data itself is untouched — your rows, statuses, and history stay where they are.
@@ -218,7 +222,7 @@ To reconnect later — or to point Carousify at a different database — run thr
 ## Troubleshooting
 
 - **A row never picks up.** Check that **Status** matches your **Trigger value** exactly (case-sensitive), **Username** and **Type** are both filled, and **Post Date** is a Date column with time enabled.
-- **Carousify posts to the wrong account.** The **Username** column has to match a LinkedIn account already connected to this workspace. Check **Manage Workspace › LinkedIn Integrations** for the exact vanity name. Also confirm **Type** is `profile` or `pages` (lowercase).
+- **Post won't schedule.** **Username** and **Type** have to match — a personal profile vanity name needs **Type** set to `profile`, and a company page vanity needs **Type** set to `pages`. Mixing them (e.g. a personal vanity with `pages`) means Carousify can't find a matching connected account and the post silently won't get scheduled.
 - **My images aren't posting.** Carousify reads only plain text from the Notion page body today. To attach media, schedule from inside Carousify instead — see [Schedule a post](/scheduling/schedule-post).
 - **The integration shows as Active but nothing syncs.** Open Notion, click the database name, and make sure the **Carousify** integration is still in the **Connections** list (top-right `…` menu › **Connections**). If it's gone, reconnect from Carousify.
 
