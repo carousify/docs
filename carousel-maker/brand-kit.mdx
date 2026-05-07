@@ -1,6 +1,131 @@
 ---
 title: "Brand Kit"
-description: "Save reusable colors, fonts, and logos so every carousel matches your brand."
+sidebarTitle: "Brand Kit"
+description: "Save your logo, identity, fonts, and colors once — and apply them to every carousel in a click."
 ---
 
-{/* TODO: Write this page. */}
+A Brand Kit holds the identity bits that should be consistent across every carousel you publish — logo, full name, @username, heading and body fonts, font colors, and a default background. Once saved, you can apply it to any carousel from the editor and watch the whole deck pick up your fonts and colors instantly. Override the toggle and even template-designed slides adopt your kit.
+
+You can manage Brand Kits from two places — both update the same workspace-level kit:
+
+- **Carousel Maker › Brand Kit tab** — apply, switch between, or create kits while you're editing a deck. This is where most of the work happens.
+- **Manage Workspace › Brandkit** — full Brand Kit manager for the workspace, useful when you want to set things up before you start designing.
+
+## Apply a Brand Kit from the Carousel Maker
+
+Open any carousel in the editor and click the **Brand Kit** tab.
+
+<img
+  src="/images/carousel-maker/brand-kit-editor-panel.png"
+  alt="Brand Kit tab inside the Carousel Maker showing kit cards and visibility toggles"
+  className="rounded-xl border"
+/>
+
+You'll see every Brand Kit in the current workspace as a card, plus a few toggles that control how the kit shows up on the slide.
+
+<Steps>
+  <Step title="Pick a kit">
+    Click the card for the kit you want. The active kit is highlighted, and the carousel preview updates with the kit's logo, name, and @username on the footer.
+  </Step>
+  <Step title="Decide what to display">
+    Use the toggles below the kit cards to control what shows on the slide:
+
+    | Toggle | What it does |
+    | --- | --- |
+    | **Show Brandkit** | Master switch. Off = no logo/name/handle anywhere on the deck. |
+    | **Show Photo** | Shows the kit's logo. |
+    | **Show Username** | Shows the @handle. |
+    | **Show Name** | Shows the full name. |
+    | **Override Template With Brandkit Data** | Forces the deck to use the kit's fonts, colors, and background — replacing whatever the template originally had. |
+  </Step>
+  <Step title="Override (optional)">
+    By default, applying a Brand Kit only updates the footer (logo, name, handle). If you want the kit's **fonts, colors, and background** to take over the whole deck — heading, subheading, body, background — flip **Override Template With Brandkit Data** on.
+
+    <Tip>
+      Leave **Override** off when you want to keep a template's hand-tuned typography and only need your logo and handle on the slides. Turn it on when you want every deck to feel exactly like your brand.
+    </Tip>
+  </Step>
+</Steps>
+
+## Create a new Brand Kit
+
+You can create a kit from either surface — same form, same fields.
+
+- **From the editor** — click **Add New** in the top-right of the Brand Kit tab.
+- **From the workspace** — go to **Manage Workspace › Brandkit** and click **Add New Brand Kit**.
+
+<img
+  src="/images/carousel-maker/brand-kit-create-modal.png"
+  alt="Create Brandkit modal with logo, full name, and username fields"
+  className="rounded-xl border"
+/>
+
+<Steps>
+  <Step title="Upload your logo">
+    Click **Choose File** and pick a square image — Carousify recommends **400×400 px** and a round-ready design (the logo is masked into a circle on the slide). PNG or JPG works.
+  </Step>
+  <Step title="Add your name and handle">
+    - **Enter Full Name** — what shows up next to your logo on each slide.
+    - **Enter Username** — your @handle. The `@` is added automatically.
+  </Step>
+  <Step title="Open Advanced Settings (recommended)">
+    Click **Advanced Settings** to expand the typography and background panel.
+
+    <img
+      src="/images/carousel-maker/brand-kit-advanced.png"
+      alt="Advanced Settings expanded inside the Brand Kit modal showing Heading Style options"
+      className="rounded-xl border"
+    />
+
+    Configure each text style and the slide background:
+
+    | Field | Sets |
+    | --- | --- |
+    | **Heading Style** | Font family, weight, and color for slide headings. |
+    | **Subheading Style** | Same controls for subheadings. |
+    | **Body Text Style** | Same for body copy. |
+    | **Background** | Default background color for slides built from this kit. |
+
+    These only apply to the deck when **Override Template With Brandkit Data** is enabled in the editor — otherwise the template's own typography wins.
+  </Step>
+  <Step title="Save">
+    Click **Save Brand Kit**. The new kit appears in the editor and on the workspace page immediately.
+  </Step>
+</Steps>
+
+## Manage kits at the workspace level
+
+Open **Manage Workspace › Brandkit** to see every kit in the workspace at a glance.
+
+<img
+  src="/images/carousel-maker/brand-kit-workspace.png"
+  alt="Workspace Brand Kit page listing every brand kit with a Default tag on one"
+  className="rounded-xl border"
+/>
+
+From here you can:
+
+- Add a new kit with **Add New Brand Kit**.
+- Edit or delete an existing kit using the menu on its card.
+- See which kit is marked **Default** — the one Carousify pre-selects when you start a new carousel in this workspace.
+
+<Note>
+  Brand Kits are scoped to a single workspace. If you run a workspace per client, set up a kit inside each — they don't carry across.
+</Note>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Templates" icon="grid" href="/carousel-maker/templates">
+    Pair a polished template with your Brand Kit for a deck that ships in minutes.
+  </Card>
+  <Card title="Create from scratch" icon="pen-ruler" href="/carousel-maker/create">
+    Start with a blank canvas and have your Brand Kit applied from slide one.
+  </Card>
+  <Card title="Export and download" icon="download" href="/carousel-maker/export">
+    Get LinkedIn-ready PDFs and image sets out of the editor.
+  </Card>
+  <Card title="Schedule a post" icon="calendar" href="/scheduling/schedule-post">
+    Hand the finished deck to the post composer and pick a publish time.
+  </Card>
+</Columns>

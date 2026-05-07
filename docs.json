@@ -39,8 +39,8 @@
             "group": "Carousel Maker",
             "pages": [
               "carousel-maker/overview",
-              "carousel-maker/create",
               "carousel-maker/templates",
+              "carousel-maker/create",
               "carousel-maker/brand-kit",
               "carousel-maker/export"
             ]

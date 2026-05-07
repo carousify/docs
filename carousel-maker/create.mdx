@@ -1,6 +1,217 @@
 ---
 title: "Create a carousel"
-description: "Build a carousel from scratch or generate one with AI in a single workflow."
+sidebarTitle: "Create a carousel"
+description: "Build a carousel slide by slide, then use Smart Carousel to rewrite copy with AI."
 ---
 
-{/* TODO: Write this page. */}
+The Carousel Maker is where you put the deck together — slide layouts, text, images, brand styling. You can build slide by slide on a blank canvas, or start from a [template](/carousel-maker/templates) and edit. Once a base design exists, **Smart Carousel** can rewrite or expand the copy across all slides for you using AI.
+
+<Note>
+  Want a finished design to start from instead? See [Templates](/carousel-maker/templates) — the gallery has 40+ ready-to-edit decks.
+</Note>
+
+## Open the editor
+
+In the left sidebar, click **Carousels › Create New**. Carousify opens a fresh deck with one blank slide.
+
+<img
+  src="/images/carousel-maker/carousel-editor-blank.png"
+  alt="Carousify Carousel Maker with a fresh blank deck — Content tab on the left and an empty slide preview on the right"
+  className="rounded-xl border"
+/>
+
+The top bar has the three things you'll touch most:
+
+| Control | What it does |
+| --- | --- |
+| **Sizes** (Portrait / Square) | Switch between 4:5 and 1:1. The whole deck reflows to the new ratio. |
+| **Smart Carousel** | Open the AI generator — covered below. |
+| **Save Draft / Download / Publish** | Save progress, export the deck, or hand it to the post composer. |
+
+## Generate with Smart Carousel
+
+Smart Carousel is a **copywriting** tool, not a design tool. It only writes, rewrites, or expands the **text** on your slides — it does not generate slide layouts, choose colors, or place graphics. You bring the design (a template, your saved layouts, or slides you've laid out yourself) and Smart Carousel fills in the words.
+
+<Warning>
+  Smart Carousel needs a **base design first** — at least 2–3 slides with headings or text content already on them. On a blank deck (one empty slide) you'll get an "At least 3 slides are needed" error. Start from a [template](/carousel-maker/templates) or rough out a few slides yourself, then open Smart Carousel.
+</Warning>
+
+Once you have a base, click **Smart Carousel** to open the generator. It has four modes — pick the one that matches your source material.
+
+<img
+  src="/images/carousel-maker/smart-carousel-ai.png"
+  alt="Smart Carousel Generator modal with four tabs and the A.I. Generator selected"
+  className="rounded-xl border"
+/>
+
+<Columns cols={2}>
+  <Card title="A.I. Generator" icon="sparkles">
+    Describe the topic. AI writes the copy for each slide based on your description.
+  </Card>
+  <Card title="From Website URL" icon="link">
+    Paste a blog post or article URL. AI summarizes it into slide-by-slide copy.
+  </Card>
+  <Card title="From YouTube Video" icon="youtube">
+    Paste a YouTube link. AI pulls the transcript and turns it into slide copy.
+  </Card>
+  <Card title="From PDF File" icon="file-pdf">
+    Upload a PDF — research paper, ebook, report — and get a slide-by-slide rewrite.
+  </Card>
+</Columns>
+
+<Steps>
+  <Step title="Pick a mode">
+    Switch tabs to **A.I. Generator**, **From Website URL**, **From YouTube Video**, or **From PDF File**.
+  </Step>
+  <Step title="Provide the source">
+    - **A.I. Generator** — type a topic (e.g. *10 tips to improve your LinkedIn presence*) and a short description. The more specific the description, the closer the result lands to what you want.
+    - **From Website URL** — paste the article URL.
+    - **From YouTube Video** — paste the video URL.
+    - **From PDF File** — upload a PDF.
+  </Step>
+  <Step title="Choose slide count">
+    Use the **−** / **+** controls under **Number of slides** to set how many slides the AI should produce. Default is 9.
+  </Step>
+  <Step title="Generate">
+    Click **Generate**. AI rewrites the text on your existing slides — same layout, same design, new copy. The slide count picker controls how many slides the rewrite spans (matching, expanding, or condensing your base design).
+
+    <Tip>
+      Smart Carousel is a starting point, not a final draft. Always read through each slide and tighten the copy before publishing — AI tends to over-explain.
+    </Tip>
+  </Step>
+</Steps>
+
+## Build from a blank canvas
+
+If you'd rather design slide by slide, ignore Smart Carousel and work directly in the **Content** tab.
+
+### Add text
+
+Three text styles are pre-set — heading, subheading, and body — so they pick up your Brand Kit's typography automatically.
+
+| Button | Adds |
+| --- | --- |
+| **Add Heading** | Slide title (largest text, Brand Kit heading style). |
+| **Add Subheading** | Secondary line (Brand Kit subheading style). |
+| **Add Text Content** | Body paragraph (Brand Kit body style). |
+
+Click any text element to edit it inline. Highlight a section to change its color or weight without affecting the rest of the slide.
+
+### Add an image
+
+The upload zone in the **Content** tab accepts:
+
+- **Drag and drop** files from Finder/Explorer.
+- **Paste** images directly from the clipboard (`⌘ V`).
+- **Browse** — click the zone to pick from your computer.
+
+PNG, JPG, and GIF up to **10 MB** per file.
+
+### Add shapes, icons, and elements
+
+Click **Add Elements** to open the elements library — shapes, icons, decorative graphics, and accent pieces. Drop one onto the canvas and resize/recolor it like any other layer.
+
+### Edit a selected element
+
+Click any element on a slide — text, image, or shape — and the **Content** panel switches to its settings. This is where you fine-tune everything about that one layer.
+
+<img
+  src="/images/carousel-maker/element-settings.png"
+  alt="Element settings panel for a selected text layer showing position, formatting, and styling controls"
+  className="rounded-xl border"
+/>
+
+The panel groups the controls into a few sections:
+
+| Section | Controls |
+| --- | --- |
+| **Position** | Height, Width, X-Axis, Y-Axis, Rotate. Type exact pixel values or drag the layer on the canvas. |
+| **Text formatting** | Bold, italic, underline, strikethrough, highlight, lists, alignment — same shortcuts you'd expect in a doc editor. |
+| **Typography** | Font family, weight (Thin → Extra Bold), font size, letter spacing, line height, text color, fill color. |
+| **Layout** | Align (left/center/right/top/middle/bottom), move, flip, bring to front, send to back, opacity, padding, border radius. |
+| **Border** | Width, type (solid/dashed/dotted/double), color. |
+| **Filters** | Outline, Hollow, Reflection, Glow, Glitch, Shadow, Split — applied as visual effects on the element. |
+
+Use **Esc** to deselect and return to the default Content tab.
+
+<Tip>
+  Highlight just a portion of text inside a heading or paragraph and the formatting controls apply only to that selection. Useful for accent words in a different color or weight.
+</Tip>
+
+### Manage slides
+
+The slide tray below the canvas shows every slide in the deck.
+
+- **Reorder** — drag and drop to change slide order.
+- **Add a new slide** — duplicate an existing one (`⌘ C` / `⌘ V` on a slide) or scroll to the end of the tray for the **+** button.
+- **Reset Slide** — undoes changes on the current slide and reverts it to its starting state.
+- **Slide N / M** — current slide indicator with **Previous** / **Next** buttons.
+
+<Tip>
+  6–12 slides is the sweet spot for LinkedIn carousels. Fewer than 5 and you don't give the swipe enough payoff; more than 12 and readers drop off.
+</Tip>
+
+## Set deck-wide styles (Global tab)
+
+The **Global** tab is for changes that should apply to every slide at once — no need to update each slide individually.
+
+<img
+  src="/images/carousel-maker/global-tab.png"
+  alt="Global tab showing themes grid, slide number toggle, image background, and color pickers for heading, sub-heading, text, and background"
+  className="rounded-xl border"
+/>
+
+What you can change here:
+
+- **Themes** — pick from a grid of pre-built theme presets. One click swaps colors and typography across the whole deck.
+- **Show Slide Numbers** — toggle slide numbers on/off across the deck.
+- **Use Image Backgrounds** — turn image backgrounds on, then upload an image and adjust **Background Opacity** to set how strongly it shows behind text.
+- **Heading / Sub-heading / Text Color / Background** — color pickers that apply to every slide at once. Use the **Pre Defined Color Pallate** below if you want a curated combination.
+
+<Tip>
+  Set the deck-wide colors and theme in **Global** first, then jump to slide-by-slide tweaks in **Content**. Doing it the other way around means redoing per-slide work the moment you change a global value.
+</Tip>
+
+## Apply your Brand Kit
+
+Open the **Brand Kit** tab to apply your saved logo, name, fonts, and colors to the whole deck in one click. Toggle **Override Template With Brandkit Data** if you want the kit's typography and background to replace whatever the slides started with.
+
+<Card title="Brand Kit setup" icon="palette" href="/carousel-maker/brand-kit">
+  Configure your logo, fonts, and colors so every deck picks them up automatically.
+</Card>
+
+## Preview before you ship
+
+Click the **Preview** tab to see exactly how the deck will render on LinkedIn — same aspect ratio, same swipe behavior — before you export.
+
+## When you're done
+
+You have four options for getting the deck out of the editor:
+
+| Option | Use when |
+| --- | --- |
+| **Save Draft** (`⌘ S`) | You want to keep working later. Drafts live under **Carousels › Drafts**. |
+| **Download** | You want a PDF or zip of images to upload elsewhere. |
+| **Publish** | You're ready to post. Hands the deck to the post composer for caption + scheduling. |
+| **⋯ › Save as Template** | You'll want to reuse this deck as a starting point next time. |
+
+<Card title="Export and download" icon="download" href="/carousel-maker/export">
+  Walk through PDF/Image exports and the publish-to-LinkedIn flow.
+</Card>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Templates" icon="grid" href="/carousel-maker/templates">
+    Skip the blank canvas next time and start from a pre-designed deck.
+  </Card>
+  <Card title="Brand Kit" icon="palette" href="/carousel-maker/brand-kit">
+    Save your colors, fonts, and logos for one-click brand consistency.
+  </Card>
+  <Card title="Export and download" icon="download" href="/carousel-maker/export">
+    Get a finished deck out of Carousify as PDF, images, or a LinkedIn post.
+  </Card>
+  <Card title="Schedule a post" icon="calendar" href="/scheduling/schedule-post">
+    Pick the LinkedIn account and time when the deck should go live.
+  </Card>
+</Columns>
