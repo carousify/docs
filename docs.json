@@ -105,8 +105,8 @@
               "mcp/overview",
               "mcp/claude",
               "mcp/codex",
-              "mcp/cursor",
-              "mcp/windsurf"
+              "mcp/antigravity",
+              "mcp/vscode"
             ]
           },
           {
@@ -169,7 +169,6 @@
      "claude",
      "perplexity",
      "mcp",
-     "cursor",
      "vscode"
    ]
   },

@@ -1,0 +1,88 @@
+---
+title: "Connect Carousify to VS Code"
+sidebarTitle: "VS Code"
+description: "Add Carousify to VS Code's chat agent and draft, schedule, or check LinkedIn posts without leaving the editor."
+---
+
+VS Code's chat agent supports MCP servers out of the box. Wire Carousify in and you can draft a LinkedIn post, schedule it, or pull analytics straight from the chat panel — no extension required.
+
+## Before you start
+
+You'll need:
+
+- MCP enabled on the workspace — see [MCP overview](/mcp/overview)
+- An MCP key from **Manage Workspace › MCP** (only shown once, right after creating it)
+- VS Code 1.99 or later
+
+## Step 1 — Copy your Carousify MCP URL
+
+In Carousify, open **Manage Workspace › MCP** and use the **MCP System Key** (or click **Create API Key** to mint a fresh one). Copy the URL:
+
+```
+https://app.carousify.com/api/mcp?token=YOUR_MCP_KEY
+```
+
+<Warning>
+  Treat the MCP URL like a password — Carousify only reveals the full key once.
+</Warning>
+
+## Step 2 — Add Carousify in VS Code
+
+<Steps>
+  <Step title="Run MCP: Add Server">
+    Open the Command Palette (`⌘ Shift P` / `Ctrl Shift P`), type `MCP`, and pick **MCP: Add Server**.
+
+    <img
+      src="/images/mcp/vscode-command-palette.png"
+      alt="VS Code Command Palette filtered to MCP commands with MCP: Add Server highlighted"
+      className="rounded-xl border"
+    />
+  </Step>
+  <Step title="Choose HTTP">
+    Pick **HTTP (HTTP or Server-Sent Events)** — Carousify is a remote server, not a local command.
+
+    <img
+      src="/images/mcp/vscode-server-type.png"
+      alt="VS Code MCP server type picker with HTTP (HTTP or Server-Sent Events) highlighted"
+      className="rounded-xl border"
+    />
+  </Step>
+  <Step title="Paste the URL">
+    Paste the Setup Link from Step 1 and press **Enter**. VS Code opens the connection and lists Carousify's tools in the **MCP Servers** view.
+
+    <img
+      src="/images/mcp/vscode-server-url.png"
+      alt="VS Code Enter Server URL prompt with the Carousify MCP URL pasted in"
+      className="rounded-xl border"
+    />
+  </Step>
+</Steps>
+
+## Step 3 — Use it in chat
+
+Open the chat panel (`⌘ Ctrl I` / `Ctrl Alt I`) in **Agent** mode and try:
+
+- *"Using Carousify, draft a LinkedIn post recapping today's commits and schedule it for 9 AM tomorrow IST."*
+- *"List my scheduled Carousify posts for this week."*
+- *"Pull analytics for the post I published yesterday."*
+
+VS Code surfaces an approval step the first time each tool runs.
+
+## Disconnect or rotate
+
+- **Disconnect** — run **MCP: List Servers** in the Command Palette and remove **Carousify**.
+- **Rotate the key** — delete the row in Carousify's **MCP Keys** table, mint a new one, and re-run **MCP: Add Server** with the new URL.
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="MCP overview" icon="robot" href="/mcp/overview">
+    How MCP keys, tools, and workspace scoping fit together.
+  </Card>
+  <Card title="Use it from Claude" icon="message" href="/mcp/claude">
+    Custom connector setup for Claude web, desktop, and Claude Code.
+  </Card>
+  <Card title="Schedule a post" icon="calendar" href="/scheduling/schedule-post">
+    Quick refresher on how scheduling works inside Carousify.
+  </Card>
+</Columns>
