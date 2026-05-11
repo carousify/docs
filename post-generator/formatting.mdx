@@ -1,6 +1,53 @@
 ---
 title: "Formatting and preview"
-description: "Apply bold, italic, lists, and emoji; preview the LinkedIn render."
+sidebarTitle: "Formatting & preview"
+description: "Format LinkedIn posts in the writer and preview them on mobile, tablet, or desktop before publishing."
 ---
 
-{/* TODO: Write this page. */}
+The writer's top toolbar gives you the formatting controls LinkedIn supports. The right pane shows a live render of what the post will look like once it's live.
+
+<img
+  src="/images/post-generator/writer.png"
+  alt="Carousify Write Post page with the formatting toolbar above the editor and a live LinkedIn preview on the right"
+  className="rounded-xl border"
+/>
+
+## Formatting toolbar
+
+| Control | What it does |
+| --- | --- |
+| **Bold** | Bold the selection |
+| **Italic** | Italicize the selection |
+| **Underline** | Underline the selection |
+| **Strikethrough** | Strike through the selection |
+| **Insert Emoji** | Open the emoji picker |
+| **Add Image** | Attach a single image |
+| **Add Video** | Attach a video |
+| **Add Carousel** | Attach a deck built in the [Carousel Maker](/carousel-maker/overview) |
+
+<Note>
+  LinkedIn doesn't support real bold or italic in posts. Carousify converts your selections to **Unicode lookalike characters** that render the same way on every LinkedIn surface — but screen readers won't pronounce them as styled text. Use sparingly for emphasis, not for whole paragraphs.
+</Note>
+
+## Live preview
+
+The right pane is a pixel-accurate render of the post. The **Devices** toggle switches between three layouts:
+
+- **Mobile** — what most LinkedIn users will see
+- **Tablet**
+- **Desktop**
+
+<Tip>
+  Always check **Mobile** before publishing. Most LinkedIn traffic is on phones, and posts that look good on desktop sometimes break mid-hook on a small screen if line breaks land badly.
+</Tip>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Write a new post" icon="pen" href="/post-generator/write-post">
+    Full walkthrough of the writer, including the AI Assistant panel.
+  </Card>
+  <Card title="Schedule a post" icon="calendar" href="/scheduling/schedule-post">
+    Queue the finished post at a peak time for your timezone.
+  </Card>
+</Columns>

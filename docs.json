@@ -51,7 +51,6 @@
               "post-generator/overview",
               "post-generator/write-post",
               "post-generator/from-content",
-              "post-generator/ai-assistant",
               "post-generator/curated-posts",
               "post-generator/formatting"
             ]
@@ -79,7 +78,7 @@
           {
             "group": "Analytics",
             "pages": [
-              "analytics/dashboard",
+              "analytics/linkedin-analytics",
               "analytics/link-tracking"
             ]
           },
