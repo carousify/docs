@@ -1,7 +1,129 @@
 ---
 title: "Whitelabel overview"
-description: "Run Carousify under your own brand for clients and end users."
 sidebarTitle: "Overview"
+description: "Run Carousify under your own brand — your logo, name, colors, domain, and email — so clients and your team never see Carousify."
 ---
 
-{/* TODO: Write this page. */}
+Whitelabeling replaces Carousify's branding with yours everywhere your account is used — the app header, the browser tab, transactional emails, the sign-in screen, and the domain it all loads from. Your clients and team members see *your* product, not Carousify.
+
+Agencies and teams use it to put their own brand in front of clients — when someone you work with opens the platform, everything they see is yours. It looks and feels like a tool you built, not one you signed up for.
+
+<Note>
+  Whitelabel is **branding only**. It controls how the platform *looks* — logo, name, colors, domain, and emails — so your clients experience it as yours. It doesn't change billing or invoicing in any way.
+</Note>
+
+## Account-wide, not per workspace
+
+Most Carousify settings — brand kits, integrations, members — are scoped to a single workspace. **Whitelabel is the exception.** It applies at the account level, across *every* workspace you own.
+
+<Warning>
+  Turning whitelabel on rebrands the app for everyone with access to your account, in all workspaces, at once. There's no per-workspace whitelabel — set it up once, and it's the experience all your clients and teammates get.
+</Warning>
+
+## Where to find it
+
+In the left sidebar, open **Settings › Whitelabeling**.
+
+<img
+  src="/images/whitelabel/whitelabel-inactive.png"
+  alt="Carousify Whitelabeling page with the master Whitelabel toggle set to Inactive"
+  className="rounded-xl border"
+/>
+
+The page opens with a single master switch. While it's **Inactive**, your account uses Carousify's default branding and domain. Flipping it to **Active** reveals the full configuration surface and starts applying your branding everywhere.
+
+## Turn whitelabeling on
+
+<Steps>
+  <Step title="Flip the Whitelabel switch to Active">
+    The status pill changes from **Inactive** to **Active** and the configuration sections appear below.
+  </Step>
+  <Step title="Fill in the required fields">
+    Every section marked with a `*` needs a value before your branding renders cleanly — brand logo, favicon, name, support email, and accent color at minimum.
+  </Step>
+  <Step title="Click Save Changes">
+    **Save Changes** sits at both the top and bottom of the page. Nothing applies until you save — toggling the switch alone doesn't persist anything.
+  </Step>
+</Steps>
+
+<img
+  src="/images/whitelabel/whitelabel-active-full.png"
+  alt="Carousify Whitelabeling page with the toggle Active, showing Brand identity, Email (SMTP), Social login providers, reCAPTCHA, and Custom Domains sections"
+  className="rounded-xl border"
+/>
+
+## What you can configure
+
+Whitelabel is grouped into five sections on this one page.
+
+<Columns cols={2}>
+  <Card title="Brand identity" icon="palette" href="/whitelabel/branding">
+    Logo, favicon, brand name, support email, and accent color — what shows in headers, the browser tab, and emails.
+  </Card>
+  <Card title="Email (SMTP)" icon="envelope" href="/whitelabel/smtp">
+    Send welcome, password-reset, and invite emails from your own mail server instead of Carousify's.
+  </Card>
+  <Card title="Custom domains" icon="globe" href="/whitelabel/custom-domain">
+    Serve the whole app from a subdomain you own, like `app.yourbrand.com`.
+  </Card>
+  <Card title="Sign-in and security" icon="shield" href="#social-sign-in-and-recaptcha">
+    Your own Google and LinkedIn OAuth apps for sign-in, plus your own reCAPTCHA keys.
+  </Card>
+</Columns>
+
+### Brand identity
+
+The **Brand identity** section sets how your account looks to anyone who opens it:
+
+| Field | Where it shows |
+| --- | --- |
+| **Brand Logo** | App headers and emails. Square, 256×256 px or larger. |
+| **Favicon** | The browser tab. Square, 32×32 to 128×128 px. |
+| **Brand Name** | App header and emails. |
+| **Support Email** | Reply-to address on transactional emails and shown in footers. |
+| **Accent Color** | Buttons, links, and highlights across the app. |
+
+Full walkthrough on [Branding](/whitelabel/branding).
+
+### Email and domain
+
+Two sections turn Carousify into something that *is* your product rather than something that emails and links back to ours:
+
+- **Email (SMTP)** — point Carousify at your own mail server so transactional emails come from your domain, not Carousify's. Credentials are stored encrypted. See [SMTP](/whitelabel/smtp).
+- **Custom Domains** — add one subdomain you own (e.g. `app.acme.com`) and the entire app loads from it. See [Custom domain](/whitelabel/custom-domain) for the DNS steps.
+
+### Social sign-in and reCAPTCHA
+
+Two more sections live on the same page and don't have separate guides — configure them here:
+
+- **Social login providers** — by default, "Sign in with Google" and "Sign in with LinkedIn" run through Carousify's OAuth apps, which means the consent screen says *Carousify*. Add your own Google and LinkedIn OAuth client credentials and the consent screen shows *your* brand instead. Each provider's keys are stored encrypted.
+- **reCAPTCHA** — protect the login and signup forms on your whitelabel domain with your own Google reCAPTCHA keys, so bot protection runs under your account, not Carousify's.
+
+<Tip>
+  Social login and reCAPTCHA are optional. If you skip them, sign-in still works — the OAuth consent screen and CAPTCHA just reference Carousify instead of your brand. Set them up when the goal is a fully unbranded experience end to end.
+</Tip>
+
+## Saving and applying changes
+
+**Save Changes** persists everything on the page in one go. Branding, colors, and email take effect immediately after saving. A custom domain only goes live once its DNS records resolve and the certificate is issued — that part is covered in [Custom domain](/whitelabel/custom-domain).
+
+<Note>
+  Turning the master switch back to **Inactive** and saving reverts the account to Carousify's default branding and domain. Your configured values are kept, so you can switch whitelabel back on later without re-entering everything.
+</Note>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Custom domain" icon="globe" href="/whitelabel/custom-domain">
+    Point a subdomain you own at Carousify and serve the app from it.
+  </Card>
+  <Card title="Branding" icon="palette" href="/whitelabel/branding">
+    Logo, favicon, name, support email, and accent color, step by step.
+  </Card>
+  <Card title="SMTP" icon="envelope" href="/whitelabel/smtp">
+    Send transactional emails from your own mail server.
+  </Card>
+  <Card title="Manage clients" icon="briefcase" href="/workspaces/clients">
+    Combine whitelabel with client workspaces for a fully branded agency setup.
+  </Card>
+</Columns>

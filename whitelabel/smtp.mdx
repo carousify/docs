@@ -1,6 +1,69 @@
 ---
 title: "SMTP"
-description: "Send transactional emails from your own SMTP server on whitelabel deployments."
+sidebarTitle: "SMTP"
+description: "Send invite and password-reset emails from your own mail server instead of Carousify's."
 ---
 
-{/* TODO: Write this page. */}
+SMTP sends the essential account emails — team invites and password resets — from your own mail server, so they reach clients and members from your domain, not Carousify's. Only these few meaningful emails route through it. Credentials are stored encrypted.
+
+<Note>
+  SMTP is part of whitelabel, an **Enterprise** feature, and applies once whitelabel is **Active** (see [Whitelabel overview](/whitelabel/overview)). On other plans, contact [Support](https://carousify.com/contact-us/) to enable it at an additional charge.
+</Note>
+
+## Set it up
+
+Open **Settings › Whitelabeling** and find the **Email (SMTP)** section.
+
+<img
+  src="/images/whitelabel/smtp-section.png"
+  alt="Email (SMTP) section of the Carousify Whitelabeling page"
+  className="rounded-xl border"
+/>
+
+Fill in your mail provider's details:
+
+| Field | Value |
+| --- | --- |
+| **SMTP Host** | Your provider's server, e.g. `smtp.mailgun.org`. |
+| **Username** / **Password** | Your SMTP login. Use **Show** to check the password. |
+| **From Name** / **From Email** | The sender recipients see. |
+| **Port** | `587` (STARTTLS) or `465` (SSL — turn on **Implicit TLS**). |
+
+## Test before it saves
+
+Once the fields are filled, the status changes to **Needs verification**. Carousify makes you send a working test email before the settings save — so a wrong host or credential is caught now, not by a client.
+
+<Steps>
+  <Step title="Click Send test email">
+    A dialog opens with a recipient (your address) and the **From** address.
+  </Step>
+  <Step title="Send and check the inbox">
+    Adjust the recipient if you like, click **Send**, and confirm the email arrives.
+  </Step>
+  <Step title="Click Save Changes">
+    A successful test verifies the setup. If nothing arrives, fix the host, port, TLS, or credentials and test again.
+  </Step>
+</Steps>
+
+<img
+  src="/images/whitelabel/smtp-test-modal.png"
+  alt="Send test email dialog with a recipient field and the From address"
+  className="rounded-xl border"
+/>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Branding" icon="palette" href="/whitelabel/branding">
+    Logo, favicon, name, and accent color.
+  </Card>
+  <Card title="Custom domain" icon="globe" href="/whitelabel/custom-domain">
+    Serve the app from a domain you own.
+  </Card>
+  <Card title="Whitelabel overview" icon="envelope" href="/whitelabel/overview">
+    How SMTP fits the whitelabel setup.
+  </Card>
+  <Card title="Manage clients" icon="briefcase" href="/workspaces/clients">
+    Run client workspaces in your branded setup.
+  </Card>
+</Columns>

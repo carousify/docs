@@ -1,6 +1,87 @@
 ---
 title: "Branding"
-description: "Replace logo, colors, and email sender with your own."
+sidebarTitle: "Branding"
+description: "Set the logo, favicon, name, support email, and accent color your clients see across the whitelabeled app."
 ---
 
-{/* TODO: Write this page. */}
+Branding is the visible layer of whitelabel — the logo in the header, the favicon in the browser tab, the product name, the support address on emails, and the accent color on key actions. Get these right and the app simply looks like yours.
+
+It lives in the **Brand identity** section of the [Whitelabel](/whitelabel/overview) page.
+
+<Note>
+  Branding is part of whitelabel, an **Enterprise** feature, and applies once whitelabel is switched **Active** (see [Whitelabel overview](/whitelabel/overview)). On other plans, contact [Support](https://carousify.com/contact-us/) to enable it at an additional charge.
+</Note>
+
+## Where to find it
+
+In the left sidebar, open **Settings › Whitelabeling** and find the **Brand identity** section.
+
+<img
+  src="/images/whitelabel/branding-section.png"
+  alt="Brand identity section of the Carousify Whitelabeling page showing Brand Logo, Favicon, Brand Name, Support Email, and Accent Color fields"
+  className="rounded-xl border"
+/>
+
+## The fields
+
+Every field is required for branding to render cleanly.
+
+| Field | What it sets |
+| --- | --- |
+| **Brand Logo** | The logo in app headers and emails. Square image, **256×256 px or larger**. |
+| **Favicon** | The icon in the browser tab. Square, **32×32 to 128×128 px**. |
+| **Brand Name** | The product name in the app header and emails. |
+| **Support Email** | Where clients and team members reach you for help. Also the reply-to on app emails. |
+| **Accent Color** | The accent on key actions. |
+
+## Set it up
+
+<Steps>
+  <Step title="Upload your logo and favicon">
+    Click **EDIT** on **Brand Logo** and pick a square image. Do the same for **Favicon** — a simplified mark reads better at tab size than a full logo with text.
+  </Step>
+  <Step title="Enter your brand name and support email">
+    The name shows in the header and emails. Set the support email to your own inbox — it's where clients and team members reach you for help.
+  </Step>
+  <Step title="Set your accent color">
+    Click the color picker or type your brand's hex code (e.g. `#2563EB`).
+  </Step>
+  <Step title="Click Save Changes">
+    **Save Changes** is at the top and bottom of the page. Branding applies right after you save — there's nothing to wait on.
+  </Step>
+</Steps>
+
+<Tip>
+  Use a logo with a transparent or clean background so it sits well on both the light app header and email templates. A busy or photo-based logo tends to look off at small sizes — a simple mark travels better.
+</Tip>
+
+## What your clients see
+
+On the whitelabeled domain, the sign-in screen, app header, and emails all carry your identity. Here's the sign-in screen with a brand logo, name, and accent color applied:
+
+<img
+  src="/images/whitelabel/branding-whitelabel-login.png"
+  alt="Whitelabeled Carousify sign-in screen showing a custom brand logo, custom product name, and an accent-colored sign-in button"
+  className="rounded-xl border"
+/>
+
+Notice the accent shows up only where it matters — the primary button and the links — while everything else stays clean and neutral.
+
+To put this on your own URL, pair branding with a [custom domain](/whitelabel/custom-domain). To make the emails match too, set up [SMTP](/whitelabel/smtp).
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Custom domain" icon="globe" href="/whitelabel/custom-domain">
+    Serve the branded app from a domain you own.
+  </Card>
+  <Card title="SMTP" icon="envelope" href="/whitelabel/smtp">
+    Send transactional emails from your own mail server.
+  </Card>
+  <Card title="Whitelabel overview" icon="palette" href="/whitelabel/overview">
+    How branding fits with the rest of the whitelabel setup.
+  </Card>
+  <Card title="Manage clients" icon="briefcase" href="/workspaces/clients">
+    Run client workspaces inside your branded setup.
+  </Card>
+</Columns>
