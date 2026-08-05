@@ -9,17 +9,17 @@ Carousify uses LinkedIn's official OAuth flow — you log in on LinkedIn, approv
 You can connect your LinkedIn from two places:
 
 - During [onboarding](/quickstart#step-3-%E2%80%94-connect-your-linkedin-account), at step 3
-- Any time after, from **Workspace › Integrations**
+- Any time after, from **Manage Workspace › Social Integrations**
 
 This page covers the post-onboarding flow.
 
-## Open the integrations page
+## Open the Social Integrations page
 
-Go to **Workspace › Integrations** in the left sidebar. If no LinkedIn account is connected yet, you'll see this:
+Go to **Manage Workspace › Social Integrations** in the left sidebar. If no LinkedIn account is connected yet, you'll see this:
 
 <img
   src="/images/connect-linkedin/integrations-empty.png"
-  alt="Workspace Integrations page with no LinkedIn account connected"
+  alt="Social Integrations page with no LinkedIn account connected"
   className="rounded-xl border"
 />
 
@@ -67,11 +67,11 @@ You get three options:
     LinkedIn shows the scopes Carousify is requesting (read profile, read connections size, post on your behalf, manage company pages you admin). Click **Allow**.
   </Step>
   <Step title="Land back in Carousify">
-    LinkedIn redirects you to Carousify. Your account now appears in **Workspace › Integrations** with your name, headline, and avatar.
+    LinkedIn redirects you to Carousify. Your account now appears in **Manage Workspace › Social Integrations** with your name, headline, and avatar.
 
     <img
       src="/images/connect-linkedin/integrations-connected.png"
-      alt="Workspace Integrations page showing a connected LinkedIn personal account"
+      alt="Social Integrations page showing a connected LinkedIn personal account"
       className="rounded-xl border"
     />
   </Step>
@@ -118,7 +118,7 @@ In the same **Connect your LinkedIn** modal, scroll to **Collaboration Links**:
     Copy the link and share it however you like — email, Slack, WhatsApp. They don't need a Carousify account.
   </Step>
   <Step title="Client connects from their side">
-    They open the link, click through LinkedIn's official OAuth, and approve permissions. Their account appears in *your* Integrations list as soon as they finish.
+    They open the link, click through LinkedIn's official OAuth, and approve permissions. Their account appears in *your* Social Integrations list as soon as they finish.
   </Step>
 </Steps>
 
@@ -137,7 +137,7 @@ If you ever need to revoke access early, click **Deactivate** on the link — an
 
 ## Disconnect or reconnect
 
-From **Workspace › Integrations**, click the menu on a connected account to disconnect it. LinkedIn permissions are revoked immediately. To reconnect later, just run the flow again.
+From **Manage Workspace › Social Integrations**, click the menu on a connected account to disconnect it. LinkedIn permissions are revoked immediately. To reconnect later, just run the flow again.
 
 <Note>
   If LinkedIn ever invalidates the connection (password change, revoked third-party app, etc.), Carousify shows a banner asking you to reconnect. Scheduled posts pause until you do.
