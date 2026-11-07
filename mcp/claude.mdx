@@ -1,127 +1,142 @@
 ---
 title: "Connect Carousify to Claude"
 sidebarTitle: "Claude"
-description: "Add Carousify as a custom connector in Claude — or wire it into Claude Code — and draft, schedule, or check LinkedIn posts straight from a chat."
+description: "Add Carousify to Claude as a custom connector, sign in, and draft, design, schedule or analyze LinkedIn and Instagram posts from a chat or from Claude Code."
 ---
 
-Claude supports remote MCP servers everywhere it runs — the web app, the desktop app, and the [Claude Code](https://claude.com/claude-code) CLI. Add Carousify once and you can ask Claude to draft a LinkedIn post, schedule it, or pull recent performance without leaving the chat (or the terminal).
+Claude connects to Carousify as a custom connector. You paste one URL, sign in to Carousify and pick a workspace. There's no API key to copy. The connector works in Claude on the web, the desktop app and the mobile apps once it's added.
+
+For Claude Code, you can add the same server from the terminal, or install the [Carousify plugin](/mcp/claude-plugin), which adds the connector together with a skill and commands for carousels and analytics.
 
 ## Before you start
 
-You'll need:
+- A Carousify workspace on a plan with MCP access, and a role that can connect apps. See [Before you start](/mcp/overview#before-you-start).
+- A Claude account. Custom connectors are available on Claude's Free and paid plans; Free accounts can add one custom connector. On Team and Enterprise plans, an owner adds the connector for the organization first (see below).
 
-- MCP enabled on the workspace — see [MCP overview](/mcp/overview) for the one-click flow
-- An MCP key from **Manage Workspace › MCP** (only shown once, right after creating it)
-- A Claude account, or [Claude Code](https://claude.com/claude-code) installed and signed in
-
-## Step 1 — Copy your Carousify MCP URL
-
-In Carousify, open **Manage Workspace › MCP**. Use the auto-provisioned **MCP System Key** or click **Create API Key** to mint a fresh one (e.g. `claude-laptop`).
-
-Your MCP URL has this shape:
-
-```
-https://app.carousify.com/api/mcp?token=YOUR_MCP_KEY
-```
-
-The **Claude** tab on the same page renders the URL with your token already substituted — copy it from there.
-
-<Warning>
-  Treat the MCP URL like a password. Anyone with it can act on your workspace. Carousify reveals the full key only once — copy it the moment it's generated.
-</Warning>
-
-## Step 2 — Add Carousify as a custom connector
+## Add the custom connector
 
 <Steps>
-  <Step title="Open Settings › Connectors">
-    Go to [claude.ai/settings/connectors](https://claude.ai/settings/connectors) (or **Settings › Connectors** from inside Claude). Scroll past the built-in connectors to the bottom of the page.
+  <Step title="Open Connectors in Claude">
+    In Claude, open **Customize › Connectors**. (In older versions of Claude this was under **Settings › Connectors**.)
   </Step>
-  <Step title="Click Add custom connector">
-    Claude opens a small dialog with two fields.
-
-    <img
-      src="/images/mcp/claude-add-custom-connector.png"
-      alt="Claude Add custom connector dialog with the name set to Carousify and an empty Remote MCP server URL field"
-      className="rounded-xl border"
-    />
+  <Step title="Add a custom connector">
+    Click **+ Add**, then **Add custom connector**, and fill in:
 
     | Field | What to enter |
     | --- | --- |
     | **Name** | `Carousify` |
-    | **Remote MCP server URL** | The URL you copied in Step 1. |
+    | **Remote MCP server URL** | `https://api.carousify.com/mcp` |
+
+    Leave the authentication and OAuth options at their defaults: Carousify uses sign-in, and Claude registers itself with Carousify automatically. Don't add an API key or request header.
+
+    {/* SCREENSHOT NEEDED: images/mcp/claude-add-custom-connector.png — Claude › Customize › Connectors › Add custom connector dialog, Name "Carousify", URL https://api.carousify.com/mcp filled in, authentication left at default. Replaces the existing images/mcp/claude-add-custom-connector.png, which shows the old Settings › Connectors dialog. */}
+
+    Click **Add** (Claude may ask you to click **Continue** first to confirm the sign-in method).
   </Step>
-  <Step title="Click Add">
-    Claude validates the URL, opens the connection, and lists the Carousify tools it discovered. The connector now shows up in **Settings › Connectors** as **Active**.
+  <Step title="Sign in to Carousify and pick a workspace">
+    Click **Connect** on the new connector. Claude opens Carousify in a new tab. Sign in if needed (including two-factor authentication if you use it), then:
+
+    - Pick the **Workspace** to connect. Workspaces you can't connect are greyed out with the reason.
+    - Check what Claude will be able to do: see your connected accounts; read posts, drafts, schedules and analytics; create, edit and schedule posts; publish and delete posts.
+    - Click **Allow access**.
+
+    {/* SCREENSHOT NEEDED: images/mcp/oauth-consent.png — the Carousify consent page (app.carousify.com/oauth/consent/...) for Claude: heading "Claude wants to access your Carousify workspace", "Signed in as …", "You'll be sent back to claude.ai", workspace list with one selected and one greyed out with a reason, the "will be able to" list, Cancel and Allow access buttons. New image, also used on the ChatGPT and Grok pages. */}
+
+    Carousify sends you back to Claude and the connector shows as connected.
   </Step>
 </Steps>
 
-## Step 3 — Use it in a chat
+<Note>
+  Each connection works in one workspace. To use another workspace, disconnect and connect again, choosing the other workspace on the consent screen.
+</Note>
 
-Start a new conversation. Click the **+ tools** icon (or the `/` slash menu) in the composer and tick **Carousify** so it's enabled for this chat. Then try:
+### Team and Enterprise plans
 
-- *"Draft a LinkedIn post about why agencies use Collaboration Links to onboard clients without sharing logins, then schedule it for Tuesday 9 AM IST."*
-- *"Show me my top three posts from the last 14 days."*
-- *"Did the post I scheduled this morning go live?"*
+On Claude Team and Enterprise, an owner adds the connector once for the organization: **Organization settings › Connectors**, then **Add**, **Custom**, **Web**, and the same name and URL as above. Each member then opens **Customize › Connectors**, finds **Carousify** and clicks **Connect** to sign in with their own Carousify account. Every member acts with their own Carousify role.
 
-Claude picks the matching Carousify tool, asks you to approve the action the first time, and then runs it.
+## Use it in a chat
 
-<Tip>
-  Connectors are off by default in new chats. To keep Carousify on without re-ticking it every time, create a **Carousify** project — Claude remembers connector toggles per project.
-</Tip>
+In a new chat, click **+** in the message box, open **Connectors** and make sure **Carousify** is turned on. Then try:
 
-## Prefer the terminal? Use Claude Code
+- *"What accounts do I have connected in Carousify?"*
+- *"Write a LinkedIn post about why agencies use collaboration links to onboard clients, show it to me, then schedule it for Tuesday 9 AM."*
+- *"Turn this blog post into a carousel using one of my templates and my default brand kit."*
+- *"Design a new carousel template for a product launch, then post it to my company page tomorrow at 10 AM."*
+- *"How did my posts do in the last 30 days?"*
 
-If you spend most of your time in [Claude Code](https://claude.com/claude-code), skip the web UI entirely and add Carousify in one command:
-
-```bash
-claude mcp add --transport http carousify "https://app.carousify.com/api/mcp?token=YOUR_MCP_KEY"
-```
-
-By default the server is added at the **local** scope (this project only). Pick a wider scope if you want it everywhere:
-
-| Scope | Flag | Where it's stored |
-| --- | --- | --- |
-| **Local** (default) | — | This project, your machine only. |
-| **User** | `-s user` | Every project on this machine. |
-| **Project** | `-s project` | Committed to `.mcp.json` in the current repo, shared with the team. |
-
-For project scope, keep the token out of `.mcp.json` by referencing an env var instead of hard-coding it:
-
-```bash
-export CAROUSIFY_MCP_TOKEN="your_mcp_key"
-claude mcp add --transport http -s project carousify "https://app.carousify.com/api/mcp?token=\${CAROUSIFY_MCP_TOKEN}"
-```
-
-Verify the connection with `claude mcp list` — you should see `carousify` with the discovered tool count and a green status. From the next `claude` session, the agent can call Carousify tools directly.
+Claude asks for your approval before running tools that change things, and you can choose **Allow always** for tools you trust. Carousify also tells Claude to show you the final post and get your confirmation before it publishes, schedules or deletes. See [Permissions and security](/mcp/permissions).
 
 <Tip>
-  Use **user** scope for personal day-to-day work, **project** scope when your whole team needs Carousify wired into a specific repo (e.g. an agency repo for one client).
+  To use your own photos or PDFs, attach them in the chat or ask Claude for an upload link. See [Upload your own files](/mcp/uploads).
 </Tip>
 
-## Disconnect or rotate
+## Claude Code
 
-- **Disconnect (web/desktop)** — open **Settings › Connectors**, click **⋯** on the Carousify entry, then **Remove**. Claude stops calling the URL immediately.
-- **Disconnect (Claude Code)** — run `claude mcp remove carousify` (add `-s user` or `-s project` if that's where you registered it).
-- **Rotate the key** — in Carousify, delete the row in **MCP Keys**, then click **Create API Key** to mint a new one. Update the URL in Claude (or rerun `claude mcp add`) with the new token.
+You have three options in [Claude Code](https://code.claude.com/docs/en/mcp).
+
+**Install the plugin.** The easiest way: it adds the connector plus the Carousify skill and `/carousify:` commands. See [Claude Code plugin](/mcp/claude-plugin).
+
+**Add the server and sign in.** Run:
+
+```bash
+claude mcp add --transport http carousify https://api.carousify.com/mcp
+```
+
+Then start `claude`, run `/mcp`, select **carousify** and sign in. You pick the workspace in the browser as above.
+
+**Use an MCP API key.** For scripts, CI or machines where you can't open a browser, create a key in **Manage Workspace › MCP** (see [Managing MCP keys](/mcp/overview#managing-mcp-keys)) and pass it as a header:
+
+```bash
+claude mcp add --transport http carousify https://api.carousify.com/mcp \
+  --header "Authorization: Bearer YOUR_MCP_KEY"
+```
+
+<Warning>
+  The **Claude** tab on Carousify's MCP page shows a shorter `claude mcp add` command without `--transport http`. Use the commands on this page instead: without `--transport http`, Claude Code doesn't treat the URL as a remote server.
+</Warning>
+
+By default the server is added for the current project on your machine only (**local** scope). Add `-s user` to use it in every project, or `-s project` to share it with your team in the repo's `.mcp.json`. For a shared `.mcp.json`, keep the key out of the file with an environment variable:
+
+```json
+{
+  "mcpServers": {
+    "carousify": {
+      "type": "http",
+      "url": "https://api.carousify.com/mcp",
+      "headers": { "Authorization": "Bearer ${CAROUSIFY_MCP_KEY}" }
+    }
+  }
+}
+```
+
+Check the connection with `claude mcp list`: Carousify shows **Connected**, or **Needs authentication** if you still need to sign in with `/mcp`.
+
+## Disconnect
+
+- **Claude (web, desktop, mobile):** open **Customize › Connectors**, open the menu on **Carousify** and click **Remove**.
+- **Claude Code:** run `claude mcp logout carousify` if you signed in, then `claude mcp remove carousify`.
+- **In Carousify:** open **Manage Workspace › MCP › Connected apps** and click **Disconnect** next to Claude. This ends Claude's access straight away. For an API key, turn it off or delete it in **MCP Keys**.
 
 ## Troubleshooting
 
-- **"Failed to connect to server"** — the token is wrong or has been revoked. Confirm the key shows **Active** in **Manage Workspace › MCP** and that the URL ends with the full token, not the masked `XXXX...` version.
-- **`claude mcp list` shows the server as failed** — most often a stale token. Generate a fresh key in Carousify and re-add the server.
+- **The workspace is greyed out on the consent screen.** The reason is shown under the name: the plan doesn't include MCP, or your role can't connect apps. Ask the workspace owner.
+- **"This authorization request has expired or was already used."** The sign-in link is valid for 30 minutes. Start again from **Connect** in Claude.
+- **Claude says Carousify needs to be reconnected, or tools fail with an authorization error.** Your access was removed (you left the workspace, lost the permission, the plan changed, or someone disconnected the app). Connect again.
+- **A post won't publish.** If your role needs approval, Carousify only lets you schedule posts and sends them to Pending Approval. See [How approvals work over MCP](/mcp/permissions#how-approvals-work-over-mcp).
 
 ## What's next
 
 <Columns cols={2}>
-  <Card title="MCP overview" icon="robot" href="/mcp/overview">
-    How MCP keys, tools, and workspace scoping fit together.
+  <Card title="Claude Code plugin" icon="puzzle-piece" href="/mcp/claude-plugin">
+    Connector, skill and commands in one install.
   </Card>
-  <Card title="Use it from VS Code" icon="code" href="/mcp/vscode">
-    Same MCP URL, inside VS Code's chat agent.
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    What Claude can do in Carousify.
   </Card>
-  <Card title="Use it from Codex" icon="terminal" href="/mcp/codex">
-    Add Carousify to the Codex CLI's `config.toml`.
+  <Card title="Permissions and security" icon="shield-halved" href="/mcp/permissions">
+    Roles, approvals and disconnecting.
   </Card>
-  <Card title="Schedule a post" icon="calendar" href="/scheduling/schedule-post">
-    Quick refresher on how scheduling works inside Carousify.
+  <Card title="Upload your own files" icon="upload" href="/mcp/uploads">
+    Use your own images, videos and PDFs in posts.
   </Card>
 </Columns>

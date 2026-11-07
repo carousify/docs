@@ -1,0 +1,111 @@
+---
+title: "Account security"
+sidebarTitle: "Account security"
+description: "Set a password, turn on two-factor authentication, and delete your account."
+---
+
+Your Carousify account is personal — it's the login you use for every workspace you own or belong to. Security settings live under **Settings › Password & Security** in the left sidebar (`/user-settings/security`).
+
+{/* SCREENSHOT NEEDED: images/billing/password-security.png — Settings › Password & Security tab: the Password card and the Two-Factor Authentication card with the Disabled badge and the Text Message (SMS) and Authenticator App rows, each with a Set Up button */}
+
+## Password
+
+If you signed up with email, change your password here: enter your current password, then the new one twice.
+
+If you signed up with Google or LinkedIn, you don't have a password yet. Setting one lets you sign in with email and password too, and it's required before you can turn on two-factor authentication.
+
+Passwords must be 8–32 characters and include an uppercase letter, a number, and a special character.
+
+## Two-factor authentication
+
+Two-factor authentication (2FA) asks for a one-time code after you sign in. Once it's on, the code is required for **every** sign-in method — email and password, **Sign in with LinkedIn**, **Sign in with Google**, Google One Tap, and Facebook — including on whitelabeled domains.
+
+<Note>
+  You need a password on your account before you can set up 2FA. If you only use Google or LinkedIn sign-in, [set a password](#password) first.
+</Note>
+
+You can turn on either method, or both.
+
+### Authenticator app
+
+<Steps>
+  <Step title="Click Set Up next to Authenticator App">
+    The **Setup Authenticator App** dialog opens.
+  </Step>
+  <Step title="Scan the QR code">
+    Use an authenticator app such as Google Authenticator, Microsoft Authenticator, or Authy. If you can't scan, type the code shown under **Or enter this code manually**.
+  </Step>
+  <Step title="Enter the 6-digit code and click Verify & Enable">
+    The Two-Factor Authentication card now shows **Enabled**.
+  </Step>
+</Steps>
+
+### Text message (SMS)
+
+<Steps>
+  <Step title="Click Set Up next to Text Message (SMS)">
+    The **Setup SMS Authentication** dialog opens.
+  </Step>
+  <Step title="Enter your phone number">
+    Pick your country code, enter the number, and click **Send Verification Code**. You can send the code up to 4 times.
+  </Step>
+  <Step title="Enter the code and click Verify & Enable">
+    The code is valid for 10 minutes.
+  </Step>
+</Steps>
+
+### Signing in with 2FA on
+
+After your password or social sign-in, Carousify shows a **Two factor authentication** screen. Enter the code from your authenticator app or the text message. If you set up both methods, the app code is asked for first — use **Get a code on phone instead** to switch to SMS, or **Use authenticator instead** to switch back.
+
+### Turn 2FA off
+
+Click **Revoke** next to the method you want to remove and confirm with your password.
+
+<Warning>
+  Keep access to your authenticator app or phone. If you lose both, contact [Support](https://carousify.com/contact-us/) to regain access.
+</Warning>
+
+## Actions that need your password
+
+Two actions can't be undone easily, so Carousify asks for your password before running them (accounts without a password skip this check):
+
+- **Transferring workspace ownership** — see [Transfer ownership](/workspaces/invite-team#transfer-ownership)
+- **Deleting your account** — see below
+
+## Delete your account
+
+Open **Settings** and the **Delete Account** tab.
+
+<Steps>
+  <Step title="Cancel your subscription first">
+    Carousify won't delete an account with an active paid subscription. [Cancel it](/billing/cancel) first.
+  </Step>
+  <Step title="Tell us why (optional) and confirm">
+    Pick a reason, then enter your password. If your account has no password, type `DELETE` instead.
+  </Step>
+  <Step title="Click Delete Account">
+    You're signed out right away.
+  </Step>
+</Steps>
+
+About 7 days later the account is permanently deleted, along with:
+
+- Every workspace you own and everything in it — posts, carousels, templates, brand kits, uploads, connected accounts, and analytics
+- Your membership in other people's workspaces
+- Your whitelabel custom domains, which are released so they stop pointing at Carousify
+
+<Warning>
+  Deletion can't be undone. If other people rely on a workspace you own, [transfer ownership](/workspaces/invite-team#transfer-ownership) to them before you delete your account.
+</Warning>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Invite team members" icon="user-plus" href="/workspaces/invite-team">
+    Manage who can access your workspaces.
+  </Card>
+  <Card title="Cancel your subscription" icon="circle-xmark" href="/billing/cancel">
+    Stop auto-renewal before deleting your account.
+  </Card>
+</Columns>

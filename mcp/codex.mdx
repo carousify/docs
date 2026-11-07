@@ -1,121 +1,94 @@
 ---
 title: "Connect Carousify to Codex"
 sidebarTitle: "Codex CLI"
-description: "Add Carousify to the OpenAI Codex CLI and draft, schedule, or check LinkedIn posts straight from the terminal."
+description: "Add Carousify to the OpenAI Codex CLI and draft, schedule, or check LinkedIn and Instagram posts from the terminal."
 ---
 
-The OpenAI [Codex CLI](https://developers.openai.com/codex/) supports streamable HTTP MCP servers via `~/.codex/config.toml`. Wire Carousify in and you can ask Codex to draft posts, schedule them, or pull analytics from any terminal session — globally or scoped to a single repo.
-
-<Note>
-  Codex CLI added support for streamable HTTP MCP servers in late 2025. Make sure you're on a recent version (`codex --version`) — older builds only support stdio servers.
-</Note>
+The OpenAI [Codex CLI](https://developers.openai.com/codex/mcp) supports remote MCP servers over Streamable HTTP. Add Carousify with your MCP key and you can ask Codex to draft posts, build carousels, schedule them, or pull analytics from any terminal session.
 
 ## Before you start
 
-You'll need:
+- A Carousify workspace on a plan with MCP access, and a role that can create MCP keys. See [Before you start](/mcp/overview#before-you-start).
+- A recent version of the Codex CLI, signed in (`codex login`).
 
-- MCP enabled on the workspace — see [MCP overview](/mcp/overview) for the one-click flow
-- An MCP key from **Manage Workspace › MCP** (only shown once, right after creating it)
-- Codex CLI installed and authenticated (`codex login`)
+## Step 1: Create an MCP key
 
-## Step 1 — Copy your Carousify MCP URL
-
-In Carousify, open **Manage Workspace › MCP**. Use the auto-provisioned **MCP System Key** or click **Create API Key** to mint a fresh one (e.g. `codex-cli`).
-
-Your MCP URL has this shape:
+In Carousify, open **Manage Workspace › MCP**. Type a label in **API Name** (for example `codex`) and click **Create API Key**, or click **Enable MCP** if MCP isn't enabled yet. Copy the MCP URL that appears:
 
 ```
-https://app.carousify.com/api/mcp?token=YOUR_MCP_KEY
+https://api.carousify.com/mcp?token=YOUR_MCP_KEY
 ```
 
 <Warning>
-  Treat the MCP URL like a password. Anyone with it can act on your workspace. Carousify reveals the full key only once — copy it the moment it's generated.
+  Carousify shows the full key only once. Treat it like a password: anyone with it can use your workspace with your role's permissions.
 </Warning>
 
-## Step 2 — Add Carousify to Codex
+## Step 2: Add Carousify to Codex
 
 <Steps>
-  <Step title="Run codex mcp add">
-    The fastest path. The token is part of the URL, so no separate auth flag is needed:
+  <Step title="Recommended: keep the key in an environment variable">
+    Put the key (the part after `token=`) in your shell profile:
 
     ```bash
-    codex mcp add carousify --url "https://app.carousify.com/api/mcp?token=YOUR_MCP_KEY"
+    export CAROUSIFY_MCP_KEY="your_mcp_key"
     ```
 
-    Codex writes the entry to `~/.codex/config.toml` and verifies the connection.
-  </Step>
-  <Step title="Or edit ~/.codex/config.toml directly">
-    Open (or create) `~/.codex/config.toml` and add:
+    Then add this to `~/.codex/config.toml`:
 
     ```toml
     [mcp_servers.carousify]
-    url = "https://app.carousify.com/api/mcp?token=YOUR_MCP_KEY"
+    url = "https://api.carousify.com/mcp"
+    bearer_token_env_var = "CAROUSIFY_MCP_KEY"
     ```
 
-    To keep the token out of the file, set it in your shell environment and reference it through Codex's bearer-token field:
+    Codex sends the key as a Bearer token, and your `config.toml` stays free of secrets.
+  </Step>
+  <Step title="Or: add it with one command">
+    This is what the **Codex CLI** tab on Carousify's MCP page shows. The key is part of the URL, so it's saved in `config.toml`:
 
     ```bash
-    export CAROUSIFY_MCP_TOKEN="your_mcp_key"
+    codex mcp add carousify --url "https://api.carousify.com/mcp?token=YOUR_MCP_KEY"
     ```
-
-    ```toml
-    [mcp_servers.carousify]
-    url = "https://app.carousify.com/api/mcp"
-    bearer_token_env_var = "CAROUSIFY_MCP_TOKEN"
-    ```
-
-    <Tip>
-      The env-var route is the cleaner choice if you commit dotfiles or share `config.toml` between machines — your `config.toml` stays free of secrets.
-    </Tip>
   </Step>
-  <Step title="Verify the connection">
-    Quit any running Codex sessions, then run:
+  <Step title="Check the connection">
+    Run:
 
     ```bash
     codex mcp list
     ```
 
-    You should see `carousify` in the list with status **connected** and a count of discovered tools.
+    `carousify` should be listed. In a Codex session, `/mcp` shows the server and its tools.
   </Step>
 </Steps>
 
-## Step 3 — Use it from a Codex session
+## Step 3: Use it from a Codex session
 
 Start a session (`codex`) and try:
 
-- *"Using Carousify, draft a LinkedIn post about today's release notes and schedule it for 9 AM IST tomorrow."*
+- *"Using Carousify, draft a LinkedIn post about today's release notes and schedule it for 9 AM tomorrow."*
 - *"List my scheduled Carousify posts for this week."*
-- *"Pull analytics for the post I published yesterday."*
+- *"Pull Carousify analytics for the post I published yesterday."*
 
-Codex picks the matching Carousify tool, asks for your approval the first time, and runs it.
-
-<Tip>
-  Be explicit about Carousify in the prompt the first few times. Codex routes on tool descriptions, so naming the server helps it land on the right call.
-</Tip>
+Codex asks for your approval before running tools. Mention Carousify in the prompt the first few times so Codex picks the right tools. See the [tools reference](/mcp/tools).
 
 ## Disconnect or rotate
 
-- **Disconnect** — run `codex mcp remove carousify`, or delete the `[mcp_servers.carousify]` block from `config.toml`.
-- **Rotate the key** — in Carousify, delete the row in **MCP Keys**, click **Create API Key** to mint a new one, and update the URL (or env var) in Codex.
+- **Disconnect:** run `codex mcp remove carousify`, or delete the `[mcp_servers.carousify]` block from `config.toml`.
+- **Rotate the key:** in Carousify, delete the key in the **MCP Keys** table, create a new one, and update the environment variable or URL.
 
 ## Troubleshooting
 
-- **`codex mcp list` shows "failed"** — the token is wrong or revoked. Confirm the key shows **Active** in **Manage Workspace › MCP** and the URL ends with the full token, not the masked `XXXX...` version.
-- **Codex doesn't pick the Carousify tool** — be explicit in the prompt (*"using Carousify, …"*). The agent uses tool descriptions for routing, so naming the server helps.
+- **401 "Invalid API key!"** The key is wrong, turned off or deleted. Check it shows as on in **MCP Keys**, and that you used the full key, not the masked `XXXX…` version.
+- **"This MCP key was created by someone who is no longer in this workspace."** Create a new key.
+- **Older setups:** if your `config.toml` points at `app.carousify.com/api/mcp`, change it to `https://api.carousify.com/mcp`.
 
 ## What's next
 
 <Columns cols={2}>
-  <Card title="MCP overview" icon="robot" href="/mcp/overview">
-    How MCP keys, tools, and workspace scoping fit together.
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    What the assistant can do in Carousify.
   </Card>
-  <Card title="Use it from VS Code" icon="code" href="/mcp/vscode">
-    Same MCP URL, inside VS Code's chat agent.
-  </Card>
-  <Card title="Use it from Claude" icon="message" href="/mcp/claude">
-    Custom connector setup for Claude web, desktop, and Claude Code.
-  </Card>
-  <Card title="Schedule a post" icon="calendar" href="/scheduling/schedule-post">
-    Quick refresher on how scheduling works inside Carousify.
+  <Card title="Permissions and security" icon="shield-halved" href="/mcp/permissions">
+    How your role applies to MCP keys.
   </Card>
 </Columns>

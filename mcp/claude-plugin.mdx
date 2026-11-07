@@ -1,0 +1,68 @@
+---
+title: "Carousify plugin for Claude Code"
+sidebarTitle: "Claude Code plugin"
+description: "Install the Carousify plugin in Claude Code to get the Carousify connector, a carousel-writing skill and the /carousify:carousel and /carousify:analytics commands."
+---
+
+The Carousify plugin bundles everything Claude needs to work well with Carousify into one install:
+
+- **The Carousify connector.** The remote MCP server at `https://api.carousify.com/mcp`. You sign in to Carousify and pick a workspace the first time; no API key needed.
+- **The Carousify skill.** Guidance Claude reads before it acts: how to write carousels that get read (hooks, slide flow, length, calls to action), a library of design styles with example templates, brand kit rules, and step-by-step workflows for posting, scheduling, approvals, uploads and analytics.
+- **Two commands.** `/carousify:carousel` and `/carousify:analytics`.
+
+The plugin runs no code on your computer. Claude talks only to Carousify's server over HTTPS, with the access you grant when you sign in. The source is public at [github.com/carousify/claude-plugin](https://github.com/carousify/claude-plugin).
+
+## Install
+
+In [Claude Code](https://code.claude.com/docs/en/discover-plugins), run:
+
+```
+/plugin install carousify --marketplace carousify/claude-plugin
+```
+
+Claude Code asks you to confirm adding the Carousify marketplace, then installs the plugin. This needs a recent version of Claude Code; if the command isn't recognised, update Claude Code or use the two-step form:
+
+```
+/plugin marketplace add carousify/claude-plugin
+/plugin install carousify@carousify
+```
+
+## Sign in
+
+The first time Claude uses a Carousify tool, it asks you to sign in. You can also do it straight away: run `/mcp`, select the Carousify server and follow the browser sign-in. Choose the **Workspace** on the Carousify consent screen and click **Allow access**.
+
+Your Carousify role and approval rules apply to everything Claude does. See [Permissions and security](/mcp/permissions).
+
+## Commands
+
+| Command | What it does |
+| --- | --- |
+| `/carousify:carousel <topic, notes or URL> [for <account>] [in <style>]` | Checks your connected accounts and brand kits, picks a fitting template (or designs a new layout if you ask for something different), writes the slides, creates the carousel draft and gives you the editor link. It doesn't schedule or publish unless you ask, and then shows you the final post first. |
+| `/carousify:analytics [account] [period]` | Reviews how your recent posts performed (the last 30 days by default): best and weakest posts and why, follower trend, and three ideas for the next posts. |
+
+You don't need the commands. With the plugin installed, ask in plain language, for example *"Turn this README into a LinkedIn carousel"* or *"Post the carousel I just made to my company page tomorrow at 9 AM"*, and Claude uses the skill automatically.
+
+## Requirements
+
+- A Carousify account with at least one connected LinkedIn or Instagram account.
+- A workspace on a plan with MCP access, and a role that can connect apps. See [Before you start](/mcp/overview#before-you-start).
+
+## Update or remove
+
+- **Update:** run `/plugin` and update Carousify from the marketplace list, or run `/plugin marketplace update carousify`.
+- **Remove:** run `/plugin uninstall carousify`. To end Carousify's access too, disconnect Claude in **Manage Workspace › MCP › Connected apps**.
+
+<Note>
+  Using Claude on the web or desktop instead? Add Carousify as a [custom connector](/mcp/claude). The connector works the same way; the skill and commands are part of the Claude Code plugin.
+</Note>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Connect Claude" icon="message" href="/mcp/claude">
+    Custom connector for Claude web, desktop and mobile.
+  </Card>
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    Everything the connector can do.
+  </Card>
+</Columns>

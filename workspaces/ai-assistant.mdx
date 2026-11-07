@@ -46,20 +46,38 @@ Below the AI Assistant section, **BYOK** lets you swap Carousify's default AI fo
   <Step title="Get an OpenRouter key">
     Sign up at [openrouter.ai](https://openrouter.ai/), top up your account, and create a key (`sk-or-v1-...`).
   </Step>
-  <Step title="Paste it into the BYOK field and save">
-    Every AI request in this workspace now runs through your key — billed to your OpenRouter account, not Carousify's. Rotate by pasting a new key; clear the field to fall back to Carousify's default AI.
+  <Step title="Paste it into the OpenRouter API Key field">
+    Once a key is entered, the model settings appear below it.
+  </Step>
+  <Step title="Pick and test your models">
+    Choose a model for each job and click **Test Model** next to it. Carousify won't save a model that hasn't passed a test with your key.
+
+    | Setting | Used for |
+    | --- | --- |
+    | **General Model** | Headlines, comments, and posts |
+    | **Advanced Model** | Carousel generation only |
+    | **Image Generation Model** | AI image generation only |
+    | **Reasoning Effort** | How much the model reasons before answering (high, medium, low, minimal, or none) |
+    | **Enable Web Search** | Lets the AI search the web for real-time information. Adds OpenRouter cost per request. |
+  </Step>
+  <Step title="Click Save Changes">
+    Every AI request in this workspace now runs through your key — billed to your OpenRouter account, not Carousify's. Paste a new key to rotate it.
   </Step>
 </Steps>
+
+To go back to Carousify's AI, click **Remove** next to the saved key and confirm **Delete Key**. Future AI requests then use your plan's monthly AI words again.
+
+You need the **Modify Workspace** permission to change BYOK settings.
 
 ### Why use BYOK
 
 - **No AI word limits** — usage is capped by your OpenRouter credit, not your Carousify plan
-- **Pick the model** — OpenRouter exposes Claude, GPT, Gemini, Llama, and dozens more
+- **Pick the model** — choose from the Claude, GPT, Gemini, GLM, and image models listed in each dropdown
 - **Compliance / billing** — useful when a client wants AI requests routed through their own provider
 
 ### Security
 
-Your API key is **encrypted at rest** and never shown back in the UI after saving. Editing the field always replaces the stored key — Carousify never decrypts it.
+Your API key is **encrypted at rest** and never shown back in the UI after saving. Carousify only uses it to send this workspace's AI requests to OpenRouter. Pasting a new key replaces the stored one.
 
 <Tip>
   BYOK is per workspace. Mix Carousify-billed AI in one workspace with your own key in another — handy if some clients pay for their own AI usage and others don't.

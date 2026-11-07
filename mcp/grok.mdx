@@ -1,0 +1,68 @@
+---
+title: "Connect Carousify to Grok"
+sidebarTitle: "Grok"
+description: "Add Carousify to Grok as a custom connector, sign in, and work on LinkedIn and Instagram posts from Grok."
+---
+
+Grok supports custom connectors to remote MCP servers. You add Carousify's URL, sign in to Carousify and pick a workspace. There's no API key to copy.
+
+<Note>
+  These steps follow xAI's [connectors guide](https://docs.x.ai/grok/connectors). If Grok's screens look different, add a custom connector with the URL `https://api.carousify.com/mcp` and complete the Carousify sign-in when Grok asks. On Grok Business and Enterprise, a team admin may need to set up the connector for the team first.
+</Note>
+
+## Before you start
+
+- A Carousify workspace on a plan with MCP access, and a role that can connect apps. See [Before you start](/mcp/overview#before-you-start).
+- A Grok account.
+
+## Add Carousify
+
+<Steps>
+  <Step title="Open connectors">
+    Go to [grok.com/connectors](https://grok.com/connectors) and click **New Connector**, then **Custom**.
+  </Step>
+  <Step title="Enter the server URL">
+    Name it `Carousify` if Grok asks for a name, and enter the MCP server URL:
+
+    ```
+    https://api.carousify.com/mcp
+    ```
+
+    {/* SCREENSHOT NEEDED: images/mcp/grok-new-connector.png — grok.com/connectors › New Connector › Custom with the Carousify URL entered. New image; capture only after the team has tested Grok and confirmed the screens. */}
+  </Step>
+  <Step title="Sign in to Carousify and pick a workspace">
+    Grok opens Carousify. Sign in, choose the **Workspace** to connect, review what Grok will be able to do, and click **Allow access**. Carousify sends you back to Grok.
+  </Step>
+</Steps>
+
+The consent screen is the same one Claude uses; see [Sign in to Carousify and pick a workspace](/mcp/claude#add-the-custom-connector).
+
+## Use it
+
+Ask Grok for what you need, and mention Carousify the first few times so it picks the right tools:
+
+- *"Using Carousify, list my connected accounts."*
+- *"Using Carousify, draft an Instagram caption for my latest carousel and save it as a draft."*
+- *"How did my LinkedIn posts in Carousify do this week?"*
+
+Carousify tells Grok to show you the final post and wait for your confirmation before it publishes, schedules or deletes. Your Carousify role and approval rules apply either way; see [Permissions and security](/mcp/permissions).
+
+## Building with the xAI API
+
+If you call Grok through the xAI API rather than the Grok app, add Carousify as a remote MCP tool with an [MCP API key](/mcp/overview#managing-mcp-keys) instead of sign-in. Use `https://api.carousify.com/mcp` as the server URL and send the key as a Bearer token in the `Authorization` header. See xAI's [remote MCP tools guide](https://docs.x.ai/developers/tools/remote-mcp) for the request format.
+
+## Disconnect
+
+- **In Carousify:** open **Manage Workspace › MCP › Connected apps** and click **Disconnect** next to Grok. Access ends straight away.
+- **In Grok:** remove the Carousify connector from your connectors.
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    What Grok can do in Carousify.
+  </Card>
+  <Card title="Permissions and security" icon="shield-halved" href="/mcp/permissions">
+    Roles, approvals and disconnecting.
+  </Card>
+</Columns>

@@ -1,0 +1,74 @@
+---
+title: "Connect Carousify to ChatGPT"
+sidebarTitle: "ChatGPT"
+description: "Add Carousify to ChatGPT as a custom MCP server, sign in, and work on LinkedIn and Instagram posts from a chat."
+---
+
+ChatGPT can connect to remote MCP servers like Carousify's. You add the server URL once, sign in to Carousify and pick a workspace. There's no API key to copy.
+
+<Note>
+  ChatGPT's support for custom MCP servers depends on your ChatGPT plan and workspace settings, and OpenAI changes the menus from time to time. If the steps below don't match what you see, follow OpenAI's guide on [connecting custom MCP servers in ChatGPT](https://help.openai.com/en/articles/12584461) with the URL `https://api.carousify.com/mcp` and **OAuth** authentication. On ChatGPT Business and Enterprise, a workspace admin may need to add or allow the server first.
+</Note>
+
+## Before you start
+
+- A Carousify workspace on a plan with MCP access, and a role that can connect apps. See [Before you start](/mcp/overview#before-you-start).
+- A ChatGPT plan that lets you add custom MCP servers. This currently works on the ChatGPT website, not in the mobile apps.
+
+## Add Carousify
+
+<Steps>
+  <Step title="Add a custom MCP server">
+    In ChatGPT on the web, open [chatgpt.com/plugins](https://chatgpt.com/plugins). Click **+** and choose **Add custom MCP server**.
+  </Step>
+  <Step title="Fill in the details">
+    | Field | What to enter |
+    | --- | --- |
+    | **Name** | `Carousify` |
+    | **Description** | Optional, for example *Draft, schedule and analyze LinkedIn and Instagram posts* |
+    | **Server URL** | `https://api.carousify.com/mcp` |
+    | **Authentication** | **OAuth** |
+
+    Tick **I understand and want to continue**, then create it (**Create as a plugin**).
+
+    {/* SCREENSHOT NEEDED: images/mcp/chatgpt-add-mcp-server.png — ChatGPT › Plugins › Add custom MCP server form with Name "Carousify", Server URL https://api.carousify.com/mcp and Authentication "OAuth" selected. New image; capture only after the team has tested ChatGPT and confirmed the menu names. */}
+  </Step>
+  <Step title="Sign in to Carousify and pick a workspace">
+    ChatGPT opens Carousify. Sign in, choose the **Workspace** to connect, review what ChatGPT will be able to do, and click **Allow access**. Carousify sends you back to ChatGPT.
+  </Step>
+</Steps>
+
+The consent screen is the same one Claude uses; see [Sign in to Carousify and pick a workspace](/mcp/claude#add-the-custom-connector).
+
+## Use it in a chat
+
+In a chat, type `@` and pick **Carousify**, then ask for what you need:
+
+- *"@Carousify list my connected accounts."*
+- *"Draft a LinkedIn post about our Q3 results for my company page and show it to me."*
+- *"Make a carousel from this article using one of my templates."*
+- *"Which of my posts did best last month?"*
+
+ChatGPT asks you to confirm actions that change things. Carousify also tells ChatGPT to show you the final post and wait for your confirmation before it publishes, schedules or deletes.
+
+## Disconnect
+
+- **In Carousify:** open **Manage Workspace › MCP › Connected apps** and click **Disconnect** next to ChatGPT. Access ends straight away.
+- **In ChatGPT:** remove or turn off the Carousify server where you added it.
+
+## Troubleshooting
+
+- **The workspace is greyed out on the consent screen.** The plan doesn't include MCP, or your role can't connect apps. The reason is shown under the workspace name.
+- **"This app is not registered with Carousify. Remove the connector and add it again to re-register."** Remove Carousify in ChatGPT and add it again.
+- **Tools that change things are missing.** Some ChatGPT plans only allow read access for custom MCP servers. Check your ChatGPT plan.
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    What ChatGPT can do in Carousify.
+  </Card>
+  <Card title="Permissions and security" icon="shield-halved" href="/mcp/permissions">
+    Roles, approvals and disconnecting.
+  </Card>
+</Columns>

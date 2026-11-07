@@ -1,43 +1,35 @@
 ---
 title: "Connect Carousify to Antigravity"
 sidebarTitle: "Antigravity"
-description: "Add Carousify to Antigravity and let the agent draft, schedule, or check LinkedIn posts from inside the IDE."
+description: "Add Carousify to Google Antigravity and let the agent draft, schedule, or check LinkedIn and Instagram posts from inside the IDE."
 ---
 
-[Antigravity](https://antigravity.google/) is Google's agent-first IDE. It speaks MCP natively, so once Carousify is wired in, the agent can draft posts, schedule them, and pull analytics from inside any task.
+[Antigravity](https://antigravity.google/) is Google's agent-first IDE. It supports remote MCP servers, so once Carousify is added, the agent can draft posts, build carousels, schedule them, and pull analytics as part of any task.
 
 ## Before you start
 
-You'll need:
+- A Carousify workspace on a plan with MCP access, and a role that can create MCP keys. See [Before you start](/mcp/overview#before-you-start).
+- Antigravity installed and signed in.
 
-- MCP enabled on the workspace — see [MCP overview](/mcp/overview) for the one-click flow
-- An MCP key from **Manage Workspace › MCP** (only shown once, right after creating it)
-- Antigravity installed and signed in
+## Step 1: Create an MCP key
 
-## Step 1 — Copy your Carousify MCP URL
-
-In Carousify, open **Manage Workspace › MCP**. Use the auto-provisioned **MCP System Key** or click **Create API Key** to mint a fresh one (e.g. `antigravity`).
-
-Your MCP URL has this shape:
+In Carousify, open **Manage Workspace › MCP**. Type a label in **API Name** (for example `antigravity`) and click **Create API Key**, or click **Enable MCP** if MCP isn't enabled yet. Copy the MCP URL that appears:
 
 ```
-https://app.carousify.com/api/mcp?token=YOUR_MCP_KEY
+https://api.carousify.com/mcp?token=YOUR_MCP_KEY
 ```
 
-The **Antigravity** tab on the same page renders the URL with your token already substituted — copy it from there.
+The **Antigravity** tab on the same page shows the config entry with this URL.
 
 <Warning>
-  Treat the MCP URL like a password. Anyone with it can act on your workspace. Carousify reveals the full key only once — copy it the moment it's generated.
+  Carousify shows the full key only once. Treat it like a password: anyone with it can use your workspace with your role's permissions.
 </Warning>
 
-## Step 2 — Add Carousify in Antigravity
+## Step 2: Add Carousify in Antigravity
 
 <Steps>
-  <Step title="Open the Agent Manager">
-    In the top-right of Antigravity, click **Open Agent Manager**. The right-hand panel switches to the **MCP Store**.
-  </Step>
-  <Step title="Click Manage MCP Servers">
-    At the top-right of the MCP Store panel, click **Manage MCP Servers**. Antigravity opens the **Manage MCPs** tab in the editor.
+  <Step title="Open Manage MCP Servers">
+    In the agent panel, open the **…** menu, choose **MCP Servers**, then click **Manage MCP Servers**. (Older versions: click **Open Agent Manager** in the top-right, then **Manage MCP Servers**.)
 
     <img
       src="/images/mcp/antigravity-manage-mcps.png"
@@ -46,69 +38,69 @@ The **Antigravity** tab on the same page renders the URL with your token already
     />
   </Step>
   <Step title="Open the raw config">
-    Click **View raw config** on the **Manage MCPs** tab.
+    Click **View raw config**. Antigravity opens `mcp_config.json`.
   </Step>
   <Step title="Add Carousify and save">
-    Add a `carousify` entry under `mcpServers` with the Setup Link from Step 1 as `serverUrl`:
+    Add a `carousify` entry under `mcpServers` with the URL from Step 1 as `serverUrl`:
 
     ```json
     {
       "mcpServers": {
         "carousify": {
-          "serverUrl": "https://app.carousify.com/api/mcp?token=YOUR_MCP_KEY"
+          "serverUrl": "https://api.carousify.com/mcp?token=YOUR_MCP_KEY"
         }
       }
     }
     ```
 
-    <img
-      src="/images/mcp/antigravity-mcp-config.png"
-      alt="mcp_config.json open in Antigravity with the carousify entry pointing at app.carousify.com/api/mcp"
-      className="rounded-xl border"
-    />
+    If you prefer to keep the key out of the URL, send it as a header instead:
 
-    Save the file (`⌘ S` / `Ctrl S`). Antigravity reloads servers, opens the connection, and makes Carousify's tools available to the agent — click **Refresh** on the **Manage MCPs** tab to confirm the server shows up.
+    ```json
+    {
+      "mcpServers": {
+        "carousify": {
+          "serverUrl": "https://api.carousify.com/mcp",
+          "headers": { "Authorization": "Bearer YOUR_MCP_KEY" }
+        }
+      }
+    }
+    ```
+
+    {/* SCREENSHOT NEEDED: images/mcp/antigravity-mcp-config.png — mcp_config.json open in Antigravity with the carousify entry, serverUrl "https://api.carousify.com/mcp?token=YOUR_MCP_KEY" (placeholder, not a real key). Replaces the existing image, which shows the old app.carousify.com/api/mcp URL. */}
+
+    Save the file (`⌘ S` / `Ctrl S`), then click **Refresh** on the **Manage MCPs** tab to confirm Carousify shows up with its tools.
   </Step>
 </Steps>
 
-## Step 3 — Use it from the agent
+## Step 3: Use it from the agent
 
 Start an agent task and try:
 
-- *"Using Carousify, draft a LinkedIn post about [topic] and schedule it for tomorrow 9 AM IST."*
-- *"List the posts I have scheduled this week."*
-- *"Pull analytics for my last published post."*
+- *"Using Carousify, draft a LinkedIn post about this release and schedule it for tomorrow at 9 AM."*
+- *"List the posts I have scheduled in Carousify this week."*
+- *"Pull Carousify analytics for my last published post."*
 
-The agent picks the matching Carousify tool and asks you to confirm the action the first time it runs.
-
-<Tip>
-  Antigravity's agent loop is happy to chain tool calls. Ask for *"a topic, three drafts, then schedule the best one"* and it'll handle the whole thread without prompts in between.
-</Tip>
+The agent asks you to confirm actions before running them. See the [tools reference](/mcp/tools).
 
 ## Disconnect or rotate
 
-- **Disconnect** — open `~/.gemini/antigravity/mcp_config.json` (via **Manage MCPs › View raw config**) and remove the `carousify` entry, then save.
-- **Rotate the key** — in Carousify, delete the row in **MCP Keys**, click **Create API Key** to mint a new one, and paste the new URL into Antigravity.
+- **Disconnect:** open **Manage MCP Servers › View raw config**, remove the `carousify` entry and save.
+- **Rotate the key:** in Carousify, delete the key in the **MCP Keys** table, create a new one, and update `mcp_config.json`.
 
 ## Troubleshooting
 
-- **Connection fails** — the token is wrong or revoked. Confirm the key shows **Active** in **Manage Workspace › MCP** and the URL ends with the full token, not the masked `XXXX...` version.
-- **Agent can't find Carousify tools** — open the **Manage MCPs** tab and click **Refresh**. Antigravity rescans `mcp_config.json` and reconnects the server.
-- **Wrong workspace** — MCP keys are workspace-scoped. If you swapped Carousify workspaces, generate a key inside the new one and update Antigravity.
+- **Connection fails.** The key is wrong, turned off or deleted. Check it shows as on in **MCP Keys**, and that you used the full key, not the masked `XXXX…` version.
+- **The agent can't find Carousify tools.** Click **Refresh** on the **Manage MCPs** tab so Antigravity reloads the config.
+- **Wrong workspace.** MCP keys belong to one workspace. Create a key in the workspace you want and update the config.
+- **Older setups:** if the config points at `app.carousify.com/api/mcp`, change it to `https://api.carousify.com/mcp`.
 
 ## What's next
 
 <Columns cols={2}>
-  <Card title="MCP overview" icon="robot" href="/mcp/overview">
-    How MCP keys, tools, and workspace scoping fit together.
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    What the agent can do in Carousify.
   </Card>
-  <Card title="Use it from Claude" icon="message" href="/mcp/claude">
-    Custom connector setup for Claude web, desktop, and Claude Code.
-  </Card>
-  <Card title="Use it from Codex" icon="terminal" href="/mcp/codex">
-    Add Carousify to the Codex CLI's `config.toml`.
-  </Card>
-  <Card title="Schedule a post" icon="calendar" href="/scheduling/schedule-post">
-    Quick refresher on how scheduling works inside Carousify.
+  <Card title="Permissions and security" icon="shield-halved" href="/mcp/permissions">
+    How your role applies to MCP keys.
   </Card>
 </Columns>

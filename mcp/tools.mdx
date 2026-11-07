@@ -1,0 +1,149 @@
+---
+title: "MCP tools reference"
+sidebarTitle: "Tools reference"
+description: "Every tool the Carousify MCP server gives your AI assistant, what it changes, and the limits that apply."
+---
+
+Your assistant discovers these tools automatically when it connects. You don't call them yourself; you ask in plain language and the assistant picks the right one. This page helps you know what to ask for, what each request changes, and why a request might be refused.
+
+Each tool does one thing, so you can let your assistant draft freely and still require your approval for publishing, scheduling or deleting. The server also tells the assistant to show you the final text, media and accounts and get your confirmation before it publishes, schedules or deletes anything.
+
+## How tools are marked
+
+Every tool carries standard MCP hints that clients such as Claude, ChatGPT and VS Code use to decide when to ask you first:
+
+| Mark | Meaning |
+| --- | --- |
+| **Read-only** | Only reads data. Nothing in Carousify changes. |
+| **Write** | Adds or updates something without removing anything, for example saving a draft or scheduling a post. |
+| **Destructive** | Can overwrite, remove or publish something. Clients that support tool permissions usually ask you before running these. |
+| **External** | The result can reach LinkedIn or Instagram (publishing, scheduling, approving). |
+
+<Tip>
+  `schedule_post` and `review_post` are marked **Write**, not **Destructive**, so some clients run them without asking. If you want to approve every scheduled post yourself, set those tools to ask first in your client's tool permissions, if it has them, or tell the assistant to always check with you before scheduling.
+</Tip>
+
+Your workspace role still applies on top of this. See [Permissions and security](/mcp/permissions).
+
+## Accounts
+
+| Tool | What it does | Mark |
+| --- | --- | --- |
+| `list_accounts` | Lists the LinkedIn profiles, LinkedIn company pages and Instagram accounts connected to the workspace, with each account's name, interests and description, plus the workspace timezone. The assistant calls it first and uses the timezone for times like "tomorrow 9 AM". | Read-only |
+
+## Posts
+
+| Tool | What it does | Mark |
+| --- | --- | --- |
+| `get_posts` | Lists posts by status (`draft`, `scheduled`, `posted`, `failed`, `pending-approval`, `deleted`, or `published` for everything that was sent), optionally for one account. Up to 100 per page. | Read-only |
+| `create_draft` | Saves a new post as a draft. Nothing is posted. Target accounts are optional. | Write |
+| `edit_post` | Changes the text, media, document title or follow-up comments of a draft or scheduled post. Editing a published post only changes Carousify's copy, not the live post. | Destructive |
+| `schedule_post` | Schedules a draft, or reschedules a scheduled post, for a time at least 5 minutes ahead. | Write, external |
+| `publish_post` | Publishes a draft or scheduled post right away and returns a link per account. | Destructive, external |
+| `delete_post` | Moves a post to the trash in Carousify. A scheduled post is cancelled. A published post stays live on LinkedIn or Instagram. | Destructive |
+| `review_post` | Approves or rejects a post waiting for approval. Approving schedules it for its saved time, which must still be in the future; rejecting moves it back to drafts. | Write, external |
+| `create_post` | Creates a draft, scheduled or published post in one call. Kept for existing integrations; new setups use the tools above. | Destructive, external |
+| `update_post` | Edits, schedules, publishes or deletes a post in one call. Kept for existing integrations. | Destructive, external |
+
+Posts can include **follow-up comments** that Carousify posts a set number of minutes or hours after the post goes live, for example a link in the first comment.
+
+## Analytics
+
+| Tool | What it does | Mark |
+| --- | --- | --- |
+| `get_analytics` | Returns stored metric snapshots (impressions, reactions, comments, shares, followers and similar) for one published post or one connected account. Returns the latest 200 snapshots; ask for a date range to see an earlier period. | Read-only |
+
+`get_posts` also includes the latest analytics on each post, which is often enough for "how did my last posts do?".
+
+## Carousels from templates
+
+| Tool | What it does | Mark |
+| --- | --- | --- |
+| `list_templates` | Lists templates from Carousify's library (default), your workspace's own templates, templates you saved, or community templates, with a preview image. Filter by name or size. | Read-only |
+| `get_template` | Shows a template's slides and the text slots on each, with sample text and length. | Read-only |
+| `list_brand_kits` | Lists the workspace's [brand kits](/carousel-maker/brand-kit) and which one is the default. | Read-only |
+| `create_carousel` | Creates a carousel draft from a template with the slide text the assistant writes, styled with a brand kit (the default kit if none is named). Returns an editor link. | Write |
+| `list_carousels` | Lists the workspace's carousel drafts, most recently edited first. | Read-only |
+| `get_carousel` | Shows a carousel draft's slides and current text. | Read-only |
+| `edit_carousel` | Rewrites slide text, reorders, duplicates or removes slides, renames the draft or switches its brand kit. If you have the draft open in the editor, reload it afterwards. | Destructive |
+| `delete_carousel` | Moves a carousel draft to the trash. You can restore it from the **Trash** tab on the Templates page. Templates can't be deleted this way. | Destructive |
+
+The assistant writes the slide text itself, so carousel tools don't use your Carousify AI credits.
+
+## New carousel designs
+
+| Tool | What it does | Mark |
+| --- | --- | --- |
+| `get_template_spec` | Gives the assistant the full format, design rules, shapes, fonts and icon names for designing a template from scratch. It's long (about 40,000 tokens), so the assistant fetches it once per conversation. | Read-only |
+| `create_template` | Saves the template the assistant designed as a private carousel draft in your workspace, with your brand kit's name, handle and logo on every slide. If anything is invalid, nothing is saved and the assistant gets the exact fields to fix. | Write |
+
+Use this when you want a new look rather than one of the existing templates. The result opens in the Carousel Maker like any other draft, and you can change its text later with `get_carousel` and `edit_carousel`.
+
+## Posting a carousel
+
+| Tool | What it does | Mark |
+| --- | --- | --- |
+| `create_carousel_post` | Renders a carousel draft on Carousify's servers, exactly as the editor exports it, and saves a post draft: a PDF document post for LinkedIn and an image carousel for Instagram. Both can be selected together. Nothing is posted; the assistant then calls `schedule_post` or `publish_post`. | Write |
+| `refresh_carousel_preview` | Re-renders the first slide as the draft's preview image in Carousify. Previews are made automatically after `create_carousel`, `create_template` and `edit_carousel`, so this is only needed if a preview is missing. | Write |
+
+A LinkedIn carousel post needs a document title, which LinkedIn shows on the PDF. Rendering takes a few seconds per slide.
+
+## Your own files
+
+| Tool | What it does | Mark |
+| --- | --- | --- |
+| `create_upload_link` | Creates a private upload page where you drop your own images, videos or documents. | Write |
+| `get_uploaded_files` | Lists the files you uploaded on that page, with URLs the assistant can attach to a post. | Read-only |
+| `upload_media` | Uploads a file the assistant already has, for example an image you attached in the chat, up to 3.5 MB. | Write |
+
+See [Upload your own files](/mcp/uploads) for how this works.
+
+## Limits
+
+### Posts
+
+| Limit | LinkedIn | Instagram |
+| --- | --- | --- |
+| Text | 3,000 characters | 2,200 characters |
+| Media | Up to 20 images, **or** one video, **or** one document (PDF, PPT, DOC) with a title. Images can't be mixed with a video or document. | Up to 10 images and videos, mixed. No documents. |
+| Scheduling | At least 5 minutes in the future | At least 5 minutes in the future |
+
+Media must be public URLs that load without signing in. Files from `create_upload_link` and `upload_media` already meet this.
+
+### Carousels
+
+| Limit | Value |
+| --- | --- |
+| Slides per carousel from a template | 30 |
+| Text per slot | 2,000 characters |
+| Slides on an Instagram carousel post | 10 |
+| Designed templates (`create_template`) | 1 MB of JSON, 1–30 slides, up to 60 elements and 30 groups per slide, 5,000 characters per text element, 10 different images |
+| Rendered slide image | 8 MB per slide |
+| Rendered PDF | 100 MB |
+
+Images on a slide that aren't stored in Carousify (for example, hot-linked from another site) can't be loaded by the renderer and come out blank. The assistant warns you when this happens; replace those images in the editor.
+
+### Usage per workspace
+
+To keep the service responsive, some tools are limited per workspace per hour:
+
+| Tool | Limit |
+| --- | --- |
+| `create_upload_link` | 20 links per hour |
+| `upload_media` | 60 files per hour |
+| `create_template` | 30 templates per hour |
+| `create_carousel_post` | 20 renders per hour |
+| Preview images (automatic and `refresh_carousel_preview`) | 60 per hour |
+
+When a limit is reached, the tool says so and the assistant can try again later.
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Permissions and security" icon="shield-halved" href="/mcp/permissions">
+    Which roles can publish, approve and delete through MCP.
+  </Card>
+  <Card title="Upload your own files" icon="upload" href="/mcp/uploads">
+    Upload links and direct uploads.
+  </Card>
+</Columns>

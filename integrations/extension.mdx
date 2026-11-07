@@ -1,6 +1,81 @@
 ---
 title: "Browser extension"
-description: "Capture content from any web page directly into Carousify."
+sidebarTitle: "Browser extension"
+description: "Write LinkedIn posts, comments, headlines, and About sections with AI, and save posts to Swipe Files — right inside LinkedIn."
 ---
 
-{/* TODO: Write this page. */}
+The Carousify Chrome extension brings Carousify's AI into LinkedIn itself. While you browse LinkedIn you can:
+
+- **Write posts** with AI
+- **Write comments** on other people's posts
+- **Write your headline and About section**
+- **Save posts to Swipe Files** — keep posts you want to learn from in your workspace's [Swipe Files](https://app.carousify.com/swipe-files/)
+
+AI requests from the extension count against the workspace's AI word allowance, or run through the workspace's own key if you've set up [BYOK](/workspaces/ai-assistant#bring-your-own-ai-key-byok).
+
+## Install the extension
+
+<Steps>
+  <Step title="Open the Chrome Web Store listing">
+    Install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/iibdpmfnacdgogfninchgceamffkhlfn), or click **Install Extension** on **Swipe Files** or on the workspace's **Extension** settings tab.
+  </Step>
+  <Step title="Add it to Chrome">
+    Click **Add to Chrome** and confirm. Pin it to the toolbar so it's easy to reach.
+  </Step>
+  <Step title="Sign in">
+    If you're signed in to Carousify in the same browser, the extension picks up your session and lists your workspaces. Otherwise, sign in with your email and an extension key — see [Sign in with an extension key](#sign-in-with-an-extension-key).
+  </Step>
+  <Step title="Pick a workspace and open LinkedIn">
+    The workspace you pick decides whose AI allowance is used and where saved swipes land.
+  </Step>
+</Steps>
+
+<Note>
+  The extension only lists workspaces where your role can manage the workspace's API keys and integrations — by default, workspaces you own or administer. If a workspace is missing, ask its owner or an admin.
+</Note>
+
+## Extension keys
+
+Every workspace has its own extension keys. Open **Manage Workspace › General**, then the **Extension** tab in the workspace settings tabs.
+
+{/* SCREENSHOT NEEDED: images/integrations/extension-keys.png — Manage Workspace › Extension tab: "Extension API Keys" header with the Install Extension button, the API Name field with Create API Key, and the Extension Keys table showing the system key (with the regenerate icon) and one custom key (with the delete icon) */}
+
+| Key | What it's for |
+| --- | --- |
+| **System key** | Created automatically for the workspace. The extension uses it when you sign in through your Carousify session. You can't delete it, only regenerate it. |
+| **Keys you create** | For signing in with your email and a key — for example on a browser where you aren't signed in to Carousify. |
+
+### Sign in with an extension key
+
+<Steps>
+  <Step title="Create a key">
+    Enter a name under **API Name** (e.g. `Work laptop`) and click **Create API Key**.
+  </Step>
+  <Step title="Copy it">
+    The **Generated Key** dialog shows the key once. Copy it and store it safely — it can't be viewed again.
+  </Step>
+  <Step title="Sign in to the extension">
+    In the extension, sign in with your Carousify account email and the key.
+  </Step>
+</Steps>
+
+### Pause, regenerate, or delete keys
+
+- **Status** — turn the switch off to pause a key. The extension stays signed in but its AI and Swipe Files features stop working until you turn the key back on.
+- **Regenerate** (system key) — creates a new system key. Everyone signed in to the extension through this workspace's system key is signed out.
+- **Delete** (keys you create) — removes the key after you confirm. Anyone signed in with it is signed out.
+
+<Warning>
+  Treat extension keys like passwords. Anyone with a key and the email of a workspace member can use the workspace's AI allowance through the extension.
+</Warning>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="AI Assistant & BYOK" icon="wand-magic-sparkles" href="/workspaces/ai-assistant">
+    Set the language and tone defaults, or bring your own AI key.
+  </Card>
+  <Card title="Integrations overview" icon="plug" href="/integrations/overview">
+    Notion, Slack, and Zapier.
+  </Card>
+</Columns>

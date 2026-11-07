@@ -9,7 +9,7 @@ A custom domain serves the whole app from a domain you own. Instead of your clie
 This lives in the **Custom Domains** section of the [Whitelabel](/whitelabel/overview) page.
 
 <Note>
-  Custom domains are an **Enterprise** feature and need whitelabel switched **Active** (see [Whitelabel overview](/whitelabel/overview)). On other plans, contact [Support](https://carousify.com/contact-us/) to enable them at an additional charge.
+  Custom domains are an **Enterprise** feature and need whitelabel switched **Active** and saved (see [Whitelabel overview](/whitelabel/overview)). On other plans, contact [Support](https://carousify.com/contact-us/) to enable them at an additional charge.
 </Note>
 
 ## Before you start
@@ -32,7 +32,13 @@ In the left sidebar, open **Settings › Whitelabeling** and scroll to the **Cus
 
 Type the domain you want to use into **Add a domain** — your root domain (`yourbrand.com`) or a subdomain (`app.yourbrand.com`) — and click **Add domain**.
 
+<Tip>
+  A subdomain is the easiest choice. A root domain needs a DNS provider that allows a `CNAME` record at the root (often called CNAME flattening or an ALIAS record), because the routing record must be a `CNAME`.
+</Tip>
+
 The domain appears immediately with two status pills — **Not verified** and **SSL inactive** — plus **Verify** and **Remove** buttons. Nothing is live yet; you need to add the DNS records next.
+
+Your account includes **one** custom domain (the counter shows `0 of 1 used`). If you need more, contact [Support](https://carousify.com/contact-us/). A domain that's already used by another Carousify account can't be added.
 
 ## Step 2 — Add the DNS records
 
@@ -52,7 +58,7 @@ Adding the domain reveals a **DNS setup** block with two `CNAME` records and a `
 - **Record 1** points your domain at Carousify's infrastructure. The value is always `pro.carousify.com`.
 - **Record 2** is the SSL record. Its value is **unique to your domain** (it looks like `your-domain.<id>.dcv.cloudflare.com`) — and as the app puts it, this one *"lets us auto-renew SSL without bothering you again."* Without it, your certificate won't renew automatically.
 
-Use the **Copy** button next to each record (**Copy routing value** / **Copy dcv_delegation value**) so you paste the exact value — the SSL value in particular is too long and too specific to retype.
+Use the **Copy** button next to each record so you paste the exact value — the SSL value in particular is too long and too specific to retype.
 
 <Warning>
   Add the records exactly as shown — same type, same host, same value. The host for record 2 is prefixed with `_acme-challenge.`, not your bare domain — a typo here is the most common reason verification never completes.
@@ -66,15 +72,17 @@ Each record shows **Record not detected yet** until your DNS change propagates. 
 
 <Steps>
   <Step title="Click Verify">
-    Carousify checks DNS for both records. The counter moves toward `2 of 2 verified` as each one is detected.
+    Carousify checks that the routing record (record 1) points at `pro.carousify.com`. If it does, the domain pill changes to **Verified** and SSL changes to **SSL issuing**. If it doesn't, the pill shows **Verification failed** — check the record and click **Verify** again; you don't need to re-enter anything.
   </Step>
-  <Step title="Wait for propagation if it's not detected yet">
-    DNS changes can take anywhere from a few minutes to a few hours depending on your provider and TTL. If **Verify** doesn't pick the records up, give it time and click **Verify** again — you don't need to re-enter anything.
+  <Step title="Wait for the certificate">
+    Issuing the SSL certificate needs the second record too. Click **Refresh status** to check progress — the `0 of 2 verified` counter moves to `2 of 2 verified` as each record is detected.
   </Step>
   <Step title="Domain goes live">
-    When both records verify, the status flips from **Not verified** to verified and **SSL inactive** to active. The app now loads at your domain with a valid certificate.
+    When the pill shows **SSL active**, the app loads at your domain with a valid certificate.
   </Step>
 </Steps>
+
+DNS changes can take anywhere from a few minutes to a few hours depending on your provider and TTL.
 
 <Tip>
   Set the lowest TTL your DNS provider allows (300 seconds is common) *before* you add the records. Verification then succeeds on the first or second try instead of waiting out a long cache.
@@ -89,11 +97,13 @@ Your clients and team open the app at `app.yourbrand.com`. Pair it with the rest
 
 ## Remove or replace a domain
 
-Click **Remove** on the domain to delete it. The slot frees up immediately (`0 of 1 used`) and you can add a different domain. Because there's one slot per account, removing the current domain is how you switch to a new one.
+Click **Remove** on the domain to delete it. Carousify removes the domain from its hosting straight away, so the app stops loading there, and the slot frees up (`0 of 1 used`) for a different domain. Because there's one slot per account, removing the current domain is how you switch to a new one. You can then delete the two DNS records at your provider.
 
-<Note>
+<Warning>
   Removing a domain stops the app from serving on it right away. Don't remove a domain your clients are actively using until you've pointed them at the replacement.
-</Note>
+</Warning>
+
+Carousify also releases your domain automatically when you [turn whitelabel off](/whitelabel/overview#turn-whitelabeling-off), when your [plan no longer includes whitelabeling](/whitelabel/overview#if-your-plan-changes), and when you delete your account.
 
 ## What's next
 

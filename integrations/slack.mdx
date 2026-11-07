@@ -18,11 +18,21 @@ Carousify will post a Slack message for whichever of these three events you tick
 
 | Event | When it fires |
 | --- | --- |
-| **Post Scheduled** | A post is queued for a future date and time. |
-| **Post Published** | A post goes live on LinkedIn (instant or scheduled). |
-| **Post Publish Failed** | LinkedIn rejected the post or auth expired before publishing. |
+| **Post Scheduled** | A post is scheduled for a future date and time. |
+| **Post Published** | A post is published right away — with **Publish** in Carousify or by an AI assistant over [MCP](/mcp/overview). |
+| **Post Publish Failed** | A scheduled post couldn't be published at its scheduled time — for example, the account was disconnected or the platform rejected the post. |
 
-Each message includes a preview of the post, the LinkedIn account it was posted to (or attempted on), the scheduled/published time, and a link to the post on LinkedIn.
+Notifications cover LinkedIn and Instagram posts. Each message includes:
+
+- The event, e.g. *Post Published*
+- A preview of the post — the first 200 characters, or the number of attached media files if the post has no text
+- The account it was posted to (or attempted on), marked **Profile** or **Page**
+- For **Post Scheduled**, the date and time it's scheduled for
+- For **Post Published** on LinkedIn, a **View on LinkedIn** link to the live post
+
+<Note>
+  A workspace can have one Slack connection, posting to one channel. Slack is part of Carousify's integrations — if your plan doesn't include them, **Connect** opens an upgrade prompt.
+</Note>
 
 ## Before you start
 
@@ -41,14 +51,15 @@ In Carousify, go to **Manage Workspace › Integrations** and click **Connect** 
   className="rounded-xl border"
 />
 
-You'll see four inputs:
+The **Connect Slack Webhook** dialog has three fields:
 
 | Field | What it is |
 | --- | --- |
 | **Webhook Name** | A label for this integration inside Carousify (e.g. *Carousify Notifications*). Doesn't show up in Slack. |
 | **Events** | Which of the three events should trigger a Slack message. |
-| **Webhook URL** | The URL Slack will give you in Step 3. |
-| **View Slack Docs** | Opens this page. |
+| **Webhook URL** | The URL Slack gives you in Step 4. |
+
+The **View Slack Docs** link opens this page.
 
 Leave the modal open — you'll come back to it after generating the webhook URL inside Slack.
 
@@ -120,11 +131,21 @@ Switch back to the Carousify **Connect Slack Webhook** modal:
 
 Click **Create Webhook**. Carousify saves it and the Slack card flips from **Inactive** to **Active**.
 
+## View, change, or disconnect
+
+On the Slack card in **Manage Workspace › Integrations**:
+
+- **View** shows the connected webhook — its name, URL, events, status, and created date.
+- **Disconnect** removes it after you confirm. Notifications stop immediately.
+
+The settings can't be edited in place. To change the channel, the events, or the URL, click **Disconnect**, then **Connect** again with the new details.
+
 ## Troubleshooting
 
-- **Nothing shows up in Slack.** Double-check the webhook URL was pasted in full (it ends with a long token), the Slack channel still exists, and you ticked at least one event. Send a test from Slack itself by running `curl -X POST -H 'Content-type: application/json' --data '{"text":"test"}' YOUR_WEBHOOK_URL` — if that lands, the problem is on the Carousify side; reconnect the integration.
-- **Messages stopped suddenly.** Most likely the webhook was revoked in Slack (someone removed the **Incoming WebHooks** custom integration, or rotated the URL). Generate a new URL in Slack and update it via **View** on the Slack card in Carousify.
-- **Notifications going to the wrong channel.** Each Slack webhook URL is locked to one channel. To switch channels, generate a new webhook in Slack against the new channel and replace the URL in Carousify.
+- **Nothing shows up in Slack.** Double-check the webhook URL was pasted in full (it ends with a long token), the Slack channel still exists, and you ticked at least one event. Send a test from Slack itself by running `curl -X POST -H 'Content-type: application/json' --data '{"text":"test"}' YOUR_WEBHOOK_URL` — if that lands, check the events listed under **View** on the Slack card, or disconnect and reconnect the integration.
+- **Messages stopped suddenly.** Most likely the webhook was revoked in Slack (someone removed the **Incoming WebHooks** custom integration, or regenerated the URL). Generate a new URL in Slack, then **Disconnect** the Slack card in Carousify and connect it again with the new URL.
+- **Notifications going to the wrong channel.** Each Slack webhook URL is locked to one channel. Generate a new webhook in Slack for the new channel, then disconnect and reconnect Slack in Carousify with that URL.
+- **"A slack webhook already exists".** A workspace can only have one Slack connection. Disconnect the existing one first.
 
 ## What's next
 

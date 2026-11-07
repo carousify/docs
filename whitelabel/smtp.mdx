@@ -1,10 +1,12 @@
 ---
 title: "SMTP"
 sidebarTitle: "SMTP"
-description: "Send invite and password-reset emails from your own mail server instead of Carousify's."
+description: "Send your account's emails — welcome, password reset, invites, and failed-post alerts — from your own mail server."
 ---
 
-SMTP sends the essential account emails — team invites and password resets — from your own mail server, so they reach clients and members from your domain, not Carousify's. Only these few meaningful emails route through it. Credentials are stored encrypted.
+SMTP sends your account's transactional emails — welcome emails, password resets, workspace invites, and failed-post alerts — from your own mail server, so they reach clients and members from your domain, not Carousify's. They also carry your brand name and logo. Credentials are stored encrypted.
+
+SMTP is **required** to turn whitelabel on: every field must be filled and a test email must succeed before the whitelabel settings save.
 
 <Note>
   SMTP is part of whitelabel, an **Enterprise** feature, and applies once whitelabel is **Active** (see [Whitelabel overview](/whitelabel/overview)). On other plans, contact [Support](https://carousify.com/contact-us/) to enable it at an additional charge.
@@ -25,17 +27,17 @@ Fill in your mail provider's details:
 | Field | Value |
 | --- | --- |
 | **SMTP Host** | Your provider's server, e.g. `smtp.mailgun.org`. |
-| **Username** / **Password** | Your SMTP login. Use **Show** to check the password. |
+| **Username** / **Password** | Your SMTP login. Use **Show** to check the password. Once saved, leave the password blank to keep it, or type a new one to replace it. |
 | **From Name** / **From Email** | The sender recipients see. |
 | **Port** | `587` (STARTTLS) or `465` (SSL — turn on **Implicit TLS**). |
 
 ## Test before it saves
 
-Once the fields are filled, the status changes to **Needs verification**. Carousify makes you send a working test email before the settings save — so a wrong host or credential is caught now, not by a client.
+The section's status pill shows **Not configured** until you fill in the fields, then **Needs verification**, and **Verified** after a successful test. Carousify makes you send a working test email before the settings save — and again whenever you change the host, port, login, or sender — so a wrong host or credential is caught now, not by a client.
 
 <Steps>
   <Step title="Click Send test email">
-    A dialog opens with a recipient (your address) and the **From** address.
+    The **Send test email** dialog opens with a **Recipient email** field and the **From** address.
   </Step>
   <Step title="Send and check the inbox">
     Adjust the recipient if you like, click **Send**, and confirm the email arrives.

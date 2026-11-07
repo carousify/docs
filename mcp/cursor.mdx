@@ -1,0 +1,88 @@
+---
+title: "Connect Carousify to Cursor"
+sidebarTitle: "Cursor"
+description: "Add Carousify to Cursor and let the agent draft, schedule, or check LinkedIn and Instagram posts from the editor."
+---
+
+Cursor's agent supports remote MCP servers. Add Carousify with your MCP key and you can draft posts, build carousels, schedule them, or pull analytics from the chat.
+
+## Before you start
+
+- A Carousify workspace on a plan with MCP access, and a role that can create MCP keys. See [Before you start](/mcp/overview#before-you-start).
+- Cursor installed and signed in.
+
+## Step 1: Create an MCP key
+
+In Carousify, open **Manage Workspace › MCP**. Type a label in **API Name** (for example `cursor`) and click **Create API Key**, or click **Enable MCP** if MCP isn't enabled yet. Copy the MCP URL that appears:
+
+```
+https://api.carousify.com/mcp?token=YOUR_MCP_KEY
+```
+
+<Warning>
+  Carousify shows the full key only once. Treat it like a password: anyone with it can use your workspace with your role's permissions.
+</Warning>
+
+## Step 2: Add Carousify to Cursor
+
+Add Carousify to `~/.cursor/mcp.json` to use it in every project, or to `.cursor/mcp.json` in a project to use it there only. Open MCP settings in Cursor to get to the file, or create it yourself.
+
+```json
+{
+  "mcpServers": {
+    "carousify": {
+      "url": "https://api.carousify.com/mcp?token=YOUR_MCP_KEY"
+    }
+  }
+}
+```
+
+To keep the key out of the file (recommended for a project file you commit), put it in an environment variable and send it as a header:
+
+```json
+{
+  "mcpServers": {
+    "carousify": {
+      "url": "https://api.carousify.com/mcp",
+      "headers": { "Authorization": "Bearer ${env:CAROUSIFY_MCP_KEY}" }
+    }
+  }
+}
+```
+
+Save the file. Carousify appears in Cursor's MCP server list with its tools; make sure it's turned on.
+
+<Note>
+  The **Cursor** tab on Carousify's MCP page describes an older Cursor settings screen (**Settings › Features › MCP Servers**, type **SSE**). Current versions of Cursor use the `mcp.json` file above.
+</Note>
+
+## Step 3: Use it in chat
+
+Open the agent chat and try:
+
+- *"Using Carousify, draft a LinkedIn post about this week's release and save it as a draft."*
+- *"Show my scheduled Carousify posts."*
+- *"How did my last Carousify posts perform?"*
+
+Cursor asks you to approve tool calls before they run. See the [tools reference](/mcp/tools).
+
+## Disconnect or rotate
+
+- **Disconnect:** remove the `carousify` entry from `mcp.json`, or turn it off in Cursor's MCP settings.
+- **Rotate the key:** in Carousify, delete the key in the **MCP Keys** table, create a new one, and update `mcp.json` or the environment variable.
+
+## Troubleshooting
+
+- **The server shows an error.** The key is wrong, turned off or deleted. Check it shows as on in **MCP Keys**, and that you used the full key, not the masked `XXXX…` version.
+- **"This MCP key was created by someone who is no longer in this workspace."** Create a new key.
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    What the agent can do in Carousify.
+  </Card>
+  <Card title="Permissions and security" icon="shield-halved" href="/mcp/permissions">
+    How your role applies to MCP keys.
+  </Card>
+</Columns>

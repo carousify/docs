@@ -1,91 +1,113 @@
 ---
 title: "MCP server"
-description: "Run Carousify actions from any AI client that supports the Model Context Protocol."
+description: "Connect Claude, ChatGPT, Cursor, VS Code and other AI assistants to your Carousify workspace and let them draft, design, schedule and analyze LinkedIn and Instagram posts."
 sidebarTitle: "Overview"
 ---
 
-The Carousify MCP server is the developer-facing way to drive Carousify from any AI client that speaks the [Model Context Protocol](https://modelcontextprotocol.io/) — Claude, VS Code, ChatGPT, and other MCP-compatible clients.
+The Carousify MCP server lets AI assistants that speak the [Model Context Protocol](https://modelcontextprotocol.io/) work in your Carousify workspace. Once connected, you can ask the assistant to write a post, build a carousel from one of your templates or design a new one, schedule it, and check how it performed, all from the chat.
 
-Once connected, the AI client can pull post drafts, schedule content, check publish status, and run other Carousify workflows by name — no copy-paste between tools, no Zapier hops, no custom integrations.
+The server is a remote MCP server at:
+
+```
+https://api.carousify.com/mcp
+```
+
+There's nothing to install. It uses the Streamable HTTP transport, and each connection works in one workspace: the one you pick when you sign in, or the one the API key belongs to.
 
 <Note>
-  MCP is best when you spend a lot of time in an AI client and want it to act on Carousify directly. If you just want event notifications, the [Slack](/integrations/slack), [Zapier](/integrations/zapier), and [Webhook](/webhooks/overview) integrations are simpler.
+  MCP is for when you want an AI assistant to act on Carousify. If you only want notifications when something happens, the [Slack](/integrations/slack), [Zapier](/integrations/zapier) and [Webhook](/webhooks/overview) integrations are simpler.
 </Note>
 
 ## What you can do
 
-A few of the workflows teams use the Carousify MCP server for:
-
 | Use case | Example prompt |
 | --- | --- |
-| Draft and schedule posts from a chat | "Write a LinkedIn post about our new feature and schedule it for Tuesday 9 AM IST." |
-| Pull recent performance | "Show me my top three posts from the last 14 days." |
-| Plan a content week | "Look at what I posted last week and draft three follow-ups." |
-| Check publish status | "Did the post I scheduled this morning go live?" |
+| Draft and schedule posts | *"Write a LinkedIn post about our new feature and schedule it for Tuesday 9 AM."* |
+| Build a carousel from a template | *"Turn this article into a 7-slide carousel using one of my templates and my brand kit."* |
+| Design a brand-new carousel layout | *"Design a new carousel template for a product launch in our brand colors."* |
+| Post a carousel | *"Post that carousel to my company page as a PDF tomorrow at 10 AM."* |
+| Use your own files | *"Here's a photo from the event. Draft an Instagram post with it."* |
+| Review posts waiting for approval | *"Show me the posts waiting for approval and approve the one about pricing."* |
+| Check performance | *"How did my last five LinkedIn posts do? What should I post next?"* |
 
-The exact list of tools your AI client sees depends on the version of the MCP server — the client will discover them automatically once connected.
+Everything the assistant creates is saved in Carousify first: posts as drafts, carousels as drafts you can open in the [Carousel Maker](/carousel-maker/overview). Nothing is published or scheduled unless you ask for it. See the [tools reference](/mcp/tools) for the full list.
 
-## Where to find it
+## Two ways to connect
 
-In the left sidebar, open **Manage Workspace › MCP**.
+| | Sign in (OAuth) | MCP API key |
+| --- | --- | --- |
+| **Best for** | Claude, ChatGPT, Grok | Cursor, VS Code, Codex CLI, Antigravity, Claude Code and other developer tools |
+| **What you paste** | `https://api.carousify.com/mcp` | `https://api.carousify.com/mcp?token=YOUR_MCP_KEY`, or the plain URL plus an `Authorization: Bearer YOUR_MCP_KEY` header |
+| **How the workspace is chosen** | You sign in to Carousify and pick it on a consent screen | The workspace the key was created in |
+| **Acts as** | You, with your workspace role | The member who created the key, with their role |
+| **Disconnect** | **Connected apps** table, or remove it in the assistant | Turn off or delete the key in the **MCP Keys** table |
 
-<img
-  src="/images/mcp/mcp-setup-page.png"
-  alt="Carousify Setup MCP page with Enable MCP button"
-  className="rounded-xl border"
-/>
+Sign-in is the simpler and safer choice when your assistant supports it: there's no key to copy or leak, and the connection stops working if you leave the workspace. See [Permissions and security](/mcp/permissions) for details.
 
-If MCP hasn't been enabled in this workspace yet, you'll see a single **Enable MCP** card. Click it once — Carousify provisions a system MCP key and unlocks the connection panel below.
+## Before you start
 
-<Note>
-  MCP is workspace-scoped. Enable it inside each workspace where you want AI clients to act on your behalf — keys, tools, and access don't carry across.
-</Note>
+- **A plan with MCP access.** MCP depends on the workspace owner's plan. If the plan doesn't include it, the MCP page shows an **Upgrade** link. See [Plans and pricing](/billing/plans).
+- **Permission to connect apps.** Your role in the workspace must allow creating MCP keys. Without it, the workspace is greyed out on the sign-in screen and **Enable MCP** shows a permission error. Ask the workspace owner if you're unsure.
+- **At least one connected account** to post to. See [Connect LinkedIn](/getting-started/connect-linkedin).
 
-## How it works
+## The MCP page
 
-After clicking **Enable MCP**, Carousify provisions a system key and shows a unique MCP URL for this workspace, along with a tabbed setup guide for the most common AI clients.
+In Carousify, open **Manage Workspace › MCP**.
 
-<img
-  src="/images/mcp/mcp-enabled-claude.png"
-  alt="Carousify MCP page after enabling, showing the MCP URL and a Claude setup tab"
-  className="rounded-xl border"
-/>
+{/* SCREENSHOT NEEDED: images/mcp/mcp-page-overview.png — Manage Workspace › MCP in a workspace where MCP is already enabled: the "Connect with sign-in" card with the MCP server URL, the "Setup MCP" card (API Name field, Create API Key button, client tabs Claude / Cursor / VS Code / Codex CLI / ChatGPT / Antigravity) and the top of the MCP Keys table. Replaces images/mcp/mcp-setup-page.png and images/mcp/mcp-enabled-claude.png. */}
 
-You copy the MCP URL once, paste it into your AI client's MCP settings, and from then on the client can call Carousify tools directly. Step-by-step instructions per client live on the setup page.
+The page has four parts:
+
+1. **Connect with sign-in** shows the MCP server URL to paste into Claude, ChatGPT or Grok. No key needed.
+2. **Setup MCP** is where you create MCP API keys. The first time, click **Enable MCP**: Carousify creates a key named **MCP System Key** and shows its MCP URL once. Below it, tabs for **Claude**, **Cursor**, **VS Code**, **Codex CLI**, **ChatGPT** and **Antigravity** show short setup steps for each client.
+3. **MCP Keys** lists every MCP key in the workspace.
+4. **Connected apps** lists the assistants that signed in to this workspace with OAuth, who connected them, and when they were last used.
+
+## Managing MCP keys
+
+To create a key for a specific client, type a label in **API Name** (for example `cursor-laptop` or `codex`) and click **Create API Key**. Carousify shows the full MCP URL once, right after you create the key. Copy it straight away: afterwards the table only shows the last few characters, and there's no way to show the key again.
+
+In the **MCP Keys** table you can:
+
+- **Turn a key off** with the **Status** switch. Requests with that key are refused until you turn it back on.
+- **Delete a key** with the trash icon. Any client still using it stops working. To replace a lost or leaked key, delete it and create a new one.
 
 <Warning>
-  Treat the MCP URL like a password. Anyone with it can act on your workspace through Carousify. Carousify only shows the full URL once — copy it the moment it's generated, and rotate the key from the **MCP Keys** table if it ever leaks.
+  Treat an MCP key like a password. Anyone with the URL and key can use your workspace through Carousify with the permissions of the member who created the key.
 </Warning>
 
 ## Supported clients
 
-The connection panel ships with built-in setup guides for **Claude**, **VS Code**, **ChatGPT**, and **Antigravity**. Other MCP-compatible clients (Codex, Windsurf, custom agents) work too — the Carousify server uses an SSE transport, so any client that accepts an SSE-based MCP endpoint can connect by pasting the same URL.
+| Client | How it connects | Guide |
+| --- | --- | --- |
+| Claude (web, desktop, mobile) | Sign in | [Claude](/mcp/claude) |
+| Claude Code | Sign in or MCP key | [Claude](/mcp/claude#claude-code) and the [Claude Code plugin](/mcp/claude-plugin) |
+| ChatGPT | Sign in | [ChatGPT](/mcp/chatgpt) |
+| Grok | Sign in | [Grok](/mcp/grok) |
+| Cursor | MCP key | [Cursor](/mcp/cursor) |
+| VS Code | MCP key | [VS Code](/mcp/vscode) |
+| Codex CLI | MCP key | [Codex CLI](/mcp/codex) |
+| Antigravity | MCP key | [Antigravity](/mcp/antigravity) |
 
-## Managing keys
+Other MCP clients work too, as long as they support remote servers over Streamable HTTP. Use sign-in if the client supports OAuth, otherwise the URL with `?token=` or a Bearer header.
 
-The **MCP Keys** table at the bottom of the page shows every key issued for this workspace, with status, created date, and a delete action.
-
-- **Toggle the status switch** to disable a key without deleting it. Disabled keys reject new MCP requests immediately — useful when you want to pause access without losing the audit trail.
-- **Delete the row** to permanently revoke. Any client still pointed at that URL will start failing.
-- **Issue a new key** by typing a label into **API Name** (e.g. `claude-laptop`, `vscode-work`) and clicking **Create API Key**. Each key gets its own URL, so you can hand out one per client or per teammate and revoke them individually.
-
-<Warning>
-  Carousify only reveals the full key the moment it's created. After that the table only shows the last few characters. If you lose a key, delete the row and create a new one — there's no "show again" option.
-</Warning>
+<Tip>
+  If you set up Carousify with an older guide, your client may still point at a URL that starts with `https://app.carousify.com/api/mcp`. Replace it with `https://api.carousify.com/mcp`, keeping your `?token=` if you use a key.
+</Tip>
 
 ## What's next
 
 <Columns cols={2}>
   <Card title="Connect Claude" icon="message" href="/mcp/claude">
-    Step-by-step custom connector setup for Claude web and desktop.
+    Add Carousify as a custom connector and sign in.
   </Card>
-  <Card title="Webhooks" icon="webhook" href="/webhooks/overview">
-    Push events to your own backend instead of pulling them from an AI client.
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    Every tool the assistant can use, with limits.
   </Card>
-  <Card title="Zapier integration" icon="bolt" href="/integrations/zapier">
-    Same events, no code, 5,000+ destinations.
+  <Card title="Permissions and security" icon="shield-halved" href="/mcp/permissions">
+    Roles, approvals, keys versus sign-in, and disconnecting.
   </Card>
-  <Card title="Slack integration" icon="slack" href="/integrations/slack">
-    Get publish alerts in a Slack channel without standing up an endpoint.
+  <Card title="Upload your own files" icon="upload" href="/mcp/uploads">
+    Get images, videos and documents from your computer into a post.
   </Card>
 </Columns>

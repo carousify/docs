@@ -1,0 +1,63 @@
+---
+title: "Upload your own files"
+sidebarTitle: "Uploads"
+description: "Get your own images, videos and documents into Carousify from an AI assistant, with a private upload link or a direct upload."
+---
+
+Posts need media as public links. When you want to post a photo, video or PDF you have on your computer, your assistant can get it into your Carousify workspace in one of two ways.
+
+| Way | When the assistant uses it | Size |
+| --- | --- | --- |
+| **Upload link** (`create_upload_link`) | You have the file but the assistant can't send it, or it's large | Up to 10 MB per image, 500 MB per video, 100 MB per document |
+| **Direct upload** (`upload_media`) | The assistant already has the file's bytes, for example an image you attached in the chat | Up to 3.5 MB |
+
+Either way, the file is stored in your workspace and the assistant gets a link it can attach to a draft.
+
+## Upload with a link
+
+<Steps>
+  <Step title="Ask for it">
+    Say something like *"I want to post a few photos from our offsite."* The assistant creates an upload link and gives it to you.
+  </Step>
+  <Step title="Open the link and drop your files">
+    The link opens a Carousify page titled **Upload files for your AI assistant** that shows which workspace the files go to. Drop files on it or click **browse**. You need to be signed in to Carousify with an account that's a member of that workspace.
+
+    {/* SCREENSHOT NEEDED: images/mcp/upload-page.png — the /upload/<token> page in the app, signed in, after uploading two files: heading "Upload files for your AI assistant", workspace name, the drop zone, the accepted formats list (Images / Videos / Documents with sizes) and the uploaded files list. New image. */}
+  </Step>
+  <Step title="Tell the assistant you're done">
+    Go back to the chat and say you've uploaded the files. The assistant reads the list and attaches them to your post.
+  </Step>
+</Steps>
+
+Each link:
+
+- Works for **30 minutes** and takes up to **10 files**. After that, ask for a new link. The assistant can still read the files you already uploaded for a day.
+- Accepts **images** (PNG, JPEG, WebP, GIF, up to 10 MB), **videos** (MP4, MOV, up to 500 MB) and **documents** (PDF, PPT, PPTX, DOC, DOCX, up to 100 MB).
+- Only works for members of the workspace. If you see **This link is for another account**, sign in with the account you connected to the assistant.
+
+<Note>
+  MOV videos upload fine but can't be attached to posts yet. Export the video as MP4 and upload it again.
+</Note>
+
+## Direct upload
+
+Some assistants can pass a file you attached in the chat straight to Carousify. This works for files up to 3.5 MB. The type is detected from the file's content, and the same formats are accepted as on the upload page. For anything larger, the assistant switches to an upload link.
+
+## Using uploaded files in a post
+
+Uploaded files follow the normal post rules: on LinkedIn up to 20 images, or one video, or one document with a title; on Instagram up to 10 images and videos and no documents. See [limits](/mcp/tools#limits).
+
+## How long files are kept
+
+Files you upload this way become part of your workspace once a post, carousel or brand kit uses them. Uploads that nothing uses after 30 days are deleted automatically.
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    All the tools, including the upload tools.
+  </Card>
+  <Card title="MCP overview" icon="robot" href="/mcp/overview">
+    Connect an assistant to your workspace.
+  </Card>
+</Columns>

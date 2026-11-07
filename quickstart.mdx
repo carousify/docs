@@ -1,12 +1,12 @@
 ---
 title: "Quickstart"
-description: "Get from sign-up to your first scheduled LinkedIn post in under 10 minutes."
+description: "Get from sign-up to your first scheduled LinkedIn or Instagram post in under 10 minutes."
 ---
 
 This guide walks you through every screen of the Carousify onboarding so you know exactly what to expect.
 
 <Note>
-  You'll need a LinkedIn account and a credit or debit card. Carousify requires an active subscription to publish, schedule, or generate content — onboarding lets you skip plan selection, but the core features stay locked until you pick one.
+  You'll need a LinkedIn account or an Instagram Business or Creator account, and a credit or debit card. Carousify requires an active subscription to publish, schedule, or generate content — onboarding lets you skip plan selection, but the core features stay locked until you pick one.
 </Note>
 
 ## Before you start
@@ -28,7 +28,7 @@ This guide walks you through every screen of the Carousify onboarding so you kno
   className="rounded-xl border"
 />
 
-Pick the channel that brought you to Carousify (X, LinkedIn, YouTube, a friend, Google, ChatGPT, a blog, or Other). It's a single click — this only helps the team understand which channels work, and doesn't change your account in any way.
+Pick the channel that brought you to Carousify (X / Twitter, LinkedIn, YouTube, a friend or colleague, Google, an AI assistant such as ChatGPT, a blog or article, or Other). It's a single click — this only helps the team understand which channels work, and doesn't change your account in any way.
 
 Click **Continue** to move on.
 
@@ -46,7 +46,7 @@ Your workspace is where every carousel, post, draft, and team member lives. Caro
 | --- | --- |
 | Workspace logo | Optional. 150×150px JPEG or PNG. |
 | Workspace name | The name your team will see in the sidebar. |
-| Timezone | Used for scheduled posts and analytics. Set this to where you (or your audience) actually are. |
+| Timezone | Used for scheduled posts and the daily analytics sync. Set this to where you (or your audience) actually are. |
 | Description | Optional one-liner describing the workspace. |
 
 <Tip>
@@ -55,18 +55,19 @@ Your workspace is where every carousel, post, draft, and team member lives. Caro
 
 Click **Continue**.
 
-## Step 3 — Connect your LinkedIn account
+## Step 3 — Connect your social account
 
-<img
-  src="/images/quickstart/step-3-linkedin.png"
-  alt="Carousify onboarding step 3 — Connect your LinkedIn account"
-  className="rounded-xl border"
-/>
+{/* SCREENSHOT NEEDED: images/quickstart/step-3-social.png — Onboarding step 3 of 6, "Connect your Social account": the LinkedIn Personal Account block with a Connect LinkedIn button, the Instagram Account block with a Connect Instagram button, the "Want to connect a LinkedIn Page instead?" hint, Skip for now, Go Back and Continue. Replaces images/quickstart/step-3-linkedin.png. */}
 
-Click **Connect Account** to authorize Carousify through LinkedIn's official OAuth flow. You'll be redirected to LinkedIn, asked to confirm permissions, and sent back to onboarding once it's done.
+Connect the account you'll post from. You can connect one here and add more later.
+
+- **Connect LinkedIn** — authorize Carousify through LinkedIn's official OAuth flow for your personal profile.
+- **Connect Instagram** — sign in with Instagram to connect a **Business** or **Creator** account. Personal Instagram accounts can't be connected. See [Connect your Instagram account](/getting-started/connect-instagram).
+
+You're redirected to LinkedIn or Instagram, asked to confirm permissions, and sent back to onboarding, where you can add a few interests for the account to tune AI-generated content.
 
 <Info>
-  Carousify only uses LinkedIn's official API. We never ask for your password and never automate actions that violate LinkedIn's terms.
+  Carousify only uses the official LinkedIn and Instagram APIs. We never ask for your password and never automate actions that violate either platform's terms.
 </Info>
 
 Want to connect a LinkedIn **Page** instead of a personal profile? Skip this step and add the page later from **Manage Workspace › Social Integrations**. For more detail, see [Connect your LinkedIn account](/getting-started/connect-linkedin).
@@ -85,7 +86,7 @@ Your Brand Kit is the identity Carousify uses on every carousel slide — author
 
 | Field | What to enter |
 | --- | --- |
-| Profile image | Round image, 400×400px recommended. Usually your LinkedIn avatar. |
+| Profile image | Round image, 400×400px recommended. If you connected an account in step 3, Carousify fills in its profile picture and name for you. |
 | Full name | The name shown on the carousel as the author. |
 | Username | Your @handle (no `@` needed; Carousify adds it). |
 
@@ -136,13 +137,13 @@ Pick a billing cycle (Monthly or Yearly) and a plan tier:
 
 <Columns cols={2}>
   <Card title="Hobby" icon="user">
-    Solo creators. 25,000 AI words, 3 LinkedIn accounts, 10 GB storage.
+    Solo creators. 25,000 AI words, 3 social accounts, 10 GB storage.
   </Card>
   <Card title="Startup" icon="rocket">
     Small teams. 50,000 words, 3 workspaces, 5 members each, LinkedIn Pages.
   </Card>
   <Card title="Business" icon="building">
-    Growing teams. 100,000 words, 10 workspaces, 25 LinkedIn accounts, approval workflow.
+    Growing teams. 100,000 words, 10 workspaces, 25 social accounts, approval workflow.
   </Card>
   <Card title="Enterprise" icon="briefcase">
     Custom limits, whitelabeling, webhooks, advanced analytics. Contact sales.
@@ -150,6 +151,8 @@ Pick a billing cycle (Monthly or Yearly) and a plan tier:
 </Columns>
 
 Click **Select Plan** on the tier you want, then **Continue** to enter payment details.
+
+If you signed up through an AppSumo deal, this step is skipped.
 
 <Note>
   Onboarding lets you finish without picking a plan, but creating carousels, generating posts, scheduling, and publishing all stay locked until you have an active subscription. See [Plans and limits](/billing/plans) for the full breakdown.
@@ -161,7 +164,7 @@ You'll land on the **Dashboard**. From here:
 
 <Columns cols={3}>
   <Card title="Make your first carousel" icon="layer-group" href="/carousel-maker/create">
-    Pick a template or generate one with AI.
+    Pick a template or design one from scratch.
   </Card>
   <Card title="Generate a post" icon="wand-magic-sparkles" href="/post-generator/write-post">
     Turn an idea, voice note, or article into a ready-to-publish post.

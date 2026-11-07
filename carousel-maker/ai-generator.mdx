@@ -1,0 +1,100 @@
+---
+title: "AI Generator"
+sidebarTitle: "AI Generator"
+description: "Describe a carousel in a prompt and get a complete design — layout, colours, and copy — then refine it by chatting with the AI Assistant."
+---
+
+The **AI Generator** designs a whole carousel from a prompt. Unlike [Smart Carousel](/carousel-maker/create#generate-with-smart-carousel), which only rewrites the text on slides you already have, the AI Generator creates the slides themselves — layout, colours, typography, and copy — and opens the result in the Carousel Maker, where you can keep editing it like any other deck.
+
+<Note>
+  The AI Generator is in **Beta**. Results vary from run to run — generate again or refine with the AI Assistant if the first design isn't right.
+</Note>
+
+## Open the AI Generator
+
+In the left sidebar, go to **Carousels › AI Generator**. You land on the **Generate a carousel** page.
+
+{/* SCREENSHOT NEEDED: images/carousel-maker/ai-generator.png — Carousels › AI Generator page ("Generate a carousel", Beta badge) with "From scratch" selected, an example prompt typed in the prompt box (e.g. "5 productivity habits that changed my career"), the size picker on Portrait, "8 slides", the Attach button, the Generate button, and the Example prompts row below */}
+
+## Generate a carousel
+
+<Steps>
+  <Step title="Choose how to start">
+    - **From scratch** — the AI designs a new layout for your topic.
+    - **From a template** — click **Choose a template or draft as reference**, pick one from the **Templates** or **Drafts** tab, and click **Use as reference**. The AI follows that design's structure and style and writes new content for your topic.
+  </Step>
+  <Step title="Describe the carousel">
+    Type what the carousel should cover in the prompt box. The more specific you are, the better the result — *5 money habits to build wealth in your 20s, one habit per slide, end with a question to the reader* lands closer than *money tips*.
+
+    Stuck for a topic? Click one of the **Example prompts** below the box, or **Shuffle** for new ones.
+  </Step>
+  <Step title="Attach a source (optional)">
+    Click **Attach** to base the carousel on a document — PDF, PowerPoint (PPT, PPTX), Word (DOC, DOCX), plain text, or Markdown, up to 10 MB.
+  </Step>
+  <Step title="Pick the size and slide count">
+    Choose the canvas size — **Standard** (56:71), **Portrait** (4:5), **Feed** (3:4), or **Square** (1:1) — and the number of slides, from 3 to 20. Default is 8.
+  </Step>
+  <Step title="Set advanced options (optional)">
+    | Option | Choices |
+    | --- | --- |
+    | **Amount of text per slide** | **Minimal**, **Concise** (default), **Detailed**, or **Extensive**. |
+    | **Images** | **No images** (default), **Image placeholders** — empty frames you fill in yourself — or **Stock photos**. |
+    | **Tone** | **Professional** (default), **Casual**, **Bold**, **Storytelling**, or **Educational**. |
+    | **Outro call-to-action** | What the last slide asks for: **Follow** (default), **Save**, **Visit link**, **Product**, or **None**. |
+    | **Slide numbering** | Show a number on each slide. On by default. |
+  </Step>
+  <Step title="Click Generate">
+    Generation can take up to two minutes. When it's done, the carousel opens in the Carousel Maker with your workspace's [Brand Kit](/carousel-maker/brand-kit) — name, handle, and logo — already applied.
+  </Step>
+</Steps>
+
+## Refine it with the AI Assistant
+
+After generating, an **AI Assistant** panel sits in the corner of the Carousel Maker. Click it and describe what to change in plain language — for example:
+
+- *Make the colours warmer*
+- *Shorten the text on every slide*
+- *Add a slide with a real-world example after slide 3*
+- *Use a bolder font for the headings*
+
+The assistant updates the whole carousel and replies when it's done. Keep going until you're happy, then edit any slide by hand in the **Content** and **Global** tabs as usual. Close the panel when you no longer need it.
+
+<Tip>
+  Use the AI Assistant for changes across the deck — colours, tone, structure — and make small fixes to individual slides by hand. It's faster than describing a one-word edit.
+</Tip>
+
+The carousel isn't saved until you click **Save Draft** (`⌘ S`) in the editor. From there, [download or post it](/carousel-maker/export) like any other carousel.
+
+<Note>
+  Generating and refining carousels uses your workspace's AI usage. If your workspace uses its own AI key, generations run on that key instead. See [Plans](/billing/plans).
+</Note>
+
+## AI Generator or Smart Carousel?
+
+| | AI Generator | Smart Carousel |
+| --- | --- | --- |
+| Creates the design | Yes — layout, colours, fonts, and copy | No — keeps your existing slides' design |
+| Needs existing slides | No | Yes, at least 3 |
+| Refine afterwards | Chat with the AI Assistant | Generate again |
+| Where | **Carousels › AI Generator** | **Smart Carousel** in the editor's top bar |
+
+<Tip>
+  Working with Claude, ChatGPT, or another AI assistant? It can design new carousel layouts for you too, through the [Carousify MCP server](/mcp/overview).
+</Tip>
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Create a carousel" icon="pen-ruler" href="/carousel-maker/create">
+    Edit slides, text, and images in the Carousel Maker.
+  </Card>
+  <Card title="Brand Kit" icon="palette" href="/carousel-maker/brand-kit">
+    Set the name, handle, and logo the generator applies.
+  </Card>
+  <Card title="Export and download" icon="download" href="/carousel-maker/export">
+    Download the carousel or post it to LinkedIn and Instagram.
+  </Card>
+  <Card title="Templates" icon="grid" href="/carousel-maker/templates">
+    Pick a template to use as a reference for the generator.
+  </Card>
+</Columns>

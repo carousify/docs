@@ -1,26 +1,30 @@
 ---
 title: "Schedule a post"
 sidebarTitle: "Schedule a post"
-description: "Queue a LinkedIn post to publish at a specific date and time."
+description: "Publish a post to LinkedIn and Instagram now, or queue it for a specific date and time."
 ---
 
-Carousify can publish your post immediately or queue it for a future date and time. Scheduling lives inside the same **Publish** flow you use for instant posts — no separate scheduler.
+Carousify can publish your post immediately or queue it for a future date and time. Scheduling lives inside the same **Publish** flow you use for instant posts — no separate scheduler. One post can go to several LinkedIn and Instagram accounts at once.
 
-## Write your post
+## Write your post and pick the accounts
 
-Open **Create New Post › Write New Post** (or go to **Post Generator**) and write your content in the editor. The right side shows a live LinkedIn preview as you type.
+Open **Post Generator › New Post › Write New Post** (or any other starting point in the [Post Generator](/post-generator/overview)) and write your content in the editor. The right side shows a live LinkedIn or Instagram preview as you type.
 
-<img
-  src="/images/scheduling/write-filled.png"
-  alt="Write Post page with a sample LinkedIn post about Local SEO in the editor"
-  className="rounded-xl border"
-/>
+Under **Publish to** at the top of the page, select every account the post should go to — LinkedIn profiles, LinkedIn pages, and Instagram accounts. If the post breaks a platform's rules (for example, an Instagram post without an image or video, or text over the limit), that platform is flagged and Carousify won't publish until it's fixed. See [platform limits](/post-generator/write-post#pick-the-accounts).
 
 Once you're happy with the copy, click **Publish** in the bottom-right.
 
+## Customize per account (two or more accounts)
+
+If you picked two or more accounts, Carousify first opens **Review & Customize**, listing each account's version of the post. Each one starts as **Original** — the text and media from the editor.
+
+Click an account to change its text or media without affecting the others — for example, a shorter caption and square images for Instagram, and a PDF carousel for LinkedIn. Edited accounts are marked **Customized**; click **Reset to original** to undo. Click **Continue** when every account looks right.
+
+{/* SCREENSHOT NEEDED: images/scheduling/review-customize.png — Review & Customize dialog after clicking Publish with one LinkedIn and one Instagram account selected: the account list with one account marked "Customized" and the other "Original", media thumbnails on each row, and the Continue button */}
+
 ## Toggle Schedule on
 
-Clicking **Publish** opens the **Publish Post** dialog. Nothing publishes until you confirm — by default the dialog is set to publish immediately.
+Next comes the **Publish Post** dialog. Nothing publishes until you confirm — by default the dialog is set to publish immediately.
 
 <img
   src="/images/scheduling/publish-modal.png"
@@ -38,16 +42,33 @@ Flip the **Schedule post** toggle on. The dialog reveals a date and time picker.
 
 Set the date and time you want the post to go live — the **Publish Now** button changes to **Schedule**. Click it to queue the post.
 
-<img
-  src="/images/scheduling/scheduled-success.png"
-  alt="Post scheduled successfully toast with the scheduled time displayed in the editor"
-  className="rounded-xl border"
-/>
+- The time must be at least **5 minutes** ahead and no more than **8 days** ahead.
+- If the account already has several posts scheduled that day, Carousify warns you that posting too often can put the account at risk. Click **Post Anyway** to schedule it regardless.
 
-The post now shows **Scheduled for [date, time]** along with a **Re-Schedule** button if you want to change it.
+The post moves to **Post Generator › Upcoming** and shows up on the [Content Calendar](/scheduling/calendar). In the editor, the bottom bar now reads **Scheduled for [date, time]** with a **Re-Schedule** button if you want to change it.
 
 <Tip>
-  Date and time use the timezone you set during onboarding (**Workspace › General**). If you schedule for 5:00 PM, that's 5:00 PM in your workspace timezone — not the viewer's.
+  Date and time use the workspace timezone (**Manage Workspace › General**), set during onboarding. If you schedule for 5:00 PM, that's 5:00 PM in your workspace timezone — not your computer's or the viewer's.
+</Tip>
+
+## Other options in the dialog
+
+- **Auto-plug** — add up to three follow-up comments that Carousify posts under your post after a delay. LinkedIn only. See [Auto-plug](/scheduling/auto-plug).
+- **Advanced Options › UTM Campaign** — shown when UTM tracking is on for the workspace. Sets the campaign name added to tracked links. See [Link tracking](/analytics/link-tracking).
+- **Save Draft** — close the dialog and keep the post as a draft instead.
+
+## If your posts need approval
+
+If your [role](/workspaces/roles) requires approval, **Publish Now** and **Schedule** don't post anything yet. The post goes to **Pending Approval** instead, with the time you picked. A teammate who can approve posts opens it, clicks **Continue**, and then **Approve** (or **Schedule**) in the dialog. See [Approval workflow](/workspaces/approval).
+
+## After the post goes live
+
+- Carousify sends you a notification when a scheduled post is published, and the post moves to **Post Generator › Published**.
+- Any [auto-plug](/scheduling/auto-plug) comments are posted after their delay.
+- If a post can't be published — for example, because the account [needs reconnecting](/getting-started/connect-linkedin#reconnect-an-account) — you get a **Failed to Publish Post** notification and the post appears under **Failed To Publish** in **Post Generator › Published**. Open it to fix the problem and publish or schedule it again.
+
+<Tip>
+  Working with an AI assistant? Through the [Carousify MCP server](/mcp/overview), Claude, ChatGPT, and other assistants can draft, schedule, and publish posts for you — scheduled times use the same workspace timezone.
 </Tip>
 
 ## What's next
@@ -60,7 +81,7 @@ The post now shows **Scheduled for [date, time]** along with a **Re-Schedule** b
     See every published and scheduled post in one weekly or monthly view.
   </Card>
   <Card title="Auto-plug a follow-up comment" icon="comment-dots" href="/scheduling/auto-plug">
-    Drop a comment on your own post automatically after a delay to lift reach.
+    Drop a comment on your own LinkedIn post automatically after a delay.
   </Card>
   <Card title="Approval workflow" icon="circle-check" href="/workspaces/approval">
     Require manager review before scheduled posts go live.

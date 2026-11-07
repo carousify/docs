@@ -1,0 +1,96 @@
+---
+title: "Connect your Instagram account"
+sidebarTitle: "Connect Instagram"
+description: "Connect an Instagram Business or Creator account so Carousify can publish, schedule, and pull analytics for it."
+---
+
+Carousify connects to Instagram through Instagram's official login — you sign in on Instagram, approve the permissions, and get redirected back. **We never see or store your password.**
+
+You can connect Instagram from two places:
+
+- During [onboarding](/quickstart#step-3-%E2%80%94-connect-your-social-account), at step 3
+- Any time after, from **Manage Workspace › Social Integrations**
+
+## Before you start
+
+<Note>
+  Carousify can only publish to Instagram **professional accounts** — **Business** or **Creator**. Personal Instagram accounts can't be connected, because Instagram doesn't allow publishing to them through its API. You can switch an account to a professional account for free in the Instagram app under **Settings › Account type and tools**.
+</Note>
+
+You don't need a Facebook Page — the connection runs through Instagram's own login.
+
+Carousify asks Instagram for three permissions:
+
+| Permission | Used for |
+| --- | --- |
+| Basic profile | Your username, name, bio, and profile picture. |
+| Content publishing | Publishing and scheduling posts, carousels, and Reels. |
+| Insights | Follower counts and likes and comments on your posts, for [Analytics](/analytics/linkedin-analytics). |
+
+## Connect an account
+
+<Steps>
+  <Step title="Open Social Integrations">
+    Go to **Manage Workspace › Social Integrations** in the left sidebar and click **Add New Account** (top right) — or **Connect Account** if nothing is connected yet.
+  </Step>
+  <Step title="Pick Instagram">
+    The **Add New Account** dialog lists the platforms you can connect. Click **Instagram**. Carousify sends you straight to Instagram's sign-in page.
+
+    {/* SCREENSHOT NEEDED: images/connect-linkedin/add-new-account-modal.png — Add New Account dialog on Manage Workspace › Social Integrations, showing the LinkedIn and Instagram platform cards, the OR divider, and the Collaboration Links section below */}
+  </Step>
+  <Step title="Sign in and approve">
+    Sign in with the Instagram account you want to connect, then approve the permissions. If you're already signed in to Instagram in this browser, it goes straight to the permissions screen — check it's the right account before you approve.
+  </Step>
+  <Step title="Add interests (optional)">
+    Back in Carousify, add a few interests and a short description for the account. Carousify uses them to tune AI-generated content. You can change them later with **Configure**.
+  </Step>
+</Steps>
+
+The account now appears in **Manage Workspace › Social Integrations** with an Instagram badge on its picture and an **Active** status.
+
+{/* SCREENSHOT NEEDED: images/connect-linkedin/integrations-connected.png — Manage Workspace › Social Integrations page (heading "Social Integrations") with two connected accounts: a LinkedIn personal profile card ("Personal" chip, blue header) and an Instagram card (Instagram badge on the avatar, pink header), both showing "Active", "Last synced …", Configure and Disconnect. Replaces the existing image. */}
+
+<Tip>
+  When you connect an account, Carousify also creates a [Brand Kit](/carousel-maker/brand-kit) from its name and profile picture, so your carousels can carry your handle straight away.
+</Tip>
+
+<Note>
+  Instagram accounts count toward the same connected-accounts limit on your plan as LinkedIn profiles and pages. If you've hit the limit, **Add New Account** asks you to upgrade. See [Plans and limits](/billing/plans).
+</Note>
+
+## What you can do with a connected Instagram account
+
+- **Publish and schedule** single-image posts, carousels of up to 10 images or videos, and Reels (a post with a single video) — see [Schedule a post](/scheduling/schedule-post)
+- **Post carousels** from the [Carousel Maker](/carousel-maker/export#post-a-carousel) — Carousify turns each slide into an image
+- **Track followers and post engagement** on the [Analytics](/analytics/linkedin-analytics) page
+
+Some features are LinkedIn-only for now:
+
+- [Auto-plug](/scheduling/auto-plug) follow-up comments
+- Collaboration Links for clients — to connect a client's Instagram, they need to sign in themselves or you need their login
+- Text-only posts — Instagram needs at least one image or video
+
+## Keep the connection active
+
+Instagram connections last 60 days at a time. Carousify renews them automatically before they expire, so you don't need to do anything while the account stays connected.
+
+If Instagram stops accepting the connection — for example, you changed your password, removed Carousify from **Settings › Apps and websites** in Instagram, or switched back to a personal account — the account shows **Inactive** on the Social Integrations page and a banner at the top of the app reads *A connected LinkedIn or Instagram account needs to be reconnected*.
+
+To fix it, see [Reconnect an account](/getting-started/connect-linkedin#reconnect-an-account). Don't disconnect the account first — disconnecting deletes its data from the workspace.
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Connect LinkedIn" icon="linkedin" href="/getting-started/connect-linkedin">
+    Add a LinkedIn profile or company page to the same workspace.
+  </Card>
+  <Card title="Schedule a post" icon="calendar" href="/scheduling/schedule-post">
+    Publish to Instagram and LinkedIn from one post.
+  </Card>
+  <Card title="Create a carousel" icon="layer-group" href="/carousel-maker/create">
+    Design a carousel and post it as Instagram images.
+  </Card>
+  <Card title="Analytics" icon="chart-line" href="/analytics/linkedin-analytics">
+    Follower growth and post engagement for each account.
+  </Card>
+</Columns>

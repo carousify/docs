@@ -1,0 +1,106 @@
+---
+title: "MCP permissions and security"
+sidebarTitle: "Permissions and security"
+description: "How workspace roles and approval rules apply to AI assistants, the difference between signing in and MCP API keys, and how to disconnect an assistant."
+---
+
+An AI assistant connected to Carousify never gets more access than a person in your workspace. It acts as one member and follows that member's role and approval rules, just like the app does.
+
+## Who the assistant acts as
+
+| Connection | Acts as | Role and approval rules |
+| --- | --- | --- |
+| **Sign in (OAuth)**, used by Claude, ChatGPT and Grok | The member who signed in | That member's role and **Requires Approval** setting |
+| **MCP API key** created by a member | The member who created the key | That member's role and **Requires Approval** setting |
+| **Older MCP API key** created before Carousify recorded who made each key | The whole workspace | Not limited by a role or by approval rules |
+
+The workspace owner always has full access, whichever way they connect.
+
+<Warning>
+  Older MCP keys keep full workspace access so existing integrations keep working. If you want an assistant to follow a member's role, delete the old key in **Manage Workspace › MCP** and create a new one while signed in as that member, or switch the client to sign-in.
+</Warning>
+
+## What each permission controls
+
+These are the same permissions you set on [roles](/workspaces/roles).
+
+| What the assistant tries to do | Tools | Permission needed |
+| --- | --- | --- |
+| Publish a post right away | `publish_post`, `create_post` and `update_post` when publishing | **Publish Post** |
+| Delete a post | `delete_post`, `update_post` when deleting | **Edit Drafts** |
+| Approve or reject a post waiting for approval | `review_post` | **Approve Posts** |
+| Delete a carousel draft | `delete_carousel` | **Delete Template** |
+
+When the role doesn't allow an action, the tool returns *"Your role in this workspace doesn't allow you to … Ask a workspace admin."* and nothing changes. Reading posts, analytics, templates and brand kits, saving drafts, building carousels and uploading files are open to every member who can connect.
+
+## How approvals work over MCP
+
+If the member's role has **Requires Approval** turned on (see the [approval workflow](/workspaces/approval)):
+
+- **Scheduling** puts the post in **Pending Approval** instead of the queue. The assistant tells you it was submitted for approval.
+- **Publishing right away** is refused. The assistant is told to schedule the post instead so an approver can sign it off.
+- A post waiting for approval can only go live through someone with **Approve Posts**, in the app or with `review_post`.
+
+An approver can ask their assistant *"Show me the posts waiting for approval"* and approve or reject them. Approving schedules the post for its saved time, which has to be at least a minute away; if it has passed, reschedule the post instead.
+
+## Who can connect an assistant
+
+To sign in with an assistant or create an MCP key, two things must be true:
+
+- The workspace owner's plan includes MCP.
+- Your role allows creating MCP keys.
+
+On the sign-in screen, workspaces where you can't connect are greyed out with the reason, for example *"You don't have permission to connect apps to this workspace."*
+
+These checks are repeated on every request. If you leave the workspace, lose the permission, or the plan stops including MCP, your signed-in assistants stop working within a minute. A key whose creator has left the workspace is refused with *"This MCP key was created by someone who is no longer in this workspace."*; create a new key.
+
+## Signing in versus API keys
+
+**Signing in** is the recommended way for assistants that support it:
+
+- There's no key to copy, store or leak. The assistant gets short-lived access that it renews in the background; access lasts one hour and the assistant can renew it for up to 60 days after it was last used.
+- You pick the workspace on a Carousify consent screen that lists what the assistant will be able to do.
+- Carousify shows **Unverified app** on the consent screen when the app sends you back to an address it doesn't recognise. Only continue if you started the connection yourself.
+
+**MCP API keys** are for developer tools that only accept a URL or a header:
+
+- The key is the only credential, so anyone who has it can use it. Keep it out of shared files and repositories; most clients let you read it from an environment variable.
+- Each key works until you turn it off or delete it.
+- Repeated requests with wrong keys from the same network are blocked for a while.
+
+## Disconnecting
+
+### Signed-in assistants
+
+Open **Manage Workspace › MCP** and scroll to **Connected apps**. The table shows each app, who connected it, when, and when it was last used. Click **Disconnect**: the app loses access to the workspace immediately and can be connected again later.
+
+You can always disconnect apps you connected yourself. Disconnecting someone else's app needs permission to manage API keys, which workspace admins normally have.
+
+{/* SCREENSHOT NEEDED: images/mcp/mcp-connected-apps.png — bottom of Manage Workspace › MCP showing the "Connected apps" table with at least one row (e.g. Claude, claude.ai, Connected by "You", dates, Disconnect button). New image. */}
+
+You can also remove Carousify in the assistant itself. That stops the assistant from calling Carousify, but the connection can stay listed in **Connected apps** until it expires, so disconnect it in Carousify too to be sure.
+
+### API keys
+
+In the **MCP Keys** table, turn off the **Status** switch to pause a key, or click the trash icon to delete it. Clients using the key stop working straight away. Then remove the server from the client.
+
+## Activity log
+
+Changes an assistant makes to carousel drafts show up in the workspace activity as *"… via an AI assistant"*, and disconnecting an app is logged too, so your team can see what happened.
+
+## What's next
+
+<Columns cols={2}>
+  <Card title="Roles and permissions" icon="user-shield" href="/workspaces/roles">
+    Set the permissions an assistant inherits.
+  </Card>
+  <Card title="Approval workflow" icon="circle-check" href="/workspaces/approval">
+    How Pending Approval works in the app.
+  </Card>
+  <Card title="Tools reference" icon="screwdriver-wrench" href="/mcp/tools">
+    Every tool and how it's marked.
+  </Card>
+  <Card title="MCP overview" icon="robot" href="/mcp/overview">
+    Connection methods and the MCP page.
+  </Card>
+</Columns>

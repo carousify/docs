@@ -4,7 +4,7 @@ sidebarTitle: "Overview"
 description: "Connect Carousify to the tools your team already uses — Notion, Slack, and Zapier."
 ---
 
-Carousify covers the LinkedIn side of your stack — drafting, scheduling, analytics, approvals. Integrations are how it talks to everything else: planning content in Notion, getting publish alerts in Slack, and forwarding events through Zapier into anything you already automate.
+Carousify covers the social side of your stack — drafting, scheduling, analytics, and approvals for LinkedIn and Instagram. Integrations are how it talks to everything else: planning content in Notion, getting post alerts in Slack, and forwarding events through Zapier into anything you already automate.
 
 You don't need any of these to use Carousify. Pick the ones that match a real friction in your workflow.
 
@@ -13,20 +13,25 @@ You don't need any of these to use Carousify. Pick the ones that match a real fr
 In the left sidebar, open **Manage Workspace › Integrations**.
 
 <Note>
-  This page is for third-party tools only. LinkedIn accounts and pages live under **Manage Workspace › Social Integrations** — see [Connect your LinkedIn account](/getting-started/connect-linkedin).
+  This page is for third-party tools only. LinkedIn and Instagram accounts live under **Manage Workspace › Social Integrations** — see [Connect your LinkedIn account](/getting-started/connect-linkedin) and [Connect Instagram](/getting-started/connect-instagram).
 </Note>
 
-<img
-  src="/images/integrations/integrations-page.png"
-  alt="Workspace Integrations page showing Notion, Slack, and Zapier with Connect buttons"
-  className="rounded-xl border"
-/>
+{/* SCREENSHOT NEEDED: images/integrations/integrations-page.png — Manage Workspace › Integrations with the Notion, Slack and Zapier cards (Inactive, Connect buttons); the settings tab bar should show the current tabs (General, Social Integrations, Brandkits, Team Members, Roles, Integrations, MCP, Webhooks, Extension). Replaces the existing image, whose tab bar still says "LinkedIn Integrations". */}
 
-Each tile shows an **Active** or **Inactive** status pill and a **Connect** button. Click **Connect** to start the setup flow for that tool.
+Each card shows an **Active** or **Inactive** status. On an inactive card, click **Connect** to start the setup flow. Once a tool is connected, the card shows:
+
+- **View** — the current settings: the Notion column mapping, the Slack webhook, or the Zapier API key (only the last four characters are shown).
+- **Disconnect** — removes the integration after you confirm.
+
+To change an integration's settings — a different Notion database, Slack channel, or Zapier key — disconnect it and connect it again.
 
 <Note>
   Integrations are scoped to a single workspace. If you run a workspace per client, connect Notion, Slack, or Zapier inside each workspace separately — settings don't carry across.
 </Note>
+
+<Tip>
+  If your plan doesn't include integrations, **Connect** opens an upgrade prompt. If your role doesn't allow managing integrations, Carousify shows a permission message — ask the workspace owner or an admin.
+</Tip>
 
 ## Available integrations
 
@@ -35,7 +40,7 @@ Each tile shows an **Active** or **Inactive** status pill and a **Connect** butt
     Schedule LinkedIn posts straight from a Notion database.
   </Card>
   <Card title="Slack" icon="slack" href="/integrations/slack">
-    Get notified when a post is published, scheduled, or fails.
+    Get notified when a post is scheduled, published, or fails.
   </Card>
   <Card title="Zapier" icon="bolt" href="/integrations/zapier">
     Trigger Zaps on the same three events and route them anywhere.
@@ -44,18 +49,21 @@ Each tile shows an **Active** or **Inactive** status pill and a **Connect** butt
 
 ## Looking for something else?
 
-<Columns cols={2}>
+<Columns cols={3}>
+  <Card title="Webhooks" icon="code" href="/webhooks/overview">
+    Send post events to your own server (Enterprise).
+  </Card>
   <Card title="Browser extension" icon="puzzle-piece" href="/integrations/extension">
-    Capture articles, tweets, or LinkedIn posts as you browse.
+    Write LinkedIn posts, comments, and profile copy with AI, and save posts to Swipe Files as you browse.
   </Card>
   <Card title="MCP server" icon="robot" href="/mcp/overview">
-    Drive Carousify from Claude, Codex, VS Code, or Antigravity.
+    Work in Carousify from Claude, ChatGPT, and other AI assistants.
   </Card>
 </Columns>
 
 ## Don't see what you need?
 
-The integration list will keep growing. If a tool your team relies on isn't here yet, drop a note via [Support](https://carousify.com/contact-us/) — popular requests move up the roadmap. In the meantime, the [MCP server](/mcp/overview) covers most custom workflows without waiting for a built-in integration.
+The integration list will keep growing. If a tool your team relies on isn't here yet, drop a note via [Support](https://carousify.com/contact-us/) — popular requests move up the roadmap. In the meantime, [webhooks](/webhooks/overview) and the [MCP server](/mcp/overview) cover most custom workflows without waiting for a built-in integration.
 
 ## What's next
 
@@ -64,7 +72,7 @@ The integration list will keep growing. If a tool your team relies on isn't here
     Copy our template or map your own database.
   </Card>
   <Card title="Set up Slack" icon="slack" href="/integrations/slack">
-    Pick a channel and start getting publish alerts.
+    Pick a channel and start getting post alerts.
   </Card>
   <Card title="Set up Zapier" icon="bolt" href="/integrations/zapier">
     Connect Zapier and build your first Zap.

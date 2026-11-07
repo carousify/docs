@@ -32,7 +32,8 @@
             "pages": [
               "index",
               "quickstart",
-              "getting-started/connect-linkedin"
+              "getting-started/connect-linkedin",
+              "getting-started/connect-instagram"
             ]
           },
           {
@@ -104,9 +105,16 @@
             "pages": [
               "mcp/overview",
               "mcp/claude",
+              "mcp/claude-plugin",
+              "mcp/chatgpt",
+              "mcp/grok",
+              "mcp/cursor",
+              "mcp/vscode",
               "mcp/codex",
               "mcp/antigravity",
-              "mcp/vscode"
+              "mcp/tools",
+              "mcp/permissions",
+              "mcp/uploads"
             ]
           },
           {
@@ -123,7 +131,8 @@
             "pages": [
               "billing/plans",
               "billing/upgrade",
-              "billing/cancel"
+              "billing/cancel",
+              "billing/account-security"
             ]
           }
         ]
@@ -163,14 +172,14 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {

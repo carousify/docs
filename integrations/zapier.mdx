@@ -31,11 +31,11 @@ Carousify exposes three instant triggers:
 
 | Trigger | Fires when |
 | --- | --- |
-| **Post Published** | A post goes live on LinkedIn (instant or scheduled). |
-| **Post Scheduled** | A post is queued for a future date and time. |
-| **Post Publishing Failed** | LinkedIn rejected the post or auth expired before publishing. |
+| **Post Published** | A post is published right away — with **Publish** in Carousify or by an AI assistant over [MCP](/mcp/overview). |
+| **Post Scheduled** | A post is scheduled for a future date and time. |
+| **Post Publishing Failed** | A scheduled post couldn't be published at its scheduled time — for example, the account was disconnected or the platform rejected the post. |
 
-All three are "Instant" triggers — Carousify pushes the event to Zapier in real time, so Zaps run within seconds of the event firing in your Carousify workspace.
+Triggers fire for LinkedIn and Instagram posts. All three are "Instant" triggers — Carousify pushes the event to Zapier in real time, so Zaps run within seconds of the event firing in your Carousify workspace.
 
 ## Trigger payload
 
@@ -43,18 +43,18 @@ Every event sends the same shape so you can map fields consistently across Zaps.
 
 | Field | Type | Notes |
 | --- | --- | --- |
-| `Event` | string | `post.published`, `post.scheduled`, or `post.failed`. |
+| `Event` | string | `post.published`, `post.scheduled`, or `post.publishFailed`. |
 | `Timestamp` | unix ms | When the event fired. |
 | `Data Id` | string | The internal Carousify post ID. |
 | `Data Workspace Id` | string | Which workspace the post belongs to. |
 | `Data User Id` | string | The Carousify user who created the post. |
-| `Data Account Type` | string | `profile` or `pages`. |
-| `Data Account Id` | string | LinkedIn vanity name of the account/page (e.g. `carousify`). |
+| `Data Account Type` | string | `profile` for LinkedIn profiles and Instagram accounts, `pages` for LinkedIn company pages. |
+| `Data Account Id` | string | The account's ID on the platform — LinkedIn member ID, LinkedIn organization ID for pages, or Instagram account ID. Not the vanity name. |
 | `Data Content` | string | The post body text. |
 | `Data Title` | string (optional) | Post title, if you set one. Often empty. |
-| `Data Media` | array (optional) | URLs of images/videos attached to the post. |
-| `Data Status` | string | `scheduled`, `published`, `failed`. |
-| `Data Post Urn` | string (optional) | LinkedIn URN once published — useful as a stable identifier. |
+| `Data Media` | array (optional) | URLs of the images, videos, or document attached to the post. |
+| `Data Status` | string | `scheduled`, `posted`, or `failed`. |
+| `Data Post Urn` | string (optional) | The platform's post ID once published — a LinkedIn URN (`urn:li:share:…`) or the Instagram media ID. Useful as a stable identifier. |
 | `Data Utm Campaign` | string (optional) | UTM tag if link tracking was on. |
 | `Data Posting Time` | ISO 8601 | When the post is/was scheduled to publish. |
 | `Data Created At` | ISO 8601 | When the post record was created in Carousify. |
@@ -70,13 +70,17 @@ In Carousify, go to **Manage Workspace › Integrations** and click **Connect** 
   className="rounded-xl border"
 />
 
-Carousify reveals a 32-character key. Copy it — you'll paste it into Zapier in Step 4.
+Carousify reveals a 32-character key. Copy it — you'll paste it into Zapier in Step 4. The dialog also has a **Zapier App** link that opens the invite from Step 2.
 
 <img
   src="/images/integrations/zapier-api-key-generated.png"
   alt="Generated Carousify API key with copy and Done buttons"
   className="rounded-xl border"
 />
+
+<Note>
+  A workspace can have one Zapier key. Zapier is part of Carousify's integrations — if your plan doesn't include them, **Connect** opens an upgrade prompt.
+</Note>
 
 <Warning>
   Treat this key like a password. Anyone with it can pull post data and connect to Carousify on your behalf. If it leaks, click **Disconnect** on the Zapier card in Carousify — that revokes the key — and run through the flow again to generate a new one.
@@ -146,7 +150,7 @@ Click **Test trigger**. Zapier asks Carousify for a recent event so you can see 
   className="rounded-xl border"
 />
 
-You should see the field list from the [Trigger payload](#trigger-payload) reference above. If you don't have any published posts yet, Zapier returns a stub example — that still works for mapping fields.
+You should see the field list from the [Trigger payload](#trigger-payload) reference above. Carousify returns up to five of the workspace's most recent scheduled, published, or failed posts as samples. If the workspace has none yet, schedule or publish a post first.
 
 Click **Continue with selected record**.
 
@@ -177,14 +181,14 @@ Sign in to your Google account if you haven't already. Then under **Configure**:
 
 Each column in your sheet appears as an input. Click **Add a field mapping** next to each and pick the matching Carousify field from the previous step.
 
-For a sheet with columns **Published At / Topic / Account / Post URL**, the natural mapping is:
+For a sheet with columns **Published At / Topic / Account / Post ID**, the natural mapping is:
 
 | Sheet column | Carousify field |
 | --- | --- |
 | Published At | `Data Posting Time` |
 | Topic | `Data Title` (or `Data Content` if you'd rather log the body) |
 | Account | `Data Account Id` |
-| Post URL | `Data Post Urn` |
+| Post ID | `Data Post Urn` |
 
 <img
   src="/images/integrations/zapier-action-fields-mapped.png"
@@ -224,9 +228,9 @@ The Zap is now live. Every time Carousify publishes a post under this workspace,
 
 ## Filtering by account or status
 
-A common follow-up is restricting a Zap to a specific LinkedIn account or only failed posts. Add a **Filter by Zapier** step between the trigger and the action:
+A common follow-up is restricting a Zap to one account or only failed posts. Add a **Filter by Zapier** step between the trigger and the action:
 
-- **Field**: `Data Account Id` &nbsp;**Condition**: `(Text) Exactly matches` &nbsp;**Value**: your vanity, e.g. `carousify`
+- **Field**: `Data Account Id` &nbsp;**Condition**: `(Text) Exactly matches` &nbsp;**Value**: the account's ID — copy it from a sample event for that account
 - **Field**: `Data Status` &nbsp;**Condition**: `(Text) Exactly matches` &nbsp;**Value**: `failed`
 
 The Zap will only proceed past the filter when both conditions match.
@@ -235,18 +239,18 @@ The Zap will only proceed past the filter when both conditions match.
 
 To rotate the API key (recommended every 90 days, or whenever someone leaves the team):
 
-1. In Carousify, open **Manage Workspace › Integrations** and click **Disconnect** on the Zapier card. The current key stops working immediately.
+1. In Carousify, open **Manage Workspace › Integrations**, click **Disconnect** on the Zapier card, and confirm. The key is deleted and the Zaps' event subscriptions in Carousify are removed.
 2. Click **Connect** again, generate a new key.
 3. In Zapier, open **App connections** and click **Reconnect** on the Carousify entry. Paste the new key.
 
-Disconnecting in Carousify also invalidates any in-flight Zaps — they'll show an auth error until you reconnect on the Zapier side.
+Until you reconnect on the Zapier side, your Zaps stop receiving Carousify events and show an auth error. After reconnecting, turn each Zap off and on again so it re-subscribes to Carousify.
 
 ## Troubleshooting
 
 - **"API Key Unrecognized" during sign-in.** The key was disconnected on the Carousify side, or you copied it with extra whitespace. Generate a fresh key and try again.
 - **No sample data when testing the trigger.** You don't have any matching events in your account yet — schedule or publish a real post in Carousify and click **Test trigger** again.
 - **Published At lands as a number in Sheets.** Toggle **Use Timezone set up on the spreadsheet to format date values?** to **True** in the Google Sheets action — Zapier will then format `Data Posting Time` as a readable timestamp.
-- **Zap stops firing.** Check **Zap history** in Zapier for the failure reason. Most common causes: the Carousify API key was rotated without updating Zapier, or the underlying LinkedIn account got disconnected.
+- **Zap stops firing.** Check **Zap history** in Zapier for the failure reason. The most common cause is that the Zapier integration was disconnected in Carousify (or the key rotated) without reconnecting the Carousify app in Zapier.
 
 ## What's next
 
